@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@admin/*": ["src/admin/*"],
+      "@app/*": ["src/app/*"],
+      "@assets/*": ["src/assets/*"],
+      "@constants/*": ["src/constants/*"],
+      "@home/*": ["src/home/*"],
+      "@mocks/*": ["src/mocks/*"],
+      "@sharedComponents/*": ["src/shared/components/*"],
+      "@src/*": ["src/*"],
+      "@styles/*": ["src/styles/*"],
+      "@tests/*": ["tests/*"],
+      "@utils/*": ["src/utils/*"]
+    }
+  }
+}

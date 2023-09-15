@@ -1,0 +1,13 @@
+@function to-rem($value) {
+  @if -is-number($value) != true {
+    @error "Property '#{$value}' must be a number.";
+  }
+
+  $rem-value: calc($value / 16) + rem;
+
+  @return $rem-value;
+}
+
+@function -is-number($value) {
+  @return type-of($value) == "number";
+}
