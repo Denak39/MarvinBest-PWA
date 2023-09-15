@@ -1,51 +1,38 @@
-import viteLogo from './assets/vite.svg'
-import reactLogo from './assets/react.svg'
-import sassLogo from './assets/sass.svg'
-import githubLogo from './assets/github.svg'
-import './App.scss'
+import SentenceForm from "./sentence/SentenceForm";
+import { RootState } from "./app/store";
+import { getMockUsers } from "./mock/user";
+import { useAppSelector } from "@app/hooks";
 
 function App() {
+  const sentences = useAppSelector(
+    (state: RootState) => state.sentences.sentences,
+  );
+
+  console.log(sentences);
+
   return (
-    <div className="App">
-
+    <div>
+      <h1>Marvin Best</h1>
+      <SentenceForm />
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-        <a href="https://sass-lang.com" target="_blank">
-          <img src={sassLogo} className="logo sass" alt="Sass logo" />
-        </a>
+        <h2>Sentences:</h2>
+        <ul>
+          {sentences.map((sentence) => (
+            <li key={sentence.id}>
+              <strong>
+                {
+                  getMockUsers().find((user) => user.id === sentence.user.id)
+                    ?.name
+                }
+                :
+              </strong>
+              {sentence.sentence}
+            </li>
+          ))}
+        </ul>
       </div>
-
-      <h2>Vite + React + Sass</h2>
-      <p className="read-the-docs">
-        Click on the logos to learn more about each too
-      </p>
-
-      <div>
-        
-      </div>
-      
-      <div className="card">
-        <a className="center" href="https://github.com/MengLinMaker/PWA-Vite-React-Boilerplate" target="_blank">
-          <button className="credits">
-            <img src={githubLogo} className="logo github" alt="Vite logo" />
-            <p>Meng Lin Maker</p>
-          </button>
-        </a>
-        
-        <h1>
-          <a href="https://github.com/MengLinMaker/PWA-Vite-React-Boilerplate/generate" target="_blank">
-            <button> Use This Boilerplate </button>
-          </a>
-        </h1>
-      </div>
-
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
