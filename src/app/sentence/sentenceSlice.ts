@@ -1,6 +1,13 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createAction, createSlice } from "@reduxjs/toolkit";
 import { Sentence } from "../../mock/type";
 import { mockUsers } from "../../mock/user";
+
+export const loadSentencesFromLocalStorage = createAction(
+  "sentences/loadSentencesFromLocalStorage",
+);
+export const saveSentencesToLocalStorage = createAction<Sentence[]>(
+  "sentences/saveSentencesToLocalStorage",
+);
 interface SentencesState {
   sentences: Sentence[];
 }
@@ -18,9 +25,8 @@ const sentencesSlice = createSlice({
       action: PayloadAction<{ sentence: string; userId: number }>,
     ) => {
       const { sentence, userId } = action.payload;
-      console.log(typeof userId);
+
       const user = mockUsers.find((user) => user.id === userId);
-      console.log("user", user);
 
       if (!user) {
         throw new Error(`User with ID ${userId} not found.`);
@@ -36,6 +42,14 @@ const sentencesSlice = createSlice({
         sentences: [...state.sentences, newSentence],
       };
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(loadSentencesFromLocalStorage, (state) => {
+      const sentencesInStorage = JSON.parse(
+        localStorage.getItem("sentences") || "[]",
+      );
+      state.sentences = sentencesInStorage;
+    });
   },
 });
 
