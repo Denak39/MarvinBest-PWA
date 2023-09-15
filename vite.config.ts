@@ -13,8 +13,11 @@ export default defineConfig({
       devOptions: {
         enabled: true,
       },
+      workbox: {
+        globPatterns: ["**/*"],
+      },
       injectRegister: "script",
-      includeAssets: [faviconURL],
+      includeAssets: ["**/*"],
       manifest: {
         theme_color: "#ffffff",
         icons: [
