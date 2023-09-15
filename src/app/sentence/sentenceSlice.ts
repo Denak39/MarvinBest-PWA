@@ -18,7 +18,9 @@ const sentencesSlice = createSlice({
       action: PayloadAction<{ sentence: string; userId: number }>,
     ) => {
       const { sentence, userId } = action.payload;
+      console.log(typeof userId);
       const user = mockUsers.find((user) => user.id === userId);
+      console.log("user", user);
 
       if (!user) {
         throw new Error(`User with ID ${userId} not found.`);
@@ -29,8 +31,10 @@ const sentencesSlice = createSlice({
         sentence,
         user,
       };
-
-      state.sentences.push(newSentence);
+      return {
+        ...state,
+        sentences: [...state.sentences, newSentence],
+      };
     },
   },
 });

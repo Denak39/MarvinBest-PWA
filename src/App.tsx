@@ -1,6 +1,6 @@
 import SentenceForm from "./sentence/SentenceForm";
 import { RootState } from "./app/store";
-import { getMockUsers } from "./mock/user";
+import { mockUsers } from "./mock/user";
 import { useAppSelector } from "@app/hooks";
 
 function App() {
@@ -20,11 +20,7 @@ function App() {
           {sentences.map((sentence) => (
             <li key={sentence.id}>
               <strong>
-                {
-                  getMockUsers().find((user) => user.id === sentence.user.id)
-                    ?.name
-                }
-                :
+                {mockUsers.find((user) => user.id === sentence.user.id)?.name}:
               </strong>
               {sentence.sentence}
             </li>

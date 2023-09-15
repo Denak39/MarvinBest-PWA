@@ -1,12 +1,13 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { getMockUsers } from "../mock/user";
+import { mockUsers } from "../mock/user";
 import { addSentence } from "@app/sentence/sentenceSlice";
 import { useAppDispatch } from "@app/hooks";
 
 const SentenceForm: React.FC = () => {
   const dispatch = useAppDispatch();
+
   const initialValues = {
     sentence: "",
     userId: 1,
@@ -29,6 +30,7 @@ const SentenceForm: React.FC = () => {
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={(values, { resetForm }) => {
+        console.log("form values", values);
         try {
           dispatch(
             addSentence({ sentence: values.sentence, userId: values.userId }),
@@ -43,25 +45,34 @@ const SentenceForm: React.FC = () => {
         }
       }}
     >
-      <Form>
-        <div>
-          <label htmlFor="sentence">Sentence:</label>
-          <Field type="text" id="sentence" name="sentence" />
-          <ErrorMessage name="sentence" component="div" className="error" />
-        </div>
-        <div>
-          <label htmlFor="userId">User:</label>
-          <Field as="select" id="userId" name="userId">
-            {getMockUsers().map((user) => (
-              <option key={user.id} value={user.id}>
-                {user.name}
-              </option>
-            ))}
-          </Field>
-          <ErrorMessage name="userId" component="div" className="error" />
-        </div>
-        <button type="submit">Post Sentence</button>
-      </Form>
+      {({ setFieldValue }) => (
+        <Form>
+          <div>
+            <label htmlFor="sentence">Sentence:</label>
+            <Field type="text" id="sentence" name="sentence" />
+            <ErrorMessage name="sentence" component="div" className="error" />
+          </div>
+          <div>
+            <label htmlFor="userId">User:</label>
+            <Field
+              as="select"
+              id="userId"
+              name="userId"
+              onChange={(e: { target: { value: string } }) => {
+                setFieldValue("userId", parseInt(e.target.value, 10));
+              }}
+            >
+              {mockUsers.map((user) => (
+                <option key={user.id} value={user.id}>
+                  {user.name}
+                </option>
+              ))}
+            </Field>
+            <ErrorMessage name="userId" component="div" className="error" />
+          </div>
+          <button type="submit">Post Sentence</button>
+        </Form>
+      )}
     </Formik>
   );
 };
