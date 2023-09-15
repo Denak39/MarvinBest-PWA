@@ -10,6 +10,10 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
+      devOptions: {
+        enabled: true,
+      },
+      injectRegister: "script",
       includeAssets: [faviconURL],
       manifest: {
         theme_color: "#ffffff",
