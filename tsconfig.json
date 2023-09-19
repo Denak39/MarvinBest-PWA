@@ -4,7 +4,12 @@
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "module": "ESNext",
     "skipLibCheck": true,
-    "types": ["vite/client", "vite-plugin-pwa/client"],
+    "types": [
+      "@testing-library/jest-dom",
+      "vite-plugin-pwa/client",
+      "vite/client",
+      "vitest/globals"
+    ],
 
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -20,7 +25,7 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "tests"],
+  "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }],
   "extends": "./tsconfig.paths.json"
 }
