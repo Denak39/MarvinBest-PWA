@@ -1,12 +1,14 @@
-import { PayloadAction, createAction, createSlice } from "@reduxjs/toolkit";
-import { Sentence } from "../../mock/type";
-import { mockUsers } from "../../mock/user";
+import type { PayloadAction } from '@reduxjs/toolkit';
+import { createAction, createSlice } from '@reduxjs/toolkit';
+
+import type { Sentence } from '@mocks/type';
+import { mockUsers } from '@mocks/user';
 
 export const loadSentencesFromLocalStorage = createAction(
-  "sentences/loadSentencesFromLocalStorage",
+  'sentences/loadSentencesFromLocalStorage'
 );
 export const saveSentencesToLocalStorage = createAction<Sentence[]>(
-  "sentences/saveSentencesToLocalStorage",
+  'sentences/saveSentencesToLocalStorage'
 );
 interface SentencesState {
   sentences: Sentence[];
@@ -17,16 +19,13 @@ const initialState: SentencesState = {
 };
 
 const sentencesSlice = createSlice({
-  name: "sentences",
+  name: 'sentences',
   initialState,
   reducers: {
-    addSentence: (
-      state,
-      action: PayloadAction<{ sentence: string; userId: number }>,
-    ) => {
+    addSentence: (state, action: PayloadAction<{ sentence: string; userId: number }>) => {
       const { sentence, userId } = action.payload;
 
-      const user = mockUsers.find((user) => user.id === userId);
+      const user = mockUsers.find((u) => u.id === userId);
 
       if (!user) {
         throw new Error(`User with ID ${userId} not found.`);
@@ -45,9 +44,8 @@ const sentencesSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(loadSentencesFromLocalStorage, (state) => {
-      const sentencesInStorage = JSON.parse(
-        localStorage.getItem("sentences") || "[]",
-      );
+      const sentencesInStorage = JSON.parse(localStorage.getItem('sentences') || '[]');
+      // eslint-disable-next-line no-param-reassign
       state.sentences = sentencesInStorage;
     });
   },

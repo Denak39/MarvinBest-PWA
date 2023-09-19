@@ -26,10 +26,6 @@ body {
   min-width: 320px;
   min-height: 100vh;
   -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
 }
 
@@ -67,15 +63,19 @@ button:hover {
   padding: 1.5em;
   will-change: filter;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
+
 .logo.sass:hover {
   filter: drop-shadow(0 0 2em #fb61c0aa);
 }
+
 .logo.github {
   filter: none;
   height: 1em;
@@ -85,6 +85,7 @@ button:hover {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -92,12 +93,12 @@ button:hover {
 
 @keyframes shadow-pulse {
   from {
-    filter: drop-shadow(0 0 0.5em #44444444);
+    filter: drop-shadow(0 0 0.5em #4444);
     transform: rotate(-1.2deg) translateX(0.6rem);
   }
 
   to {
-    filter: drop-shadow(0 0 1.5em #88888888);
+    filter: drop-shadow(0 0 1.5em #8888);
     transform: rotate(0.8deg) translateX(-0.6rem);
   }
 }
@@ -120,7 +121,7 @@ button:hover {
 }
 
 .credits {
-  padding: 0em 1.5em;
+  padding: 0 1.5em;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -128,11 +129,13 @@ button:hover {
   font-weight: normal;
   font-size: 1.2rem;
   background-color: white;
+
   &:hover {
     color: black;
   }
+
   .logo {
-    padding: 0 0;
+    padding: 0;
     padding-right: 0.5em;
   }
 }

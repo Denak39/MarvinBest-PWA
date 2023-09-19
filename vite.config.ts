@@ -21,22 +21,22 @@ export default defineConfig({
         icons: [
           {
             sizes: "192x192",
-            src: "/icons/192",
+            src: "/icons/192.png",
             type: "image/png",
           },
           {
             sizes: "394x394",
-            src: "/icons/394",
+            src: "/icons/394.png",
             type: "image/png",
           },
           {
             sizes: "512x512",
-            src: "/icons/512",
+            src: "/icons/512.png",
             type: "image/png",
           },
           {
             sizes: "1024x1024",
-            src: "/icons/1024",
+            src: "/icons/1024.png",
             type: "image/png",
           },
           {
@@ -53,7 +53,7 @@ export default defineConfig({
         screenshots: [
           {
             sizes: "512x512",
-            src: "/icons/512",
+            src: "/icons/512.png",
             type: "image/png",
           },
         ],

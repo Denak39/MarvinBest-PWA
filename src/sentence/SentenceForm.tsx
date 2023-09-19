@@ -1,27 +1,28 @@
-import React from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
-import { mockUsers } from "../mock/user";
-import { addSentence } from "@app/sentence/sentenceSlice";
-import { useAppDispatch } from "@app/hooks";
+import { ErrorMessage, Field, Form, Formik } from 'formik';
+import * as Yup from 'yup';
 
-const SentenceForm: React.FC = () => {
+import { useAppDispatch } from '@app/hooks';
+import { addSentence } from '@app/sentence/sentenceSlice';
+import { mockUsers } from '@mocks/user';
+
+function SentenceForm() {
   const dispatch = useAppDispatch();
 
   const initialValues = {
-    sentence: "",
+    sentence: '',
     userId: 1,
   };
 
   const validationSchema = Yup.object().shape({
-    sentence: Yup.string().required("Sentence is required"),
-    userId: Yup.number().required("User is required"),
+    sentence: Yup.string().required('Sentence is required'),
+    userId: Yup.number().required('User is required'),
   });
 
   class MyCustomError extends Error {
     constructor(message: string) {
       super(message);
-      this.name = "MyCustomError";
+      // eslint-disable-next-line react/no-this-in-sfc
+      this.name = 'MyCustomError';
     }
   }
 
@@ -30,17 +31,16 @@ const SentenceForm: React.FC = () => {
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={(values, { resetForm }) => {
-        console.log("form values", values);
         try {
-          dispatch(
-            addSentence({ sentence: values.sentence, userId: values.userId }),
-          );
+          dispatch(addSentence({ sentence: values.sentence, userId: values.userId }));
           resetForm();
         } catch (error) {
           if (error instanceof MyCustomError) {
+            // eslint-disable-next-line no-console
             console.error(error.message);
           } else {
-            console.error("An unexpected error occurred:", error);
+            // eslint-disable-next-line no-console
+            console.error('An unexpected error occurred:', error);
           }
         }
       }}
@@ -59,7 +59,7 @@ const SentenceForm: React.FC = () => {
               id="userId"
               name="userId"
               onChange={(e: { target: { value: string } }) => {
-                setFieldValue("userId", parseInt(e.target.value, 10));
+                setFieldValue('userId', parseInt(e.target.value, 10));
               }}
             >
               {mockUsers.map((user) => (
@@ -75,6 +75,6 @@ const SentenceForm: React.FC = () => {
       )}
     </Formik>
   );
-};
+}
 
 export default SentenceForm;

@@ -27,14 +27,15 @@
         "name": "react-redux"
       }
     ],
-    "import/order": "off",
     "import/no-extraneous-dependencies": [
       "error",
       {
         "devDependencies": ["**/*.test.ts", "**/*.test.tsx"]
       }
     ],
+    "import/order": "off",
     "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/label-has-associated-control": "off",
     "no-restricted-imports": "off",
     "prettier/prettier": [
       "error",
