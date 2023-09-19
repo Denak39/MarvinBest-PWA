@@ -1,0 +1,46 @@
+@use "@styles/variables" as *;
+
+@font-face {
+  font-family: $font-name-montserrat;
+  src:
+    url("/fonts/Montserrat/Montserrat-SemiBold.ttf") format("truetype"),
+    url("/fonts/Montserrat/Montserrat-SemiBold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: $font-weight-semibold;
+}
+
+@font-face {
+  font-family: $font-name-montserrat;
+  src:
+    url("/fonts/Montserrat/Montserrat-Medium.ttf") format("truetype"),
+    url("/fonts/Montserrat/Montserrat-Medium.woff2") format("woff2");
+  font-style: normal;
+  font-weight: $font-weight-medium;
+}
+
+@font-face {
+  font-family: $font-name-montserrat;
+  src:
+    url("/fonts/Montserrat/Montserrat-Regular.ttf") format("truetype"),
+    url("/fonts/Montserrat/Montserrat-Regular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: $font-weight-regular;
+}
+
+@font-face {
+  font-family: $font-name-montserrat;
+  src:
+    url("/fonts/Montserrat/Montserrat-Light.ttf") format("truetype"),
+    url("/fonts/Montserrat/Montserrat-Light.woff2") format("woff2");
+  font-style: normal;
+  font-weight: $font-weight-light;
+}
+
+@font-face {
+  font-family: $font-name-montserrat;
+  src:
+    url("/fonts/Montserrat/Montserrat-LightItalic.ttf") format("truetype"),
+    url("/fonts/Montserrat/Montserrat-LightItalic.woff2") format("woff2");
+  font-style: normal;
+  font-weight: $font-weight-light;
+}

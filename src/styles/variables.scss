@@ -1,28 +1,10 @@
 @use "@styles/functions" as *;
 
 // Colors
-$color-blue-extra-dark: #0e1125;
-$color-blue-dark: #303880;
-$color-blue: #3361ab;
-$color-gray-extra-dark: #acb3bf;
-$color-gray-dark: #caced6;
-$color-gray: #999;
-$color-gray-light-dark: #c5c5c5;
-$color-gray-light: #f4f4f4;
-$color-gray-extra-light: #f7f7f7;
-$color-purple: #6174d1;
-$color-purple-light: #d0d5f1;
-$color-orange: #d97817;
-$color-orange-light: #f4d7b9;
-$color-green-dark: #060;
-$color-green: #008000;
-$color-green-light: #8eb893;
-$color-green-light-extra: #b0d3b4;
-$color-yellow-light: #f4e4a9;
-$color-red: #f00;
-$color-red-light: #ffb4b4;
+$color-black: #0b040b;
+$color-pink: #e83668;
+$color-purple: #190b17;
 $color-white: #fff;
-$color-black: #000;
 
 // Fonts
 $font-name-montserrat: "Montserrat";
@@ -33,17 +15,5 @@ $font-weight-regular: 400;
 $font-weight-medium: 500;
 $font-weight-semibold: 600;
 
-// Breakpoints
-$breakpoint-large: 1200px;
-$breakpoint-medium: 991px;
-$breakpoint-small: 767px;
-$breakpoint-extra-small: 575px;
-
-// Z-index
-$zindex-fixed: 1030;
-
 // Border radius
 $border-radius: to-rem(10);
-
-// Box shadow
-$box-shadow: 0 0 to-rem(40) rgba($color-black, 0.1);
