@@ -15,8 +15,8 @@
     "start": "vite",
     "stylelint:check": "stylelint \"**/*.scss\" --max-warnings 0",
     "stylelint:fix": "stylelint --fix \"**/*.scss\"",
-    "test:coverage": "vitest run --coverage",
-    "test": "vitest"
+    "test:watch": "vitest",
+    "test": "vitest run"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",

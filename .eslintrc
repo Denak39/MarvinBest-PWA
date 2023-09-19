@@ -30,7 +30,11 @@
     "import/no-extraneous-dependencies": [
       "error",
       {
-        "devDependencies": ["**/*.test.ts", "**/*.test.tsx"]
+        "devDependencies": [
+          "**/*.test.ts",
+          "**/*.test.tsx",
+          "**/tests/setup.ts"
+        ]
       }
     ],
     "import/order": "off",
