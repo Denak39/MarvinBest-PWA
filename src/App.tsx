@@ -3,8 +3,7 @@ import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks';
 import { loadSentencesFromLocalStorage } from '@app/sentence/sentenceSlice';
 import type { RootState } from '@app/store';
-
-import SentenceForm from './sentence/SentenceForm';
+import SentenceForm from '@src/sentence/SentenceForm';
 
 function App() {
   const dispatch = useAppDispatch();
