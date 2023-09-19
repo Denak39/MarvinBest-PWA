@@ -1,8 +1,9 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore } from '@reduxjs/toolkit';
 
-import { api } from "@app/api";
-import sentencesReducer from "@app/sentence/sentenceSlice";
-import syncMiddleware from "./middleware";
+import { api } from '@app/api';
+import sentencesReducer from '@app/sentence/sentenceSlice';
+
+import syncMiddleware from './middleware';
 
 export const store = configureStore({
   reducer: {

@@ -1,14 +1,20 @@
 {
-  "name": "pwa-vite-react-boilerplate",
+  "name": "marvin.best",
+  "description": "marvin.best, stories taken out of context...",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
-    "prepare": "husky install"
+    "build": "vite build",
+    "check": "npm run lint:check & npm run stylelint:check & tsc",
+    "format": "npm run lint:fix & npm run stylelint:fix",
+    "lint:check": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint:fix": "eslint . --fix --ext ts,tsx",
+    "prepare": "husky install",
+    "start:preview": "vite preview",
+    "start": "vite",
+    "stylelint:check": "stylelint \"**/*.scss\" --max-warnings 0",
+    "stylelint:fix": "stylelint --fix \"**/*.scss\""
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
@@ -38,6 +44,7 @@
     "eslint-import-resolver-typescript": "^3.6.0",
     "eslint-plugin-import": "^2.28.1",
     "eslint-plugin-json": "^3.1.0",
+    "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
@@ -45,6 +52,8 @@
     "husky": "^8.0.3",
     "prettier": "^3.0.3",
     "sass": "^1.67.0",
+    "stylelint": "^15.10.3",
+    "stylelint-config-standard-scss": "^11.0.0",
     "typescript": "^5.2.2",
     "validate-branch-name": "^1.3.0",
     "vite": "^4.4.9",

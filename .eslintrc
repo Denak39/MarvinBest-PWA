@@ -27,14 +27,15 @@
         "name": "react-redux"
       }
     ],
-    "import/order": "off",
     "import/no-extraneous-dependencies": [
       "error",
       {
         "devDependencies": ["**/*.test.ts", "**/*.test.tsx"]
       }
     ],
+    "import/order": "off",
     "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/label-has-associated-control": "off",
     "no-restricted-imports": "off",
     "prettier/prettier": [
       "error",
@@ -67,13 +68,9 @@
           // Packages. `react` related packages come first.
           ["^react", "^@?\\w"],
           // Custom paths, aliases referenced in tsconfig.path.json (except assets, styles and utils)
-          [
-            "^@(admin|app|constants|events|home|mocks|sharedComponents|src|tests)(/.*|$)"
-          ],
+          ["^@(admin|app|constants|hooks|home|mocks|shared|src)(/.*|$)"],
           // Custom path for all the assets
           ["^@assets(/.*|$)"],
-          // Custom path for utils imports
-          ["^@utils(/.*|$)"],
           // Side effect imports.
           ["^\\u0000"],
           // Parent imports. Put `..` last.

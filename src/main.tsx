@@ -1,17 +1,17 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import { Provider } from "react-redux";
-import { BrowserRouter } from "react-router-dom";
-import Toastify from "toastify-js";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
+import Toastify from 'toastify-js';
+import { registerSW } from 'virtual:pwa-register';
 
 // Redux store
-import { store } from "@app/store";
+import { store } from '@app/store';
 // Components
-import App from "@src/App";
-import { registerSW } from "virtual:pwa-register";
+import App from '@src/App';
 
 // https://css-tricks.com/vitepwa-plugin-offline-service-worker/
-if ("serviceWorker" in navigator) {
+if ('serviceWorker' in navigator) {
   // && !/localhost/.test(window.location) && !/lvh.me/.test(window.location)) {
   const updateSW = registerSW({
     onNeedRefresh() {
@@ -20,7 +20,7 @@ if ("serviceWorker" in navigator) {
                <br><br>
                <a class='do-sw-update'>Click to update and reload</a>  `,
         escapeMarkup: false,
-        gravity: "bottom",
+        gravity: 'bottom',
         onClick() {
           updateSW(true);
         },
@@ -29,12 +29,12 @@ if ("serviceWorker" in navigator) {
   });
 }
 
-ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
         <App />
       </BrowserRouter>
     </Provider>
-  </React.StrictMode>,
+  </React.StrictMode>
 );

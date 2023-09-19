@@ -6,13 +6,12 @@
       "@app/*": ["src/app/*"],
       "@assets/*": ["src/assets/*"],
       "@constants/*": ["src/constants/*"],
+      "@hooks/*": ["src/shared/hooks/*"],
       "@home/*": ["src/home/*"],
       "@mocks/*": ["src/mocks/*"],
-      "@sharedComponents/*": ["src/shared/components/*"],
+      "@shared/*": ["src/shared/*"],
       "@src/*": ["src/*"],
-      "@styles/*": ["src/styles/*"],
-      "@tests/*": ["tests/*"],
-      "@utils/*": ["src/utils/*"]
+      "@styles/*": ["src/styles/*"]
     }
   }
 }

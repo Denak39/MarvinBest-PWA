@@ -1,15 +1,13 @@
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { loadSentencesFromLocalStorage } from "@app/sentence/sentenceSlice";
-import SentenceForm from "./sentence/SentenceForm";
-import { RootState } from "./app/store";
-import { useAppSelector } from "@app/hooks";
+import { useEffect } from 'react';
+
+import { useAppDispatch, useAppSelector } from '@app/hooks';
+import { loadSentencesFromLocalStorage } from '@app/sentence/sentenceSlice';
+import type { RootState } from '@app/store';
+import SentenceForm from '@src/sentence/SentenceForm';
 
 function App() {
-  const dispatch = useDispatch();
-  const sentences = useAppSelector(
-    (state: RootState) => state.sentences.sentences,
-  );
+  const dispatch = useAppDispatch();
+  const sentences = useAppSelector((state: RootState) => state.sentences.sentences);
 
   useEffect(() => {
     dispatch(loadSentencesFromLocalStorage());
@@ -17,7 +15,7 @@ function App() {
 
   return (
     <div>
-      <h1>Marvin Best</h1>
+      <h1>marvin.best</h1>
       <SentenceForm />
       <div>
         <h2>Sentences:</h2>
