@@ -10,52 +10,100 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
-      // devOptions: {
-      //   enabled: true,
-      // },
-      workbox: {
-        globPatterns: ["**/*"],
-      },
-      injectRegister: "script",
       includeAssets: ["**/*"],
+      injectRegister: "script",
       manifest: {
-        theme_color: "#ffffff",
+        background_color: "#190B17",
+        categories: ["entertainment", "games", "social"],
+        description: "marvin.best, des histoires sorties de son contexte...",
+        dir: "ltr",
+        display: "standalone",
         icons: [
           {
-            src: faviconURL,
-            sizes: "512x512",
-            type: "image/svg+xml",
-            purpose: "any maskable",
+            sizes: "192x192",
+            src: "/icons/192",
+            type: "image/png",
           },
           {
-            src: faviconURL,
+            sizes: "394x394",
+            src: "/icons/394",
+            type: "image/png",
+          },
+          {
             sizes: "512x512",
+            src: "/icons/512",
+            type: "image/png",
+          },
+          {
+            sizes: "1024x1024",
+            src: "/icons/1024",
+            type: "image/png",
+          },
+          {
+            purpose: "maskable",
+            sizes: "512x512",
+            src: "/icons/512.png",
             type: "image/png",
           },
         ],
+        id: "marvin.best",
+        lang: "fr-FR",
+        name: "marvin.best",
+        orientation: "portrait",
+        screenshots: [
+          {
+            sizes: "512x512",
+            src: "/icons/512",
+            type: "image/png",
+          },
+        ],
+        short_name: "marvin.best",
+        start_url: "/",
+        theme_color: "#E83668",
+      },
+      workbox: {
+        globPatterns: ["**/*"],
       },
     }),
   ],
   resolve: {
     alias: [
-      { find: "@admin", replacement: path.resolve(__dirname, "src/admin") },
-      { find: "@app", replacement: path.resolve(__dirname, "src/app") },
-      { find: "@assets", replacement: path.resolve(__dirname, "src/assets") },
+      {
+        find: "@admin",
+        replacement: path.resolve(__dirname, "src/admin"),
+      },
+      {
+        find: "@app",
+        replacement: path.resolve(__dirname, "src/app"),
+      },
+      {
+        find: "@assets",
+        replacement: path.resolve(__dirname, "src/assets"),
+      },
       {
         find: "@constants",
         replacement: path.resolve(__dirname, "src/constants"),
       },
-      { find: "@events", replacement: path.resolve(__dirname, "src/events") },
-      { find: "@home", replacement: path.resolve(__dirname, "src/home") },
-      { find: "@mocks", replacement: path.resolve(__dirname, "src/mocks") },
       {
-        find: "@sharedComponents",
-        replacement: path.resolve(__dirname, "src/shared/components"),
+        find: "@home",
+        replacement: path.resolve(__dirname, "src/home"),
       },
-      { find: "@src", replacement: path.resolve(__dirname, "src") },
-      { find: "@styles", replacement: path.resolve(__dirname, "src/styles") },
-      { find: "@tests", replacement: path.resolve(__dirname, "tests") },
-      { find: "@utils", replacement: path.resolve(__dirname, "src/utils") },
+      {
+        find: "@mocks",
+        replacement: path.resolve(__dirname, "src/mocks"),
+      },
+      {
+        find: "@shared",
+        replacement: path.resolve(__dirname, "src/shared"),
+      },
+      {
+        find: "@src",
+        replacement: path.resolve(__dirname, "src"),
+      },
+      {
+        find: "@styles",
+        replacement: path.resolve(__dirname, "src/styles"),
+      },
     ],
   },
 });

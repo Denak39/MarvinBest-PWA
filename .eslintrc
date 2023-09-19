@@ -67,13 +67,9 @@
           // Packages. `react` related packages come first.
           ["^react", "^@?\\w"],
           // Custom paths, aliases referenced in tsconfig.path.json (except assets, styles and utils)
-          [
-            "^@(admin|app|constants|events|home|mocks|sharedComponents|src|tests)(/.*|$)"
-          ],
+          ["^@(admin|app|constants|home|mocks|shared|src)(/.*|$)"],
           // Custom path for all the assets
           ["^@assets(/.*|$)"],
-          // Custom path for utils imports
-          ["^@utils(/.*|$)"],
           // Side effect imports.
           ["^\\u0000"],
           // Parent imports. Put `..` last.
