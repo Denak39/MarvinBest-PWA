@@ -5,4 +5,11 @@
   box-sizing: border-box;
   font-family: inherit;
   outline: none;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: white;
+  background: var(--Purple, #190b17);
 }

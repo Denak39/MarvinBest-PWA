@@ -8,34 +8,34 @@ import iconAdd from "@assets/icons/icon-add.svg";
 
 const Navbar: React.FC = () => {
   return (
-    <div className="navigation">
-      <ul>
-        <li className="list ">
-          <a href="#">
-            <span className="icon">
+    <>
+      <div className="shadow-nav"></div>
+      <div className="navigation">
+        <ul>
+          <li className="list ">
+            <NavLink
+              to="/"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
               <img src={iconHome} />
-            </span>
-          </a>
-        </li>
-        <li className="list active">
-          <a href="#">
-            {/* <span className="icon">
-              <img src={iconAdd} />
-            </span> */}
-          </a>
-        </li>
-        <li className="list">
-          <a href="#">
-            <span className="icon">
+            </NavLink>
+          </li>
+          <li className="list">
+            <NavLink
+              to="/users"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
               <img src={iconUsers} />
-            </span>
-          </a>
-        </li>
-        <div className="indicator">
-          <img src={iconAdd} />
-        </div>
-      </ul>
-    </div>
+            </NavLink>
+          </li>
+          <div className="indicator">
+            <NavLink to="/sentence-form">
+              <img src={iconAdd} />
+            </NavLink>
+          </div>
+        </ul>
+      </div>
+    </>
   );
 };
 
