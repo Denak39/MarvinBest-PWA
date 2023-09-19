@@ -1,20 +1,20 @@
 @use "@styles/functions" as *;
 @use "@styles/variables" as *;
 
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
-
 .shadow-nav {
   height: 30px;
   background: linear-gradient(0deg, #190b17 0%, rgba(25, 11, 23, 0) 100%);
 }
 
 .navigation {
-  position: relative;
-  height: 70px;
+  height: 60px;
   background: linear-gradient(45deg, #2196f3, #e91e63);
   display: flex;
   justify-content: center;
   align-items: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 
 .navigation ul {
@@ -32,8 +32,8 @@
 .indicator {
   position: absolute;
   top: -50%;
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
   background: linear-gradient(45deg, #2196f3, #e91e63);
   border: 6px solid #06021b;
   border-radius: 50%;
