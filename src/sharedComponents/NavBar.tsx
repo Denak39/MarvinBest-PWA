@@ -9,10 +9,10 @@ import iconAdd from "@assets/icons/icon-add.svg";
 const Navbar: React.FC = () => {
   return (
     <>
-      <div className="shadow-nav"></div>
+      <div className="shadow-nav" />
       <div className="navigation">
         <ul>
-          <li className="list ">
+          <li>
             <NavLink
               to="/"
               className={({ isActive }) => (isActive ? "active" : "")}
@@ -20,7 +20,7 @@ const Navbar: React.FC = () => {
               <img src={iconHome} />
             </NavLink>
           </li>
-          <li className="list">
+          <li>
             <NavLink
               to="/users"
               className={({ isActive }) => (isActive ? "active" : "")}
