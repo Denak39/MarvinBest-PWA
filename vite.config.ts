@@ -81,6 +81,10 @@ export default defineConfig({
         replacement: path.resolve(__dirname, "src/assets"),
       },
       {
+        find: "@components",
+        replacement: path.resolve(__dirname, "src/shared/components"),
+      },
+      {
         find: "@constants",
         replacement: path.resolve(__dirname, "src/constants"),
       },
