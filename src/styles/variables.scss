@@ -1,13 +1,14 @@
-@use "@styles/functions" as *;
+@use '@styles/functions' as *;
 
 // Colors
 $color-black: #0b040b;
-$color-pink: #e83668;
 $color-purple: #190b17;
 $color-white: #fff;
+$color-pink: #e83668;
+$color-black-2: #0b040b;
 
 // Fonts
-$font-name-montserrat: "Montserrat";
+$font-name-montserrat: 'Montserrat';
 
 // Fonts weight
 $font-weight-light: 300;
