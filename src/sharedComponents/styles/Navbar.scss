@@ -1,67 +1,32 @@
 @use "@styles/functions" as *;
 @use "@styles/variables" as *;
 
-:root {
-  --clr: #190b17;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+.shadow-nav {
+  height: 30px;
+  background: linear-gradient(0deg, #190b17 0%, rgba(25, 11, 23, 0) 100%);
 }
 
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: var(--clr);
-  margin: 0px;
-}
 .navigation {
   position: relative;
-  width: 400px;
   height: 70px;
-  background: $color-black-2;
+  background: linear-gradient(45deg, #2196f3, #e91e63);
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .navigation ul {
   display: flex;
+  justify-content: space-around;
   width: 100%;
-  justify-content: space-evenly;
-  margin-block-start: 0;
-  margin-block-end: 0;
-  padding-inline-start: 0;
 }
+
 .navigation ul li {
   position: relative;
   list-style: none;
-  //   background-color: green;
-  width: 70px;
-  height: 70px;
   z-index: 1;
-}
-// .navigation ul li a {
-//   position: relative;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   flex-direction: column;
-//   width: 100%;
-//   text-align: center;
-//   font-weight: 500;
-// }
-.navigation ul li a .icon {
-  position: relative;
-  display: block;
-  text-align: center;
-  background-color: green;
-  height: 70px;
-
-  img {
-    height: 70px;
-    width: 40px;
-  }
-}
-.navigation ul li.active a .icon {
-  transform: translateY(-32px);
 }
 
 .indicator {
@@ -69,12 +34,15 @@ body {
   top: -50%;
   width: 70px;
   height: 70px;
-  background: $color-pink;
+  background: linear-gradient(45deg, #2196f3, #e91e63);
+  border: 6px solid #06021b;
   border-radius: 50%;
-  border: 6px solid var(--clr);
   display: flex;
-  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s;
 }
+
 .indicator::before {
   content: "";
   position: absolute;
@@ -84,8 +52,9 @@ body {
   height: 20px;
   background: transparent;
   border-top-right-radius: 20px;
-  box-shadow: 1px -10px 0 0 var(--clr);
+  box-shadow: 1px -10px 0 #06021b;
 }
+
 .indicator::after {
   content: "";
   position: absolute;
@@ -95,5 +64,5 @@ body {
   height: 20px;
   background: transparent;
   border-top-left-radius: 20px;
-  box-shadow: -1px -10px 0 0 var(--clr);
+  box-shadow: -1px -10px 0 #06021b;
 }
