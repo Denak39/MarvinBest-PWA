@@ -89,6 +89,10 @@ export default defineConfig({
         replacement: path.resolve(__dirname, "src/constants"),
       },
       {
+        find: "@helpers",
+        replacement: path.resolve(__dirname, "src/helpers"),
+      },
+      {
         find: "@hooks",
         replacement: path.resolve(__dirname, "src/shared/hooks"),
       },
