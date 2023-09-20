@@ -14,7 +14,7 @@ function Navbar() {
           <li>
             <NavLink
               to="/"
-              className={({ isActive }) => (isActive ? 'active' : '')}
+              className={({ isActive }) => (isActive ? 'active' : 'not-active')}
             >
               <IconHome />
             </NavLink>
@@ -22,7 +22,7 @@ function Navbar() {
           <li>
             <NavLink
               to="/users"
-              className={({ isActive }) => (isActive ? 'active' : '')}
+              className={({ isActive }) => (isActive ? 'active' : 'not-active')}
             >
               <IconUsers />
             </NavLink>

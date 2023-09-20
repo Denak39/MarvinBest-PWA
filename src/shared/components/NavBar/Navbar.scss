@@ -3,71 +3,78 @@
 
 .shadow-nav {
   height: 85px;
-  background: linear-gradient(0deg, #190b17 0%, rgb(25 11 23 / 0%) 100%);
+  background: linear-gradient(0deg, $color-purple 0%, rgb(25 11 23 / 0%) 100%);
   position: fixed;
   bottom: 0;
   width: 100%;
   margin: 0;
   padding: 0;
+
+  .navigation {
+    height: 60px;
+    background: $color-black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+
+    ul {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+
+      li {
+        position: relative;
+        list-style: none;
+        z-index: 1;
+      }
+    }
+
+    .indicator {
+      position: absolute;
+      top: -50%;
+      width: 60px;
+      height: 60px;
+      background: $color-pink;
+      border: 6px solid $color-purple;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .indicator::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: -22px;
+      width: 20px;
+      height: 20px;
+      background: transparent;
+      border-top-right-radius: 20px;
+      box-shadow: 1px -10px 0 #06021b;
+    }
+
+    .indicator::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: -22px;
+      width: 20px;
+      height: 20px;
+      background: transparent;
+      border-top-left-radius: 20px;
+      box-shadow: -1px -10px 0 white;
+    }
+  }
 }
 
-.navigation {
-  height: 60px;
-  background: linear-gradient(45deg, #2196f3, #e91e63);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
+.active {
+  color: $color-pink;
 }
 
-.navigation ul {
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
-}
-
-.navigation ul li {
-  position: relative;
-  list-style: none;
-  z-index: 1;
-}
-
-.indicator {
-  position: absolute;
-  top: -50%;
-  width: 60px;
-  height: 60px;
-  background: linear-gradient(45deg, #2196f3, #e91e63);
-  border: 6px solid #06021b;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: 0.5s;
-}
-
-.indicator::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: -22px;
-  width: 20px;
-  height: 20px;
-  background: transparent;
-  border-top-right-radius: 20px;
-  box-shadow: 1px -10px 0 #06021b;
-}
-
-.indicator::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  right: -22px;
-  width: 20px;
-  height: 20px;
-  background: transparent;
-  border-top-left-radius: 20px;
-  box-shadow: -1px -10px 0 #06021b;
+.not-active {
+  color: $color-white;
 }
