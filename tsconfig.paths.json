@@ -12,6 +12,7 @@
       "@home/*": ["src/home/*"],
       "@mocks/*": ["src/mocks/*"],
       "@shared/*": ["src/shared/*"],
+      "@speakers/*": ["src/speakers/*"],
       "@src/*": ["src/*"],
       "@styles/*": ["src/styles/*"]
     }

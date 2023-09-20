@@ -6,7 +6,7 @@ import type { MessageProps } from '@components/Message/Message.types';
 const props: MessageProps = {
   children: 'Lorem iposum dolor sit amet.',
   className: 'custom-class',
-  initial: 'MQ',
+  name: 'John Doe',
 };
 
 describe('shared/components/Message', () => {

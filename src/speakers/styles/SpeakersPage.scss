@@ -1,0 +1,9 @@
+@use "@styles/functions" as *;
+
+.SpeakersPage {
+  &__list {
+    display: flex;
+    flex-direction: column;
+    row-gap: to-rem(6);
+  }
+}

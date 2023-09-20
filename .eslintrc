@@ -30,11 +30,7 @@
     "import/no-extraneous-dependencies": [
       "error",
       {
-        "devDependencies": [
-          "**/*.test.ts",
-          "**/*.test.tsx",
-          "**/tests/setup.ts"
-        ]
+        "devDependencies": ["**/*.test.ts", "**/*.test.tsx", "**/tests/*"]
       }
     ],
     "import/order": "off",
@@ -73,7 +69,7 @@
           ["^react", "^@?\\w"],
           // Custom paths, aliases referenced in tsconfig.path.json (except assets, styles and utils)
           [
-            "^@(admin|app|components|constants|helpers|hooks|home|mocks|shared|src)(/.*|$)"
+            "^@(admin|app|components|constants|helpers|hooks|home|mocks|shared|speakers|src)(/.*|$)"
           ],
           // Custom path for all the assets
           ["^@assets(/.*|$)"],

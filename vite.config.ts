@@ -109,8 +109,12 @@ export default defineConfig({
         replacement: path.resolve(__dirname, 'src/shared'),
       },
       {
-        find: '@src',
-        replacement: path.resolve(__dirname, 'src'),
+        find: "@speakers",
+        replacement: path.resolve(__dirname, "src/speakers"),
+      },
+      {
+        find: "@src",
+        replacement: path.resolve(__dirname, "src"),
       },
       {
         find: '@styles',

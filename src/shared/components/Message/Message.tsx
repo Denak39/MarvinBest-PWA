@@ -7,12 +7,12 @@ import DateHelpers from '@helpers/DateHelpers';
 
 import '@components/Message/Message.scss';
 
-function Message({ children, className, date = '', initial, ...props }: MessageProps): JSX.Element {
+function Message({ children, className, date = '', name, ...props }: MessageProps): JSX.Element {
   const dateTime = new DateHelpers(date);
 
   return (
     <div className={clsx('Message', className)} data-testid="Message" {...props}>
-      <Avatar initial={initial} className="Message__Avatar" />
+      <Avatar name={name} className="Message__Avatar" />
 
       <span className="Message__content">
         <p className="Message__text">{children}</p>

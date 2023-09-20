@@ -7,14 +7,13 @@ class DateHelpers extends Date {
    * @return {string}
    */
   getFulldate(): string {
-    return this.toLocaleString('fr-FR', {
-      day: 'numeric',
-      hour: 'numeric',
-      minute: 'numeric',
-      month: 'long',
-      weekday: 'long',
-      year: 'numeric',
-    });
+    const weekday = new Intl.DateTimeFormat('fr-FR', { weekday: 'long' }).format(this);
+    const day = DateHelpers.padZero(this.getDate());
+    const month = new Intl.DateTimeFormat('fr-FR', { month: 'long' }).format(this);
+    const hours = DateHelpers.padZero(this.getHours());
+    const minutes = DateHelpers.padZero(this.getMinutes());
+
+    return `${weekday} ${day} ${month} ${this.getFullYear()} à ${hours}:${minutes}`;
   }
 
   /**

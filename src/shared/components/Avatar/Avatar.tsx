@@ -5,10 +5,15 @@ import type { AvatarProps } from '@components/Avatar/Avatar.types';
 
 import '@components/Avatar/Avatar.scss';
 
-function Avatar({ initial, className, ...props }: AvatarProps): JSX.Element {
+function Avatar({ className, name, ...props }: AvatarProps): JSX.Element {
   return (
-    <div className={clsx('Avatar', className)} data-testid="Avatar" {...props}>
-      <p>{initial}</p>
+    <div className={clsx('Avatar', className)} data-testid="Avatar" title={name} {...props}>
+      <p>
+        {name
+          .split(' ')
+          .map((item) => item.charAt(0))
+          .join('')}
+      </p>
     </div>
   );
 }

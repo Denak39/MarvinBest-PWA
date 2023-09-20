@@ -1,0 +1,38 @@
+@use "@styles/functions" as *;
+@use "@styles/mixins" as *;
+@use "@styles/variables" as *;
+
+.Card {
+  background-color: $color-black;
+  border-radius: $border-radius;
+  column-gap: to-rem(16);
+  display: flex;
+  overflow: hidden;
+  padding: to-rem(20);
+
+  &__text {
+    flex: 1;
+    overflow: hidden;
+  }
+
+  &__name {
+    @include text-overflow;
+
+    color: $color-pink;
+    font-weight: $font-weight-medium;
+    white-space: nowrap;
+  }
+
+  &__count-sentences {
+    @include font-text-small;
+
+    white-space: nowrap;
+  }
+
+  .Icon--arrow-forward {
+    @include fixed-size(to-rem(20));
+
+    align-self: center;
+    opacity: 0.6;
+  }
+}
