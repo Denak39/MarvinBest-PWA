@@ -1,19 +1,17 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
-import { useAppDispatch, useAppSelector } from "@app/hooks";
-import { loadSentencesFromLocalStorage } from "@app/sentence/sentenceSlice";
-import type { RootState } from "@app/store";
-import SentenceForm from "@src/sentence/SentenceForm";
-import Navbar from "./sharedComponents/NavBar";
-import "@styles/index.scss";
+import { useAppDispatch, useAppSelector } from '@app/hooks';
+import { loadSentencesFromLocalStorage } from '@app/sentence/sentenceSlice';
+import type { RootState } from '@app/store';
+import SentenceForm from '@src/sentence/SentenceForm';
+
+import Navbar from './shared/components/NavBar/NavBar';
 
 import '@styles/index.scss';
 
 function App() {
   const dispatch = useAppDispatch();
-  const sentences = useAppSelector(
-    (state: RootState) => state.sentences.sentences,
-  );
+  const sentences = useAppSelector((state: RootState) => state.sentences.sentences);
 
   useEffect(() => {
     dispatch(loadSentencesFromLocalStorage());
