@@ -5,6 +5,7 @@
       "@admin/*": ["src/admin/*"],
       "@app/*": ["src/app/*"],
       "@assets/*": ["src/assets/*"],
+      "@components/*": ["src/shared/components/*"],
       "@constants/*": ["src/constants/*"],
       "@hooks/*": ["src/shared/hooks/*"],
       "@home/*": ["src/home/*"],

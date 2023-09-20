@@ -1,0 +1,27 @@
+@use "@styles/functions" as *;
+@use "@styles/variables" as *;
+
+// Text styles
+@mixin font-text-small {
+  font-size: to-rem(12);
+  font-weight: $font-weight-light;
+  line-height: to-rem(18);
+}
+
+// Size
+@mixin fixed-size($width, $height: $width) {
+  @include fixed-size-width($width);
+  @include fixed-size-height($height);
+}
+
+@mixin fixed-size-width($width) {
+  max-width: $width;
+  min-width: $width;
+  width: $width;
+}
+
+@mixin fixed-size-height($height) {
+  height: $height;
+  max-height: $height;
+  min-height: $height;
+}

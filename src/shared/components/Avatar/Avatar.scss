@@ -1,0 +1,22 @@
+@use "@styles/functions" as *;
+@use "@styles/mixins" as *;
+@use "@styles/variables" as *;
+
+.Avatar {
+  @include fixed-size(to-rem(30));
+
+  align-items: center;
+  background-color: $color-pink;
+  border-radius: 50%;
+  border: to-rem(2) solid $color-black;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+
+  p {
+    @include font-text-small;
+
+    font-weight: $font-weight-medium;
+    white-space: nowrap;
+  }
+}

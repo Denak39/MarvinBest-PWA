@@ -1,0 +1,24 @@
+@use "@styles/fonts" as *;
+@use "@styles/variables" as *;
+
+* {
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+html {
+  background-color: $color-purple;
+  color: $color-white;
+  font-family: $font-name-montserrat, sans-serif;
+  font-weight: $font-weight-regular;
+}
+
+p {
+  margin: 0;
+}
+
+@media (display-mode: standalone) {
+  * {
+    user-select: none;
+  }
+}

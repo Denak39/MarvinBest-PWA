@@ -5,6 +5,8 @@ import { loadSentencesFromLocalStorage } from '@app/sentence/sentenceSlice';
 import type { RootState } from '@app/store';
 import SentenceForm from '@src/sentence/SentenceForm';
 
+import '@styles/index.scss';
+
 function App() {
   const dispatch = useAppDispatch();
   const sentences = useAppSelector((state: RootState) => state.sentences.sentences);
