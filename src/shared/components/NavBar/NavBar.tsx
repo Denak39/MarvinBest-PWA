@@ -1,36 +1,40 @@
 import { NavLink } from 'react-router-dom';
 
-import iconAdd from '@assets/icons/icon-add.svg';
-import iconHome from '@assets/icons/icon-home.svg';
-// import iconAdd from "@assets/icons/icon-add.svg";
-import iconUsers from '@assets/icons/icon-users.svg';
+import IconAdd from '@shared/components/Icons/IconAdd';
+import IconHome from '@shared/components/Icons/IconHome';
+import IconUsers from '@shared/components/Icons/IconUsers';
 
-import './styles/Navbar.scss';
+import './Navbar.scss';
 
 function Navbar() {
   return (
-    <>
-      <div className="shadow-nav" />
+    <div className="shadow-nav">
       <div className="navigation">
         <ul>
           <li>
-            <NavLink to="/" className={({ isActive }) => (isActive ? 'active' : '')}>
-              <img src={iconHome} alt="Home" />
+            <NavLink
+              to="/"
+              className={({ isActive }) => (isActive ? 'active' : '')}
+            >
+              <IconHome />
             </NavLink>
           </li>
           <li>
-            <NavLink to="/users" className={({ isActive }) => (isActive ? 'active' : '')}>
-              <img src={iconUsers} alt="Users" />
+            <NavLink
+              to="/users"
+              className={({ isActive }) => (isActive ? 'active' : '')}
+            >
+              <IconUsers />
             </NavLink>
           </li>
           <div className="indicator">
             <NavLink to="/sentence-form">
-              <img src={iconAdd} alt="Add" />
+              <IconAdd />
             </NavLink>
           </div>
         </ul>
       </div>
-    </>
+    </div>
   );
 }
 

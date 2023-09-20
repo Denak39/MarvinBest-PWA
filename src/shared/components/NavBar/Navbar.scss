@@ -2,8 +2,13 @@
 @use '@styles/variables' as *;
 
 .shadow-nav {
-  height: 30px;
+  height: 85px;
   background: linear-gradient(0deg, #190b17 0%, rgb(25 11 23 / 0%) 100%);
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .navigation {
