@@ -2,7 +2,7 @@
 @use '@styles/variables' as *;
 
 .shadow-nav {
-  height: 115px;
+  height: to-rem(115);
   background: linear-gradient(0deg, $color-purple 0%, rgb(25 11 23 / 0%) 100%);
   position: fixed;
   bottom: 0;
@@ -11,7 +11,7 @@
   padding: 0;
 
   .navigation {
-    height: 80px;
+    height: to-rem(80);
     background: $color-black;
     display: flex;
     justify-content: center;
@@ -35,10 +35,10 @@
     .add-button {
       position: absolute;
       top: -50%;
-      width: 60px;
-      height: 60px;
+      width: to-rem(60);
+      height: to-rem(60);
       background: $color-pink;
-      border: 6px solid $color-purple;
+      border: to-rem(6) solid $color-purple;
       border-radius: 50%;
       display: flex;
       justify-content: center;
