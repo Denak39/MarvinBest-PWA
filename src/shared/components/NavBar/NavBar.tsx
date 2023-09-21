@@ -27,7 +27,7 @@ function Navbar() {
               <IconUsers />
             </NavLink>
           </li>
-          <div className="indicator">
+          <div className="add-button">
             <NavLink to="/sentence-form">
               <IconAdd />
             </NavLink>
