@@ -9,7 +9,6 @@
       "vite-plugin-pwa/client",
       "vite/client",
       "vitest/globals",
-      "vite-plugin-svgr/client"
     ],
 
     /* Bundler mode */

@@ -4,7 +4,7 @@ import IconAdd from '@components/svg/IconAdd';
 import IconHome from '@components/svg/IconHome';
 import IconUsers from '@components/svg/IconUsers';
 
-import './Navbar.scss';
+import '@components/NavBar/Navbar.scss';
 
 function Navbar() {
   return (

@@ -1,17 +1,14 @@
 /// <reference types="vitest" />
-/// <reference types="vite-plugin-svgr/client" />
 
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
 import * as path from 'path';
-import svgr from 'vite-plugin-svgr';
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
-    svgr(),
     VitePWA({
       includeAssets: ['**/*'],
       injectRegister: 'script',

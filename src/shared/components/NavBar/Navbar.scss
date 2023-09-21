@@ -22,10 +22,10 @@
   &::before {
     content: '';
     mask:
-      url('/public/images/mask.svg') top center no-repeat,
+      url('/images/mask.svg') top center no-repeat,
       linear-gradient(#fff 0 0);
     -webkit-mask:
-      url('/public/images/mask.svg') top center no-repeat,
+      url('/images/mask.svg') top center no-repeat,
       linear-gradient(#fff 0 0);
     mask-composite: destination-out;
     -webkit-mask-composite: destination-out;

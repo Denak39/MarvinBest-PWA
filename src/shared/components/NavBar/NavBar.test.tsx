@@ -1,7 +1,7 @@
 import { MemoryRouter } from 'react-router-dom';
 import { fireEvent, render } from '@testing-library/react';
 
-import NavBar from './NavBar';
+import NavBar from '@components/NavBar/NavBar';
 
 test('Navbar applies correct class based on isActive', () => {
   const { container } = render(
