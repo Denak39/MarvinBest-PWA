@@ -3,7 +3,7 @@
 @use '@styles/variables' as *;
 
 .shadow-nav {
-  height: to-rem(115);
+  height: to-rem(120);
   background: linear-gradient(0deg, $color-purple 0%, rgb(25 11 23 / 0%) 100%);
   position: fixed;
   bottom: 0;
@@ -20,21 +20,6 @@
   justify-content: center;
   position: fixed;
   width: 100%;
-
-  &::after {
-    content: '';
-    height: to-rem(115);
-    background: linear-gradient(
-      0deg,
-      $color-purple 0%,
-      rgb(25 11 23 / 0%) 100%
-    );
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-  }
 
   &::before {
     content: '';
