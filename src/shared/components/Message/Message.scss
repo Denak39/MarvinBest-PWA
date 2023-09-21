@@ -1,0 +1,46 @@
+@use "@styles/functions" as *;
+@use "@styles/mixins" as *;
+@use "@styles/variables" as *;
+
+.Message {
+  display: flex;
+  column-gap: to-rem(18);
+
+  &__content {
+    align-items: flex-end;
+    background-color: $color-black;
+    border-radius: 0 $border-radius $border-radius;
+    display: flex;
+    flex-direction: column;
+    margin-top: to-rem(9);
+    max-width: to-rem(500);
+    padding: to-rem(10) to-rem(14);
+    position: relative;
+    width: 100%;
+
+    &::before {
+      border-left: to-rem(12) solid transparent;
+      border-top: to-rem(14) solid $color-black;
+      content: "";
+      height: 0;
+      left: 0;
+      position: absolute;
+      top: 0;
+      translate: -100%;
+      width: 0;
+    }
+  }
+
+  &__text {
+    @include font-text;
+
+    margin-bottom: to-rem(12);
+    width: 100%;
+  }
+
+  &__date {
+    @include font-text-small;
+
+    opacity: 0.6;
+  }
+}

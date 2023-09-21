@@ -2,6 +2,12 @@
 @use "@styles/variables" as *;
 
 // Text styles
+@mixin font-text {
+  font-size: to-rem(16);
+  font-weight: $font-weight-regular;
+  line-height: to-rem(20);
+}
+
 @mixin font-text-small {
   font-size: to-rem(12);
   font-weight: $font-weight-light;

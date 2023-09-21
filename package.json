@@ -15,6 +15,7 @@
     "start": "vite",
     "stylelint:check": "stylelint \"**/*.scss\" --max-warnings 0",
     "stylelint:fix": "stylelint --fix \"**/*.scss\"",
+    "test:coverage": "npm run test -- --coverage",
     "test:watch": "vitest",
     "test": "vitest run"
   },
@@ -42,6 +43,7 @@
     "@typescript-eslint/eslint-plugin": "^6.7.0",
     "@typescript-eslint/parser": "^6.7.0",
     "@vitejs/plugin-react": "^4.0.4",
+    "@vitest/coverage-istanbul": "^0.34.4",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^17.1.0",
