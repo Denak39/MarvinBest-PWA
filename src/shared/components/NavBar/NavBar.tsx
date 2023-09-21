@@ -1,38 +1,34 @@
 import { NavLink } from 'react-router-dom';
 
-import IconAdd from '@components/svg/IconAdd';
-import IconHome from '@components/svg/IconHome';
-import IconUsers from '@components/svg/IconUsers';
+import IconAdd from '@components/Icons/IconAdd';
+import IconHome from '@components/Icons/IconHome';
+import IconUsers from '@components/Icons/IconUsers';
 import PATHS from '@constants/index';
 
-import '@components/NavBar/Navbar.scss';
+import '@components/NavBar/NavBar.scss';
 
 function NavBar() {
   return (
-    <header className="shadow-nav">
+    <header className="NavBar">
       <nav>
-        <ul>
-          <li>
-            <NavLink
-              to={PATHS.HOME}
-              className={({ isActive }) => (isActive ? 'active' : '')}
-            >
+        <ul className="NavBar__list">
+          <li className="NavBar__item">
+            <NavLink to={PATHS.HOME}>
               <IconHome />
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              to={PATHS.USERS}
-              className={({ isActive }) => (isActive ? 'active' : '')}
-            >
+
+          <li className="NavBar__item">
+            <NavLink to={PATHS.USERS}>
               <IconUsers />
             </NavLink>
           </li>
-          <div className="add-button">
+
+          <li className="NavBar__item">
             <NavLink to={PATHS.SENTENCE_FORM}>
               <IconAdd />
             </NavLink>
-          </div>
+          </li>
         </ul>
       </nav>
     </header>

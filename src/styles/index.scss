@@ -1,5 +1,5 @@
-@use '@styles/fonts' as *;
-@use '@styles/variables' as *;
+@use "@styles/fonts" as *;
+@use "@styles/variables" as *;
 
 * {
   box-sizing: border-box;
@@ -17,6 +17,20 @@ html {
 
 p {
   margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
 @media (display-mode: standalone) {
