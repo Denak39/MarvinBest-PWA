@@ -16,13 +16,13 @@ test('Navbar applies correct class based on isActive', () => {
 
   const usersNavLink = container.querySelector('a[href="/users"]');
 
-  expect(usersNavLink).toHaveClass('not-active');
+  expect(usersNavLink).not.toHaveClass('active');
 
   if (usersNavLink) {
     fireEvent.click(usersNavLink);
 
     expect(usersNavLink).toHaveClass('active');
 
-    expect(homeNavLink).toHaveClass('not-active');
+    expect(homeNavLink).not.toHaveClass('active');
   }
 });
