@@ -7,7 +7,7 @@ test('Navbar applies correct class based on isActive', () => {
   const { container } = render(
     <MemoryRouter initialEntries={['/']}>
       <NavBar />
-    </MemoryRouter>,
+    </MemoryRouter>
   );
 
   const homeNavLink = container.querySelector('a[href="/"]');

@@ -13,18 +13,12 @@ function Navbar() {
       <div className="navigation">
         <ul>
           <li>
-            <NavLink
-              to="/"
-              className={({ isActive }) => (isActive ? 'active' : 'not-active')}
-            >
+            <NavLink to="/" className={({ isActive }) => (isActive ? 'active' : 'not-active')}>
               <IconHome />
             </NavLink>
           </li>
           <li>
-            <NavLink
-              to="/users"
-              className={({ isActive }) => (isActive ? 'active' : 'not-active')}
-            >
+            <NavLink to="/users" className={({ isActive }) => (isActive ? 'active' : 'not-active')}>
               <IconUsers />
             </NavLink>
           </li>
