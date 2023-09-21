@@ -2,7 +2,7 @@
 @use '@styles/variables' as *;
 
 .shadow-nav {
-  height: 85px;
+  height: 115px;
   background: linear-gradient(0deg, $color-purple 0%, rgb(25 11 23 / 0%) 100%);
   position: fixed;
   bottom: 0;
@@ -11,7 +11,7 @@
   padding: 0;
 
   .navigation {
-    height: 60px;
+    height: 80px;
     background: $color-black;
     display: flex;
     justify-content: center;
