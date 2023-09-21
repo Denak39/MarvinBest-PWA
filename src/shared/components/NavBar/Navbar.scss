@@ -10,7 +10,7 @@
   width: 100%;
 }
 
-.navigation {
+nav {
   align-items: center;
   bottom: 0;
   display: flex;
@@ -51,7 +51,7 @@
     top: -50%;
     width: to-rem(60);
     height: to-rem(60);
-    background: $color-pink;
+    background-color: $color-pink;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -59,10 +59,10 @@
   }
 }
 
-.active {
-  color: $color-pink;
+a {
+  color: $color-white;
 }
 
-.not-active {
-  color: $color-white;
+.active {
+  color: $color-pink;
 }
