@@ -1,14 +1,15 @@
 import { NavLink } from 'react-router-dom';
 
-import IconAdd from '@shared/components/Icons/IconAdd';
-import IconHome from '@shared/components/Icons/IconHome';
-import IconUsers from '@shared/components/Icons/IconUsers';
+import IconAdd from '@components/svg/IconAdd';
+import IconHome from '@components/svg/IconHome';
+import IconUsers from '@components/svg/IconUsers';
 
 import './Navbar.scss';
 
 function Navbar() {
   return (
-    <div className="shadow-nav">
+    <>
+      <div className="shadow-nav" />
       <div className="navigation">
         <ul>
           <li>
@@ -34,7 +35,7 @@ function Navbar() {
           </div>
         </ul>
       </div>
-    </div>
+    </>
   );
 }
 

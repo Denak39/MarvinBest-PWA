@@ -1,3 +1,4 @@
+/* stylelint-disable property-no-vendor-prefix */
 @use '@styles/functions' as *;
 @use '@styles/variables' as *;
 
@@ -9,65 +10,72 @@
   width: 100%;
   margin: 0;
   padding: 0;
+}
 
-  .navigation {
-    height: to-rem(80);
-    background: $color-black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.navigation {
+  align-items: center;
+  bottom: 0;
+  display: flex;
+  height: 80px;
+  justify-content: center;
+  position: fixed;
+  width: 100%;
+
+  &::after {
+    content: '';
+    height: to-rem(115);
+    background: linear-gradient(
+      0deg,
+      $color-purple 0%,
+      rgb(25 11 23 / 0%) 100%
+    );
     position: fixed;
     bottom: 0;
     width: 100%;
+    margin: 0;
+    padding: 0;
+  }
 
-    ul {
-      display: flex;
-      justify-content: space-around;
-      width: 100%;
+  &::before {
+    content: '';
+    mask:
+      url('/public/images/mask.svg') top center no-repeat,
+      linear-gradient(#fff 0 0);
+    -webkit-mask:
+      url('/public/images/mask.svg') top center no-repeat,
+      linear-gradient(#fff 0 0);
+    mask-composite: destination-out;
+    -webkit-mask-composite: destination-out;
+    background-color: $color-black;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
 
-      li {
-        position: relative;
-        list-style: none;
-        z-index: 1;
-      }
+  ul {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+
+    li {
+      position: relative;
+      list-style: none;
+      z-index: 1;
     }
+  }
 
-    .add-button {
-      position: absolute;
-      top: -50%;
-      width: to-rem(60);
-      height: to-rem(60);
-      background: $color-pink;
-      border: to-rem(6) solid $color-purple;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    // .indicator::before {
-    //   content: '';
-    //   position: absolute;
-    //   top: 50%;
-    //   left: -22px;
-    //   width: 20px;
-    //   height: 20px;
-    //   background: transparent;
-    //   border-top-right-radius: 20px;
-    //   box-shadow: 1px -10px 0 #06021b;
-    // }
-
-    // .indicator::after {
-    //   content: '';
-    //   position: absolute;
-    //   top: 50%;
-    //   right: -22px;
-    //   width: 20px;
-    //   height: 20px;
-    //   background: transparent;
-    //   border-top-left-radius: 20px;
-    //   box-shadow: -1px -10px 0 white;
-    // }
+  .add-button {
+    position: absolute;
+    top: -50%;
+    width: to-rem(60);
+    height: to-rem(60);
+    background: $color-pink;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 
