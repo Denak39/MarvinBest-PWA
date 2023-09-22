@@ -4,6 +4,8 @@
 * {
   box-sizing: border-box;
   font-family: inherit;
+  margin: 0;
+  padding: 0;
 }
 
 html {
@@ -15,6 +17,20 @@ html {
 
 p {
   margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
 @media (display-mode: standalone) {

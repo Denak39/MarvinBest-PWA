@@ -2,9 +2,9 @@
 
 // Colors
 $color-black: #0b040b;
-$color-pink: #e83668;
 $color-purple: #190b17;
 $color-white: #fff;
+$color-pink: #e83668;
 
 // Fonts
 $font-name-montserrat: "Montserrat";
@@ -14,6 +14,12 @@ $font-weight-light: 300;
 $font-weight-regular: 400;
 $font-weight-medium: 500;
 $font-weight-semibold: 600;
+
+// Z-index
+$zindex-fixed: 1030;
+
+// Shadow
+$shadow: 0 0 to-rem(20) 0 rgba($color-pink, 0.2);
 
 // Border radius
 $border-radius: to-rem(10);
