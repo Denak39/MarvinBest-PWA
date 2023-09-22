@@ -10,7 +10,7 @@ import '@components/NavBar/NavBar.scss';
 function NavBar() {
   return (
     <header className="NavBar">
-      <nav>
+      <nav className="NavBar__nav">
         <ul className="NavBar__list">
           <li className="NavBar__item">
             <NavLink to={PATHS.HOME}>

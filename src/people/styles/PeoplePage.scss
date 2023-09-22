@@ -1,9 +1,13 @@
 @use "@styles/functions" as *;
+@use "@components/NavBar/NavBar" as navbar;
 
 .PeoplePage {
   &__list {
     display: flex;
     flex-direction: column;
+    margin-bottom: calc(
+      navbar.$nav-height + navbar.$gradient-height + to-rem(20)
+    );
     row-gap: to-rem(6);
   }
 }

@@ -69,10 +69,8 @@
           ["^react", "^@?\\w"],
           // Custom paths, aliases referenced in tsconfig.path.json (except assets, styles and utils)
           [
-            "^@(admin|app|components|constants|helpers|hooks|home|mocks|people|shared|src)(/.*|$)"
+            "^@(api|app|components|constants|helpers|hooks|home|mocks|people|sentences|shared|src)(/.*|$)"
           ],
-          // Custom path for all the assets
-          ["^@assets(/.*|$)"],
           // Side effect imports.
           ["^\\u0000"],
           // Parent imports. Put `..` last.

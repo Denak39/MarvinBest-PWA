@@ -6,12 +6,7 @@ import { useGetPeopleQuery } from '@people/slice';
 import '@people/styles/PeoplePage.scss';
 
 function PeoplePage(): JSX.Element {
-  const {
-    data: people = [
-      { id: 1, name: 'Quentin Masbernat', countSentences: 2 },
-      { id: 2, name: 'Axelle Perchaud', countSentences: 1 },
-    ],
-  } = useGetPeopleQuery();
+  const { data: people = [] } = useGetPeopleQuery();
 
   return (
     <div className="PeoplePage">
