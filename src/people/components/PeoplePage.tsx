@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import Card from '@components/Card/Card';
 import Header from '@components/Header/Header';
 import { PATHS } from '@constants/index';
@@ -6,13 +8,15 @@ import { useGetPeopleQuery } from '@people/slice';
 import '@people/styles/PeoplePage.scss';
 
 function PeoplePage(): JSX.Element {
-  const { data: people = [] } = useGetPeopleQuery();
+  const [currentPage] = useState<number>(1);
+
+  const { data: people = [], isLoading } = useGetPeopleQuery({ page: currentPage });
 
   return (
     <div className="PeoplePage">
       <Header title="Personnes" />
 
-      {people.length ? (
+      {!!people.length && (
         <ul className="PeoplePage__list">
           {people.map(({ id, name, countSentences }) => (
             <li className="PeoplePage__item" key={id}>
@@ -20,9 +24,13 @@ function PeoplePage(): JSX.Element {
             </li>
           ))}
         </ul>
-      ) : (
-        <p>Aucune personnes disponibles...</p>
       )}
+
+      {/* // TODO: add skeleton loader components. */}
+      {isLoading && <p>Chargement en cours...</p>}
+
+      {/* // TODO: add a no result component. */}
+      {!people.length && !isLoading && <p>Aucune personnes disponibles...</p>}
     </div>
   );
 }

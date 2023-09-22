@@ -1,4 +1,4 @@
-// Generic
+// Response
 export type ApiData<T> = T & {
   '@id': string;
   '@type': string;
@@ -35,6 +35,11 @@ export type ApiCollectionResponse<T> = {
 
 export type ApiEntityResponse<T> = ApiData<T> & {
   '@context': string;
+};
+
+// Params
+export type ApiQueryArg = {
+  page: number;
 };
 
 // People
