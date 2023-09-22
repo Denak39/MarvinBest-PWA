@@ -2,8 +2,8 @@
 
 import type { ApiQueryArg } from '@api/types';
 
-export function formatQueryArg(args: Partial<ApiQueryArg> | void): string {
-  if (!args) return '';
+export function convertToQueryArg<T>(args: ApiQueryArg<T> | void): string {
+  if (!args || !Object.keys(args)) return '';
 
   return `?${Object.entries(args)
     .map(([key, value]) => `${key}=${value}`)

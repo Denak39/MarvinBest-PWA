@@ -46,11 +46,13 @@ export type CollectionResponse<T> = {
 
 // Params
 // TODO: fix this, see typescriptlang.org/docs/handbook/2/mapped-types.html.
-export type ApiQueryArg<T> = {
-  [key in keyof T as `order[${string}]`]: 'asc' | 'desc';
-} & {
-  page: number;
-};
+export type ApiQueryArg<T> = Partial<
+  {
+    [key in keyof T as `order[${string}]`]: 'asc' | 'desc';
+  } & {
+    page: number;
+  }
+>;
 
 // People
 export type ApiPersonData = {

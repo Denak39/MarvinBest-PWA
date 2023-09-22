@@ -8,17 +8,17 @@ import { useGetPeopleQuery } from '@people/slice';
 import '@people/styles/PeoplePage.scss';
 
 function PeoplePage(): JSX.Element {
-  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [page, setPage] = useState<number>(1);
 
   const { data: people, isLoading } = useGetPeopleQuery({
     'order[name]': 'asc',
-    page: currentPage,
+    page,
   });
 
   return (
     <div className="PeoplePage">
       <Header title="Personnes" />
-      <button onClick={() => setCurrentPage(currentPage + 1)}>Click!</button>
+      <button onClick={() => setPage(page + 1)}>Click!</button>
 
       {!!people?.data.length && (
         <ul className="PeoplePage__list">
