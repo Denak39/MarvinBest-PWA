@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 // Response
 export type ApiData<T> = T & {
   '@id': string;
