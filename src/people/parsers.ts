@@ -1,3 +1,4 @@
+import { findPage } from '@api/helpers';
 import { parseIdResponse } from '@api/parsers';
 import type { ApiPeopleResponse, ApiPersonResponse, CollectionResponse } from '@api/types';
 import type { People, Person } from '@people/types';
@@ -16,8 +17,7 @@ export function parsePersonResponse(
 
 export function parsePeopleResponse(data: ApiPeopleResponse): CollectionResponse<People> {
   return {
-    page: 1 ?? data['hydra:view']['hydra:next'],
-    totalPages: 1 ?? data['hydra:view']['hydra:last'],
+    totalPages: findPage(data['hydra:view']['hydra:last']),
     data: data['hydra:member'].map((item) => parsePersonResponse(item)),
   };
 }

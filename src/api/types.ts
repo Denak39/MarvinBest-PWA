@@ -40,7 +40,6 @@ export type ApiEntityResponse<T> = ApiData<T> & {
 
 export type CollectionResponse<T> = {
   data: T;
-  page: number;
   totalPages: number;
 };
 

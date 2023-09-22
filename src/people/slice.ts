@@ -16,6 +16,14 @@ export const peopleSlice = api.injectEndpoints({
             ]
           : [{ type: 'People', id: 'PARTIAL-LIST' }],
       transformResponse: (data: ApiPeopleResponse) => parsePeopleResponse(data),
+      serializeQueryArgs: ({ endpointName }) => endpointName,
+      merge: (currentCacheData, responseData) => {
+        currentCacheData.data.push(...responseData.data);
+      },
+      forceRefetch: ({ currentArg, previousArg }) => {
+        if (!currentArg?.page || !previousArg?.page) return false;
+        return currentArg.page > previousArg.page;
+      },
     }),
   }),
 });

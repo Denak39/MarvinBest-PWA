@@ -36,7 +36,7 @@ $gradient-height: to-rem(40);
 
   &::before {
     -webkit-mask:
-      url("/images/mask.svg") top center no-repeat,
+      url("/images/mask.svg") 50% -1px no-repeat,
       linear-gradient(#fff 0 0);
     -webkit-mask-composite: destination-out;
     background-color: $color-black;
@@ -44,7 +44,7 @@ $gradient-height: to-rem(40);
     height: 100%;
     left: 0;
     mask:
-      url("/images/mask.svg") top center no-repeat,
+      url("/images/mask.svg") 50% -1px no-repeat,
       linear-gradient(#fff 0 0);
     mask-composite: destination-out;
     pointer-events: none;
