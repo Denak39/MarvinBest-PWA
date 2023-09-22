@@ -105,12 +105,12 @@ export default defineConfig({
         replacement: path.resolve(__dirname, 'src/mocks'),
       },
       {
-        find: '@shared',
-        replacement: path.resolve(__dirname, 'src/shared'),
+        find: "@people",
+        replacement: path.resolve(__dirname, "src/people"),
       },
       {
-        find: "@speakers",
-        replacement: path.resolve(__dirname, "src/speakers"),
+        find: '@shared',
+        replacement: path.resolve(__dirname, 'src/shared'),
       },
       {
         find: "@src",

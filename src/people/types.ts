@@ -1,6 +1,6 @@
 import type { BaseEntity } from '@app/types';
 
-export interface Speaker extends BaseEntity {
+export interface People extends BaseEntity {
   countSentences: number;
   name: string;
 }

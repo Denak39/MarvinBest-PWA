@@ -11,8 +11,8 @@
       "@hooks/*": ["src/shared/hooks/*"],
       "@home/*": ["src/home/*"],
       "@mocks/*": ["src/mocks/*"],
+      "@people/*": ["src/people/*"],
       "@shared/*": ["src/shared/*"],
-      "@speakers/*": ["src/speakers/*"],
       "@src/*": ["src/*"],
       "@styles/*": ["src/styles/*"]
     }

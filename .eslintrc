@@ -69,7 +69,7 @@
           ["^react", "^@?\\w"],
           // Custom paths, aliases referenced in tsconfig.path.json (except assets, styles and utils)
           [
-            "^@(admin|app|components|constants|helpers|hooks|home|mocks|shared|speakers|src)(/.*|$)"
+            "^@(admin|app|components|constants|helpers|hooks|home|mocks|people|shared|src)(/.*|$)"
           ],
           // Custom path for all the assets
           ["^@assets(/.*|$)"],

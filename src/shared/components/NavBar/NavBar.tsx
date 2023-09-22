@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import IconAdd from '@components/Icons/IconAdd';
 import IconHome from '@components/Icons/IconHome';
 import IconUsers from '@components/Icons/IconUsers';
-import PATHS from '@constants/index';
+import { PATHS } from '@constants/index';
 
 import '@components/NavBar/NavBar.scss';
 
@@ -19,7 +19,7 @@ function NavBar() {
           </li>
 
           <li className="NavBar__item">
-            <NavLink to={PATHS.USERS}>
+            <NavLink to={PATHS.PEOPLE}>
               <IconUsers />
             </NavLink>
           </li>
