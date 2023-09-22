@@ -2,7 +2,7 @@
 
 import { configureStore } from '@reduxjs/toolkit';
 
-import { api } from '@app/api';
+import { api } from '@api/index';
 import syncMiddleware from '@app/middleware';
 import sentencesReducer from '@app/sentence/sentenceSlice';
 

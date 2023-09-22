@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // Response
 export type ApiData<T> = T & {
   '@id': string;
@@ -37,8 +38,17 @@ export type ApiEntityResponse<T> = ApiData<T> & {
   '@context': string;
 };
 
+export type CollectionResponse<T> = {
+  data: T;
+  page: number;
+  totalPages: number;
+};
+
 // Params
-export type ApiQueryArg = {
+// TODO: fix this, see typescriptlang.org/docs/handbook/2/mapped-types.html.
+export type ApiQueryArg<T> = {
+  [key in keyof T as `order[${string}]`]: 'asc' | 'desc';
+} & {
   page: number;
 };
 

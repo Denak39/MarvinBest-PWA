@@ -1,5 +1,5 @@
 import { parseIdResponse } from '@api/parsers';
-import type { ApiPeopleResponse, ApiPersonResponse } from '@api/types';
+import type { ApiPeopleResponse, ApiPersonResponse, CollectionResponse } from '@api/types';
 import type { People, Person } from '@people/types';
 import { parseSentenceResponse } from '@sentences/parsers';
 
@@ -14,6 +14,10 @@ export function parsePersonResponse(
   };
 }
 
-export function parsePeopleResponse(data: ApiPeopleResponse): People {
-  return data['hydra:member'].map((item) => parsePersonResponse(item));
+export function parsePeopleResponse(data: ApiPeopleResponse): CollectionResponse<People> {
+  return {
+    page: 1 ?? data['hydra:view']['hydra:next'],
+    totalPages: 1 ?? data['hydra:view']['hydra:last'],
+    data: data['hydra:member'].map((item) => parsePersonResponse(item)),
+  };
 }

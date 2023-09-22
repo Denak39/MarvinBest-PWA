@@ -8,17 +8,21 @@ import { useGetPeopleQuery } from '@people/slice';
 import '@people/styles/PeoplePage.scss';
 
 function PeoplePage(): JSX.Element {
-  const [currentPage] = useState<number>(1);
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
-  const { data: people = [], isLoading } = useGetPeopleQuery({ page: currentPage });
+  const { data: people, isLoading } = useGetPeopleQuery({
+    'order[name]': 'asc',
+    page: currentPage,
+  });
 
   return (
     <div className="PeoplePage">
       <Header title="Personnes" />
+      <button onClick={() => setCurrentPage(currentPage + 1)}>Click!</button>
 
-      {!!people.length && (
+      {!!people?.data.length && (
         <ul className="PeoplePage__list">
-          {people.map(({ id, name, countSentences }) => (
+          {people.data.map(({ id, name, countSentences }) => (
             <li className="PeoplePage__item" key={id}>
               <Card countSentences={countSentences} name={name} to={`${PATHS.PEOPLE}/${id}`} />
             </li>
@@ -30,7 +34,7 @@ function PeoplePage(): JSX.Element {
       {isLoading && <p>Chargement en cours...</p>}
 
       {/* // TODO: add a no result component. */}
-      {!people.length && !isLoading && <p>Aucune personnes disponibles...</p>}
+      {!people?.data.length && !isLoading && <p>Aucune personnes disponibles...</p>}
     </div>
   );
 }
