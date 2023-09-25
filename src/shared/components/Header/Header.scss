@@ -4,14 +4,36 @@
 @use "@components/Layout/Layout" as layout;
 
 $-margin: invert-sign(layout.$padding);
+$icon-size: to-rem(24);
 
 .Header {
   background-color: $color-purple;
+  display: grid;
+  grid-gap: to-rem(20);
+  grid-column-start: 2;
+  grid-template-columns: $icon-size 1fr $icon-size;
   margin: $-margin $-margin to-rem(10);
   padding: to-rem(30);
   position: sticky;
   top: 0;
   z-index: $zindex-fixed;
+
+  &__go-back {
+    button {
+      align-items: center;
+      color: $color-pink;
+      display: flex;
+      justify-content: center;
+
+      .Icon {
+        @include fixed-size($icon-size);
+      }
+    }
+  }
+
+  &:not(&--has-go-back) .Header__go-back button {
+    display: none;
+  }
 
   &__title {
     @include text-overflow;

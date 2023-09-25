@@ -5,7 +5,7 @@ function IconArrowForward(): JSX.Element {
       viewBox="0 0 30 30"
       xmlns="http://www.w3.org/2000/svg"
       xmlSpace="preserve"
-      className="Icon--arrow-forward"
+      className="Icon Icon--arrow-forward"
     >
       <path
         clipRule="evenodd"

@@ -1,0 +1,15 @@
+@use "@styles/functions" as *;
+
+.PersonPage {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  &__list {
+    display: flex;
+    flex-direction: column-reverse;
+    flex: 1;
+    justify-content: flex-end;
+    row-gap: to-rem(24);
+  }
+}

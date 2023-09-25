@@ -1,7 +1,8 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 
 import Header from '@components/Header/Header';
 import type { HeaderProps } from '@components/Header/Header.types';
+import renderWithRouter from '@src/tests';
 
 const props: HeaderProps = {
   className: 'custom-class',
@@ -10,7 +11,7 @@ const props: HeaderProps = {
 
 describe('shared/components/Header', () => {
   it('should renders the expected component', () => {
-    render(<Header {...props} />);
+    renderWithRouter(<Header {...props} />);
 
     const header = screen.getByTestId('Header');
     const title = header.querySelector('.Header__title') as Element;

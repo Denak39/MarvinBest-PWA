@@ -61,7 +61,7 @@ class DateHelpers extends Date {
     const yesterday = new Date();
     yesterday.setDate(yesterday.getDate() - 1);
 
-    return DateHelpers.isSameDate(yesterday, this);
+    return this.isSameDate(yesterday);
   }
 
   /**
@@ -72,7 +72,7 @@ class DateHelpers extends Date {
   isToday(): boolean {
     const now = new Date();
 
-    return DateHelpers.isSameDate(now, this);
+    return this.isSameDate(now);
   }
 
   /**
@@ -80,15 +80,14 @@ class DateHelpers extends Date {
    *
    * @example DateHelpers.isEqual(new Date("2023-03-16 21:48:56", "2023-03-16 01:06:58"))
    * // true
-   * @param {Date} firstDate First date to check
-   * @param {Date} secondDate Second date to check
+   * @param {Date} dateToCheck Date to check
    * @return {boolean}
    */
-  private static isSameDate(firstDate: Date, secondDate: Date): boolean {
+  isSameDate(dateToCheck: Date): boolean {
     return (
-      firstDate.getDate() === secondDate.getDate() &&
-      firstDate.getMonth() === secondDate.getMonth() &&
-      firstDate.getFullYear() === secondDate.getFullYear()
+      this.getDate() === dateToCheck.getDate() &&
+      this.getMonth() === dateToCheck.getMonth() &&
+      this.getFullYear() === dateToCheck.getFullYear()
     );
   }
 
