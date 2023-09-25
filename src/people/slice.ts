@@ -1,14 +1,19 @@
 import { convertToQueryArg } from '@api/helpers';
 import { api } from '@api/index';
 import type {
+  ApiPeopleOptionsResponse,
   ApiPeopleResponse,
   ApiPersonResponse,
   ApiQueryArg,
   CollectionResponse,
 } from '@api/types';
 import type { BaseEntity } from '@app/types';
-import { parsePeopleResponse, parsePersonResponse } from '@people/parsers';
-import type { People, Person } from '@people/types';
+import {
+  parsePeopleOptionsResponse,
+  parsePeopleResponse,
+  parsePersonResponse,
+} from '@people/parsers';
+import type { People, PeopleOptions, Person } from '@people/types';
 
 export const peopleSlice = api.injectEndpoints({
   endpoints: (builder) => ({
@@ -36,7 +41,12 @@ export const peopleSlice = api.injectEndpoints({
       providesTags: (_result, _error, id) => [{ type: 'People', id }],
       transformResponse: (data: ApiPersonResponse) => parsePersonResponse(data),
     }),
+    getPeopleOptions: builder.query<CollectionResponse<PeopleOptions>, void>({
+      query: () => `/people/light?page=1&pagination=false`,
+      providesTags: ['People'],
+      transformResponse: (data: ApiPeopleOptionsResponse) => parsePeopleOptionsResponse(data),
+    }),
   }),
 });
 
-export const { useGetPeopleQuery, useGetPersonQuery } = peopleSlice;
+export const { useGetPeopleQuery, useGetPersonQuery, useGetPeopleOptionsQuery } = peopleSlice;

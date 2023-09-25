@@ -62,6 +62,13 @@ export type ApiPersonData = {
 export type ApiPersonResponse = ApiEntityResponse<ApiPersonData>;
 export type ApiPeopleResponse = ApiCollectionResponse<ApiPersonData>;
 
+// People options
+export type ApiPersonOptionData = {
+  name: string;
+};
+
+export type ApiPeopleOptionsResponse = ApiCollectionResponse<ApiPersonOptionData>;
+
 // Sentences
 export type ApiSentenceData = {
   createdAt: string;

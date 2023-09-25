@@ -2,19 +2,20 @@ import type { FormikHelpers } from 'formik';
 import { ErrorMessage, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 
-import { usePostSentenceMutation } from '@app/sentence/sentenceSliceTest';
+import { usePostSentenceMutation } from '@app/sentence/sentenceSlice';
 import type { ISentencesForm } from '@app/types';
 import SelectField from '@components/Fields/SelectField/SelectField';
 import TextAreaField from '@components/Fields/TextAreaField/TextAreaField';
 import IconAdd from '@components/Icons/IconAdd';
-import { useGetPeopleQuery } from '@people/slice';
+import { useGetPeopleOptionsQuery } from '@people/slice';
 
 import '../styles/SentenceForm.scss';
 
 function SentenceForm() {
   const [postSentence] = usePostSentenceMutation();
 
-  const { data: people } = useGetPeopleQuery();
+  const { data: people } = useGetPeopleOptionsQuery();
+  console.log(people);
 
   const initialValues = {
     sentence: '',
@@ -56,16 +57,11 @@ function SentenceForm() {
         <Form>
           <div className="field">
             <label htmlFor="speaker">Personne</label>
-            <SelectField
-              id="speaker"
-              name="speaker"
-              value={values.speaker}
-              onChange={handleChange}
-            >
+            <SelectField id="speaker" name="speaker" value={values.speaker} onChange={handleChange}>
               <option className="SelectField__placeholder" value="" disabled>
                 Sélectionne une personne...
               </option>
-              {people?.data.length &&
+              {people?.length &&
                 people.data?.map((person) => (
                   <option key={person.id} value={person.id}>
                     {person.name}
