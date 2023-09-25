@@ -2,8 +2,8 @@ import type { FormikHelpers } from 'formik';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 
-import type { SentencesForm } from '@app/sentence/sentenceSliceTest';
 import { usePostSentenceMutation } from '@app/sentence/sentenceSliceTest';
+import type { ISentencesForm } from '@app/types';
 import IconAdd from '@components/Icons/IconAdd';
 import { useGetPeopleQuery } from '@people/slice';
 
@@ -25,11 +25,10 @@ function SentenceForm() {
   });
 
   const handleSubmit = async (
-    values: SentencesForm,
-    formikHelpers: FormikHelpers<SentencesForm>
+    values: ISentencesForm,
+    formikHelpers: FormikHelpers<ISentencesForm>
   ) => {
     const { setSubmitting, resetForm } = formikHelpers;
-    console.log(values);
     try {
       setSubmitting(true);
 
