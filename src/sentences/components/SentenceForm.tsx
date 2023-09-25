@@ -1,76 +1,98 @@
+import type { FormikHelpers } from 'formik';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 
-import { useAppDispatch } from '@app/hooks';
-import { addSentence } from '@app/sentence/sentenceSlice';
-import { mockUsers } from '@mocks/user';
+import type { SentencesForm } from '@app/sentence/sentenceSliceTest';
+import { usePostSentenceMutation } from '@app/sentence/sentenceSliceTest';
+import IconAdd from '@components/Icons/IconAdd';
+import { useGetPeopleQuery } from '@people/slice';
+
+import '../styles/SentenceForm.scss';
 
 function SentenceForm() {
-  const dispatch = useAppDispatch();
+  const [postSentence] = usePostSentenceMutation();
+
+  const { data: people } = useGetPeopleQuery();
 
   const initialValues = {
     sentence: '',
-    userId: 1,
+    speaker: '',
   };
 
   const validationSchema = Yup.object().shape({
-    sentence: Yup.string().required('Sentence is required'),
-    userId: Yup.number().required('User is required'),
+    sentence: Yup.string().required('Oublie pas la phrase !'),
+    speaker: Yup.string().required('Sélectionne une personne...'),
   });
 
-  class MyCustomError extends Error {
-    constructor(message: string) {
-      super(message);
-      // eslint-disable-next-line react/no-this-in-sfc
-      this.name = 'MyCustomError';
+  const handleSubmit = async (
+    values: SentencesForm,
+    formikHelpers: FormikHelpers<SentencesForm>
+  ) => {
+    const { setSubmitting, resetForm } = formikHelpers;
+    console.log(values);
+    try {
+      setSubmitting(true);
+
+      await postSentence(values);
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+    } finally {
+      setSubmitting(false);
+
+      resetForm();
     }
-  }
+  };
 
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
-      onSubmit={(values, { resetForm }) => {
-        try {
-          dispatch(addSentence({ sentence: values.sentence, userId: values.userId }));
-          resetForm();
-        } catch (error) {
-          if (error instanceof MyCustomError) {
-            // eslint-disable-next-line no-console
-            console.error(error.message);
-          } else {
-            // eslint-disable-next-line no-console
-            console.error('An unexpected error occurred:', error);
-          }
-        }
-      }}
+      onSubmit={handleSubmit}
     >
       {({ setFieldValue }) => (
         <Form>
-          <div>
-            <label htmlFor="sentence">Sentence:</label>
-            <Field type="text" id="sentence" name="sentence" />
-            <ErrorMessage name="sentence" component="div" className="error" />
-          </div>
-          <div>
-            <label htmlFor="userId">User:</label>
+          <div className="field">
+            <label htmlFor="speaker">Personne</label>
             <Field
               as="select"
-              id="userId"
-              name="userId"
-              onChange={(e: { target: { value: string } }) => {
-                setFieldValue('userId', parseInt(e.target.value, 10));
+              id="speaker"
+              name="speaker"
+              className="field__select"
+              onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                setFieldValue('speaker', e.target.value);
               }}
             >
-              {mockUsers.map((user) => (
-                <option key={user.id} value={user.id}>
-                  {user.name}
-                </option>
-              ))}
+              <option value="" disabled>
+                Sélectionne une personne...
+              </option>
+              {people?.data.length &&
+                people.data?.map((person) => (
+                  <option key={person.id} value={person.id}>
+                    {person.name}
+                  </option>
+                ))}
             </Field>
-            <ErrorMessage name="userId" component="div" className="error" />
+            <ErrorMessage name="speaker" component="div" className="error" />
           </div>
-          <button type="submit">Post Sentence</button>
+          <div className="field">
+            <label htmlFor="review-text">Phrase</label>
+            <textarea
+              id="sentence"
+              name="sentence"
+              className="field__textarea"
+              onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
+                setFieldValue('sentence', e.target.value);
+              }}
+              placeholder="Saisis la phrase"
+              rows={1}
+            />
+            <ErrorMessage name="sentence" component="div" className="error" />
+          </div>
+          <button type="submit">
+            Ajouter
+            <IconAdd />
+          </button>
         </Form>
       )}
     </Formik>
