@@ -5,6 +5,7 @@ export interface Sentence extends BaseEntity {
   message: string;
 }
 
-export interface AddSentence extends Pick<Sentence, 'message'> {
+export type AddSentence = {
+  sentence: Sentence['message'];
   speaker: string;
-}
+};
