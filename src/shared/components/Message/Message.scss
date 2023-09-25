@@ -13,10 +13,11 @@
     display: flex;
     flex-direction: column;
     margin-top: to-rem(9);
-    max-width: to-rem(500);
+    max-width: to-rem(400);
+    min-width: to-rem(100);
     padding: to-rem(10) to-rem(14);
     position: relative;
-    width: 100%;
+    width: fit-content;
 
     &::before {
       border-left: to-rem(12) solid transparent;
@@ -34,6 +35,7 @@
   &__text {
     @include font-text;
 
+    overflow-wrap: anywhere;
     width: 100%;
   }
 
