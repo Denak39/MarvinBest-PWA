@@ -17,6 +17,7 @@
     @include font-text-small;
 
     font-weight: $font-weight-medium;
+    text-transform: uppercase;
     white-space: nowrap;
   }
 }

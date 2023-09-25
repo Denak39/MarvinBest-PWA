@@ -2,15 +2,16 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@admin/*": ["src/admin/*"],
+      "@api/*": ["src/api/*"],
       "@app/*": ["src/app/*"],
-      "@assets/*": ["src/assets/*"],
       "@components/*": ["src/shared/components/*"],
       "@constants/*": ["src/constants/*"],
       "@helpers/*": ["src/helpers/*"],
       "@hooks/*": ["src/shared/hooks/*"],
       "@home/*": ["src/home/*"],
       "@mocks/*": ["src/mocks/*"],
+      "@people/*": ["src/people/*"],
+      "@sentences/*": ["src/sentences/*"],
       "@shared/*": ["src/shared/*"],
       "@src/*": ["src/*"],
       "@styles/*": ["src/styles/*"]

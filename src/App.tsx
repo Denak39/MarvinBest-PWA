@@ -1,38 +1,20 @@
-import { useEffect } from 'react';
+import { Route, Routes } from 'react-router-dom';
 
-import { useAppDispatch, useAppSelector } from '@app/hooks';
-import { loadSentencesFromLocalStorage } from '@app/sentence/sentenceSlice';
-import type { RootState } from '@app/store';
-import NavBar from '@components/NavBar/NavBar';
-import SentenceForm from '@src/sentence/SentenceForm';
+import Layout from '@components/Layout/Layout';
+import { PATHS } from '@constants/index';
+import HomePage from '@home/HomePage';
+import PeoplePage from '@people/components/PeoplePage';
 
 import '@styles/index.scss';
 
 function App() {
-  const dispatch = useAppDispatch();
-  const sentences = useAppSelector((state: RootState) => state.sentences.sentences);
-
-  useEffect(() => {
-    dispatch(loadSentencesFromLocalStorage());
-  }, [dispatch]);
-
   return (
-    <div>
-      <h1>marvin.best</h1>
-      <SentenceForm />
-      <div>
-        <h2>Sentences:</h2>
-        <ul>
-          {sentences.map((sentence) => (
-            <li key={sentence.id}>
-              <strong>{sentence.user.name}: </strong>
-              {sentence.sentence}
-            </li>
-          ))}
-        </ul>
-      </div>
-      <NavBar />
-    </div>
+    <Routes>
+      <Route path={PATHS.HOME} element={<Layout />}>
+        <Route index element={<HomePage />} />
+        <Route path={PATHS.PEOPLE} element={<PeoplePage />} />
+      </Route>
+    </Routes>
   );
 }
 

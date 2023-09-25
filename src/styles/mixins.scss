@@ -2,6 +2,12 @@
 @use "@styles/variables" as *;
 
 // Text styles
+@mixin font-title-h1 {
+  font-size: to-rem(20);
+  font-weight: $font-weight-semibold;
+  line-height: to-rem(26);
+}
+
 @mixin font-text {
   font-size: to-rem(16);
   font-weight: $font-weight-regular;
@@ -12,6 +18,13 @@
   font-size: to-rem(12);
   font-weight: $font-weight-light;
   line-height: to-rem(18);
+}
+
+// Text overflow
+@mixin text-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
 }
 
 // Size

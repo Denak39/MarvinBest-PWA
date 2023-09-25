@@ -1,7 +1,7 @@
-const PATHS = {
-  HOME: '/',
-  SENTENCE_FORM: '/sentence-form',
-  USERS: '/users',
-};
+/* eslint-disable import/prefer-default-export */
 
-export default PATHS;
+export const PATHS = {
+  HOME: '/',
+  PEOPLE: '/people',
+  SENTENCE_FORM: '/sentence-form',
+};

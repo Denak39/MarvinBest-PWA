@@ -1,21 +1,34 @@
 @use "@styles/fonts" as *;
+@use "@styles/mixins" as *;
 @use "@styles/variables" as *;
 
 * {
   box-sizing: border-box;
   font-family: inherit;
-  margin: 0;
-  padding: 0;
+
+  &::selection {
+    color: $color-white;
+    background: $color-pink;
+  }
 }
 
-html {
+body {
   background-color: $color-purple;
   color: $color-white;
   font-family: $font-name-montserrat, sans-serif;
   font-weight: $font-weight-regular;
+  margin: 0;
+}
+
+h1 {
+  @include font-title-h1;
+
+  margin: 0;
 }
 
 p {
+  @include font-text;
+
   margin: 0;
 }
 

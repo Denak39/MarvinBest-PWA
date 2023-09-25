@@ -1,0 +1,7 @@
+@use "@styles/functions" as *;
+
+$padding: to-rem(20);
+
+.Layout {
+  padding: $padding;
+}

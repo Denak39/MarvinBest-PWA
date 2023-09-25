@@ -5,7 +5,7 @@ import type { AvatarProps } from '@components/Avatar/Avatar.types';
 
 const props: AvatarProps = {
   className: 'custom-class',
-  initial: 'MQ',
+  name: 'John Doe',
 };
 
 describe('shared/components/Avatar', () => {
@@ -15,6 +15,7 @@ describe('shared/components/Avatar', () => {
     const avatar = screen.getByTestId('Avatar');
 
     expect(avatar).toHaveClass('Avatar custom-class');
-    expect(avatar).toHaveTextContent(props.initial);
+    expect(avatar).toHaveTextContent('JD');
+    expect(avatar).toHaveAccessibleDescription('John Doe');
   });
 });

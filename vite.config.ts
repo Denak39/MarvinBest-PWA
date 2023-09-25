@@ -69,16 +69,12 @@ export default defineConfig({
   resolve: {
     alias: [
       {
-        find: '@admin',
-        replacement: path.resolve(__dirname, 'src/admin'),
+        find: '@api',
+        replacement: path.resolve(__dirname, 'src/api'),
       },
       {
         find: '@app',
         replacement: path.resolve(__dirname, 'src/app'),
-      },
-      {
-        find: '@assets',
-        replacement: path.resolve(__dirname, 'src/assets'),
       },
       {
         find: '@components',
@@ -105,12 +101,20 @@ export default defineConfig({
         replacement: path.resolve(__dirname, 'src/mocks'),
       },
       {
+        find: "@people",
+        replacement: path.resolve(__dirname, "src/people"),
+      },
+      {
+        find: "@sentences",
+        replacement: path.resolve(__dirname, "src/sentences"),
+      },
+      {
         find: '@shared',
         replacement: path.resolve(__dirname, 'src/shared'),
       },
       {
-        find: '@src',
-        replacement: path.resolve(__dirname, 'src'),
+        find: "@src",
+        replacement: path.resolve(__dirname, "src"),
       },
       {
         find: '@styles',

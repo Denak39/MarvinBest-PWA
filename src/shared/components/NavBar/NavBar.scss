@@ -4,12 +4,18 @@
 @use "@styles/mixins" as *;
 @use "@styles/variables" as *;
 
+$nav-height: to-rem(84);
+$gradient-height: to-rem(40);
+
 .NavBar {
   background-color: $color-purple;
   bottom: 0;
+  height: $nav-height;
   left: 0;
   position: fixed;
   width: 100vw;
+  display: flex;
+  align-items: center;
   z-index: $zindex-fixed;
 
   &::after {
@@ -18,7 +24,7 @@
       rgba($color-purple, 100%)
     );
     content: "";
-    height: to-rem(40);
+    height: $gradient-height;
     left: 0;
     pointer-events: none;
     position: absolute;
@@ -30,7 +36,7 @@
 
   &::before {
     -webkit-mask:
-      url("/images/mask.svg") top center no-repeat,
+      url("/images/mask.svg") 50% -1px no-repeat,
       linear-gradient(#fff 0 0);
     -webkit-mask-composite: destination-out;
     background-color: $color-black;
@@ -38,7 +44,7 @@
     height: 100%;
     left: 0;
     mask:
-      url("/images/mask.svg") top center no-repeat,
+      url("/images/mask.svg") 50% -1px no-repeat,
       linear-gradient(#fff 0 0);
     mask-composite: destination-out;
     pointer-events: none;
@@ -48,11 +54,14 @@
     z-index: -1;
   }
 
+  &__nav {
+    flex: 1;
+  }
+
   &__list {
     column-gap: to-rem(84);
     display: flex;
     justify-content: space-around;
-    padding: to-rem(20) 0;
     width: 100%;
   }
 

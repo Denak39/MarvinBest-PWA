@@ -1,0 +1,21 @@
+@use "@styles/functions" as *;
+@use "@styles/variables" as *;
+@use "@styles/mixins" as *;
+@use "@components/Layout/Layout" as layout;
+
+$-margin: invert-sign(layout.$padding);
+
+.Header {
+  background-color: $color-purple;
+  margin: $-margin $-margin to-rem(10);
+  padding: to-rem(30);
+  position: sticky;
+  top: 0;
+  z-index: $zindex-fixed;
+
+  &__title {
+    @include text-overflow;
+
+    text-align: center;
+  }
+}

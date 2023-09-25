@@ -1,3 +1,7 @@
+@function -is-number($value) {
+  @return type-of($value) == "number";
+}
+
 @function to-rem($value) {
   @if -is-number($value) != true {
     @error "Property '#{$value}' must be a number.";
@@ -8,6 +12,6 @@
   @return $rem-value;
 }
 
-@function -is-number($value) {
-  @return type-of($value) == "number";
+@function invert-sign($value) {
+  @return calc($value * -1);
 }
