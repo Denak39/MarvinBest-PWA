@@ -8,13 +8,7 @@ export const peopleSlice = api.injectEndpoints({
   endpoints: (builder) => ({
     getPeople: builder.query<CollectionResponse<People>, ApiQueryArg<People> | void>({
       query: (args) => `/people${convertToQueryArg(args)}`,
-      providesTags: (result) =>
-        result
-          ? [
-              ...result.data.map(({ id }) => ({ type: 'People' as const, id })),
-              { type: 'People', id: 'PARTIAL-LIST' },
-            ]
-          : [{ type: 'People', id: 'PARTIAL-LIST' }],
+      providesTags: ['People'],
       transformResponse: (data: ApiPeopleResponse) => parsePeopleResponse(data),
       serializeQueryArgs: ({ endpointName }) => endpointName,
       merge: (currentCacheData, responseData) => {
