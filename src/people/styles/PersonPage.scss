@@ -2,6 +2,8 @@
 @use "@styles/mixins" as *;
 @use "@styles/variables" as *;
 @use "@components/Layout/Layout" as layout;
+@use "@components/Fields/TextField/TextField" as textfield;
+@use "@components/IconButton/IconButton" as iconbutton;
 
 $-margin: invert-sign(layout.$padding);
 
@@ -33,5 +35,20 @@ $-margin: invert-sign(layout.$padding);
       top: 0;
       translate: 0 -100%;
     }
+  }
+
+  &__field-wrapper {
+    position: relative;
+
+    .TextField {
+      padding-right: calc(textfield.$padding * 2 + iconbutton.$size-medium);
+    }
+  }
+
+  &__form-button {
+    position: absolute;
+    right: textfield.$padding;
+    top: 50%;
+    translate: 0 -50%;
   }
 }

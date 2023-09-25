@@ -5,6 +5,8 @@ import { Form, Formik } from 'formik';
 
 import TextField from '@components/Fields/TextField/TextField';
 import Header from '@components/Header/Header';
+import IconButton from '@components/IconButton/IconButton';
+import IconSend from '@components/Icons/IconSend';
 import Message from '@components/Message/Message';
 import { useGetPersonQuery } from '@people/slice';
 import type { AddSentence } from '@sentences/types';
@@ -38,7 +40,7 @@ function PersonPage(): JSX.Element {
 
       {!!person?.sentences.length && (
         <ul className="PersonPage__list">
-          {person.sentences.map((sentence) => (
+          {[...person.sentences].reverse().map((sentence) => (
             <li key={sentence.id}>
               <Message name={person.name} date={sentence.createdAt}>
                 {sentence.message}
@@ -58,18 +60,25 @@ function PersonPage(): JSX.Element {
         <Formik initialValues={initialValues} onSubmit={handleSubmit}>
           {({ values, handleChange }) => (
             <Form className="PersonPage__form">
-              <TextField
-                aria-label={`Écrire une phrase de ${person.name}`}
-                name="message"
-                onChange={handleChange}
-                placeholder={`Écrire une phrase de ${person.name}...`}
-                required
-                value={values.message}
-              />
+              {/* // TODO: add skeleton loader components. */}
+              <div className="PersonPage__field-wrapper">
+                <TextField
+                  aria-label={`Écrire une phrase de ${person.name}`}
+                  name="message"
+                  onChange={handleChange}
+                  placeholder={`Écrire une phrase de ${person.name}...`}
+                  required
+                  value={values.message}
+                />
 
-              {/* <IconButton aria-label="Envoyer le message" type="submit">
-              <IconSend />
-            </IconButton> */}
+                <IconButton
+                  aria-label="Envoyer la phrase"
+                  className="PersonPage__form-button"
+                  type="submit"
+                >
+                  <IconSend />
+                </IconButton>
+              </div>
             </Form>
           )}
         </Formik>

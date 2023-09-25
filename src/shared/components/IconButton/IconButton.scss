@@ -1,0 +1,36 @@
+@use "@styles/functions" as *;
+@use "@styles/mixins" as *;
+@use "@styles/variables" as *;
+
+$size-medium: to-rem(30);
+
+.IconButton {
+  align-items: center;
+  background-color: $color-pink;
+  border-radius: 50%;
+  box-shadow: $shadow;
+  color: $color-white;
+  display: flex;
+  justify-content: center;
+
+  &--size-medium {
+    @include fixed-size($size-medium);
+
+    .Icon {
+      @include fixed-size(to-rem(20));
+    }
+  }
+
+  &--size-large {
+    @include fixed-size(to-rem(60));
+
+    .Icon {
+      @include fixed-size(to-rem(40));
+    }
+  }
+
+  &:disabled {
+    background-color: $color-gray;
+    pointer-events: none;
+  }
+}

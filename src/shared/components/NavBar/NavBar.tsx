@@ -24,6 +24,7 @@ function NavBar() {
             </NavLink>
           </li>
 
+          {/* TODO: replace by <IconButton component={Link} to="/" /> */}
           <li className="NavBar__item">
             <NavLink to={PATHS.SENTENCE_FORM}>
               <IconAdd />

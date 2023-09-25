@@ -5,7 +5,7 @@ import type { TextFieldProps } from '@components/Fields/TextField/TextField.type
 import '@components/Fields/TextField/TextField.scss';
 
 function TextField({ className, ...props }: TextFieldProps): JSX.Element {
-  return <input className={clsx('TextField', className)} {...props} />;
+  return <input className={clsx('TextField', className)} data-testid="TextField" {...props} />;
 }
 
 export default TextField;

@@ -2,18 +2,19 @@
 @use "@styles/mixins" as *;
 @use "@styles/variables" as *;
 
+$padding: to-rem(14);
+
 .TextField {
   @include fixed-size-height(to-rem(58));
+  @include font-text;
 
   background-color: $color-black;
   border-radius: $border-radius;
   color: $color-white;
-  padding: to-rem(14);
+  padding: $padding;
   width: 100%;
 
   &::placeholder {
-    @include font-text;
-
     color: $color-white;
     font-weight: $font-weight-light;
     opacity: 0.6;
