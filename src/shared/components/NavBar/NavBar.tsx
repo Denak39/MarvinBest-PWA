@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 
+import IconButton from '@components/IconButton/IconButton';
 import IconAdd from '@components/Icons/IconAdd';
 import IconHome from '@components/Icons/IconHome';
 import IconUsers from '@components/Icons/IconUsers';
@@ -24,10 +25,11 @@ function NavBar() {
             </NavLink>
           </li>
 
-          {/* TODO: replace by <IconButton component={Link} to="/" /> */}
           <li className="NavBar__item">
-            <NavLink to={PATHS.SENTENCE_FORM}>
-              <IconAdd />
+            <NavLink to={PATHS.SENTENCE_FORM} aria-label="Ajouter une phrase">
+              <IconButton size="large">
+                <IconAdd />
+              </IconButton>
             </NavLink>
           </li>
         </ul>

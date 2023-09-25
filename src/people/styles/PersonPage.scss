@@ -1,16 +1,17 @@
 @use "@styles/functions" as *;
 @use "@styles/mixins" as *;
 @use "@styles/variables" as *;
-@use "@components/Layout/Layout" as layout;
 @use "@components/Fields/TextField/TextField" as textfield;
 @use "@components/IconButton/IconButton" as iconbutton;
-
-$-margin: invert-sign(layout.$padding);
+@use "@components/Layout/Layout" as layout;
 
 .PersonPage {
   display: flex;
   flex-direction: column;
   flex: 1;
+  margin-bottom: calc(
+    textfield.$height + to-rem(10) * 2 + $shadow-gradient-height
+  );
 
   &__list {
     display: flex;
@@ -23,9 +24,11 @@ $-margin: invert-sign(layout.$padding);
   &__form {
     background-color: $color-purple;
     bottom: 0;
-    margin: $shadow-gradient-height $-margin $-margin;
+    left: 0;
     padding: to-rem(10) layout.$padding to-rem(30);
-    position: sticky;
+    position: fixed;
+    width: 100%;
+    z-index: $zindex-fixed;
 
     &::after {
       @include shadow-gradient;

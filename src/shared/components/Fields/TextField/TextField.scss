@@ -3,10 +3,12 @@
 @use "@styles/variables" as *;
 
 $padding: to-rem(14);
+$height: to-rem(58);
 
 .TextField {
-  @include fixed-size-height(to-rem(58));
+  @include fixed-size-height($height);
   @include font-text;
+  @include text-overflow;
 
   background-color: $color-black;
   border-radius: $border-radius;

@@ -62,27 +62,18 @@ $height: to-rem(84);
     top: 0;
     left: 50%;
     translate: -50% calc(-50% - 12px);
+  }
 
-    a {
-      @include fixed-size(to-rem(60));
+  &__item:not(:last-of-type) {
+    .Icon {
+      @include fixed-size(to-rem(40));
 
-      align-items: center;
-      background-color: $color-pink;
-      border-radius: 50%;
-      box-shadow: $shadow;
-      display: flex;
-      justify-content: center;
+      color: $color-white;
     }
-  }
 
-  .Icon {
-    @include fixed-size(to-rem(40));
-
-    color: $color-white;
-  }
-
-  &__item:not(:last-of-type) a.active .Icon {
-    color: $color-pink;
-    filter: drop-shadow($shadow);
+    a.active .Icon {
+      color: $color-pink;
+      filter: drop-shadow($shadow);
+    }
   }
 }
