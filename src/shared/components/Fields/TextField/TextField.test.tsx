@@ -5,7 +5,7 @@ import type { TextFieldProps } from '@components/Fields/TextField/TextField.type
 
 const props: TextFieldProps = {
   className: 'custom-class',
-  value: '',
+  defaultValue: '',
   placeholder: 'Enter text here...',
 };
 
@@ -16,7 +16,7 @@ describe('shared/components/TextField', () => {
     const textField = screen.getByTestId('TextField');
 
     expect(textField).toHaveClass('TextField custom-class');
-    expect(textField).toHaveValue(props.value as string);
+    expect(textField).toHaveValue(props.defaultValue as string);
     expect(textField).toHaveAttribute('placeholder', props.placeholder);
   });
 });
