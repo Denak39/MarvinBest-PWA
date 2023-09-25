@@ -27,6 +27,25 @@
   width: 100%;
 }
 
+// Shadow
+@mixin shadow-gradient {
+  background: linear-gradient(
+    rgba($color-purple, 0),
+    rgba($color-purple, 100%)
+  );
+  height: $shadow-gradient-height;
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+  z-index: -1;
+}
+
+// Outline
+@mixin outline {
+  outline: to-rem(2) solid $color-pink;
+  outline-offset: to-rem(2);
+}
+
 // Size
 @mixin fixed-size($width, $height: $width) {
   @include fixed-size-width($width);

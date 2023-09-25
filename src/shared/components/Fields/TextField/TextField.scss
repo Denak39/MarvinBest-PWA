@@ -1,0 +1,25 @@
+@use "@styles/functions" as *;
+@use "@styles/mixins" as *;
+@use "@styles/variables" as *;
+
+.TextField {
+  @include fixed-size-height(to-rem(58));
+
+  background-color: $color-black;
+  border-radius: $border-radius;
+  color: $color-white;
+  padding: to-rem(14);
+  width: 100%;
+
+  &::placeholder {
+    @include font-text;
+
+    color: $color-white;
+    font-weight: $font-weight-light;
+    opacity: 0.6;
+  }
+
+  &:focus-visible {
+    @include outline;
+  }
+}

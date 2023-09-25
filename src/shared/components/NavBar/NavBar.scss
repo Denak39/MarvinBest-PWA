@@ -4,13 +4,12 @@
 @use "@styles/mixins" as *;
 @use "@styles/variables" as *;
 
-$nav-height: to-rem(84);
-$gradient-height: to-rem(40);
+$height: to-rem(84);
 
 .NavBar {
   background-color: $color-purple;
   bottom: 0;
-  height: $nav-height;
+  height: $height;
   left: 0;
   position: fixed;
   width: 100%;
@@ -19,19 +18,12 @@ $gradient-height: to-rem(40);
   z-index: $zindex-fixed;
 
   &::after {
-    background: linear-gradient(
-      rgba($color-purple, 0),
-      rgba($color-purple, 100%)
-    );
+    @include shadow-gradient;
+
     content: "";
-    height: $gradient-height;
     left: 0;
-    pointer-events: none;
-    position: absolute;
     top: 0;
     translate: 0 -100%;
-    width: 100%;
-    z-index: -1;
   }
 
   &::before {

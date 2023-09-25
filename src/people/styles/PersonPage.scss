@@ -1,4 +1,9 @@
 @use "@styles/functions" as *;
+@use "@styles/mixins" as *;
+@use "@styles/variables" as *;
+@use "@components/Layout/Layout" as layout;
+
+$-margin: invert-sign(layout.$padding);
 
 .PersonPage {
   display: flex;
@@ -7,9 +12,26 @@
 
   &__list {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     flex: 1;
     justify-content: flex-end;
     row-gap: to-rem(24);
+  }
+
+  &__form {
+    background-color: $color-purple;
+    bottom: 0;
+    margin: $shadow-gradient-height $-margin $-margin;
+    padding: to-rem(10) layout.$padding to-rem(30);
+    position: sticky;
+
+    &::after {
+      @include shadow-gradient;
+
+      content: "";
+      left: 0;
+      top: 0;
+      translate: 0 -100%;
+    }
   }
 }

@@ -13,7 +13,7 @@ $icon-size: to-rem(24);
   grid-column-start: 2;
   grid-template-columns: $icon-size 1fr $icon-size;
   margin: $-margin $-margin to-rem(10);
-  padding: to-rem(30);
+  padding: to-rem(30) to-rem(20);
   position: sticky;
   top: 0;
   z-index: $zindex-fixed;
@@ -39,5 +39,6 @@ $icon-size: to-rem(24);
     @include text-overflow;
 
     text-align: center;
+    white-space: nowrap;
   }
 }

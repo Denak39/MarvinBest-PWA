@@ -1,10 +1,9 @@
 @use "@styles/functions" as *;
+@use "@styles/variables" as *;
 @use "@components/NavBar/NavBar" as navbar;
 
 .PeoplePage {
-  margin-bottom: calc(
-    navbar.$nav-height + navbar.$gradient-height + to-rem(10)
-  );
+  margin-bottom: calc(navbar.$height + $shadow-gradient-height + to-rem(10));
 
   &__list {
     display: flex;
