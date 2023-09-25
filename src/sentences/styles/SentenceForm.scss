@@ -13,31 +13,11 @@ $border-radius: to-rem(10);
     font-weight: 500;
   }
 
-  &__select {
-    display: flex;
-    border-radius: $border-radius;
-    padding: to-rem(14);
-    justify-content: center;
-    align-items: center;
-    color: white;
-    background: $color-black;
-    opacity: 0.8;
-  }
-
-  &__textarea {
-    border-radius: $border-radius;
-    color: white;
-    background: $color-black;
-    display: flex;
-    min-height: to-rem(100);
-    padding: to-rem(14);
-    align-items: flex-start;
-    gap: to-rem(20);
-    overflow: hidden;
-    text-overflow: ellipsis;
-    overflow-wrap: break-word;
-    opacity: 0.8;
-  }
+  // .SelectField {
+  //   &__placeholder {
+  //     color: red;
+  //   }
+  // }
 }
 
 button {

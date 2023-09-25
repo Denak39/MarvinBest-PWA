@@ -1,9 +1,11 @@
 import type { FormikHelpers } from 'formik';
-import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { ErrorMessage, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 
 import { usePostSentenceMutation } from '@app/sentence/sentenceSliceTest';
 import type { ISentencesForm } from '@app/types';
+import SelectField from '@components/Fields/SelectField/SelectField';
+import TextAreaField from '@components/Fields/TextAreaField/TextAreaField';
 import IconAdd from '@components/Icons/IconAdd';
 import { useGetPeopleQuery } from '@people/slice';
 
@@ -28,6 +30,7 @@ function SentenceForm() {
     values: ISentencesForm,
     formikHelpers: FormikHelpers<ISentencesForm>
   ) => {
+    // console.log(values);
     const { setSubmitting, resetForm } = formikHelpers;
     try {
       setSubmitting(true);
@@ -49,20 +52,17 @@ function SentenceForm() {
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
-      {({ setFieldValue }) => (
+      {({ values, handleChange }) => (
         <Form>
           <div className="field">
             <label htmlFor="speaker">Personne</label>
-            <Field
-              as="select"
+            <SelectField
               id="speaker"
               name="speaker"
-              className="field__select"
-              onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
-                setFieldValue('speaker', e.target.value);
-              }}
+              value={values.speaker}
+              onChange={handleChange}
             >
-              <option value="" disabled>
+              <option className="SelectField__placeholder" value="" disabled>
                 Sélectionne une personne...
               </option>
               {people?.data.length &&
@@ -71,20 +71,18 @@ function SentenceForm() {
                     {person.name}
                   </option>
                 ))}
-            </Field>
+            </SelectField>
             <ErrorMessage name="speaker" component="div" className="error" />
           </div>
           <div className="field">
             <label htmlFor="review-text">Phrase</label>
-            <textarea
+            <TextAreaField
+              placeholder="Saisis la phrase..."
               id="sentence"
               name="sentence"
-              className="field__textarea"
-              onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
-                setFieldValue('sentence', e.target.value);
-              }}
-              placeholder="Saisis la phrase"
-              rows={1}
+              value={values.sentence}
+              onChange={handleChange}
+              rows={5}
             />
             <ErrorMessage name="sentence" component="div" className="error" />
           </div>

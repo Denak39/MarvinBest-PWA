@@ -6,6 +6,6 @@ const { VITE_API_URL } = import.meta.env;
 
 export const api = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: VITE_API_URL }),
-  tagTypes: ['People', 'Sentence'],
+  tagTypes: ['People', 'Sentences'],
   endpoints: () => ({}), // Inject endpoints from other slices
 });

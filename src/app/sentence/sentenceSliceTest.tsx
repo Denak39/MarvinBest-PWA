@@ -14,7 +14,7 @@ export const sentenceSlice = api.injectEndpoints({
           body: JSON.stringify(body),
         };
       },
-      invalidatesTags: ['Sentence'],
+      invalidatesTags: ['Sentences'],
     }),
   }),
 });
