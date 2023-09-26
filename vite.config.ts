@@ -105,6 +105,10 @@ export default defineConfig({
         replacement: path.resolve(__dirname, "src/people"),
       },
       {
+        find: '@public',
+        replacement: path.resolve(__dirname, 'public'),
+      },
+      {
         find: "@sentences",
         replacement: path.resolve(__dirname, "src/sentences"),
       },

@@ -10,6 +10,7 @@ const HomePage = lazy(() => import('@home/HomePage'));
 const PeoplePage = lazy(() => import('@people/components/PeoplePage'));
 const PersonPage = lazy(() => import('@people/components/PersonPage'));
 const SentenceFormPage = lazy(() => import('@sentences/components/SentenceFormPage'));
+const NotFoundPage = lazy(() => import('@components/ErrorPage/NotFoundPage'));
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path={PATHS.PEOPLE} element={<PeoplePage />} />
           <Route path={PATHS.PERSON} element={<PersonPage />} />
           <Route path={PATHS.SENTENCE_FORM} element={<SentenceFormPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
     </Suspense>

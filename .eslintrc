@@ -77,6 +77,8 @@
           ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
           // Other relative imports. Put same-folder imports and `.` last.
           ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
+          // Public imports.
+          ["^@public(/.*|$)"],
           // Style imports.
           ["^.+\\.s?css$"]
         ]
