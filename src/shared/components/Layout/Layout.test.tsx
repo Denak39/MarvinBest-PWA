@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import { screen } from '@testing-library/react';
 
 import Layout from '@components/Layout/Layout';
-import renderWithRouter from '@src/tests';
+import renderWithRouter from '@tests/index';
 
 describe('shared/components/Layout', () => {
   it('should renders the expected component', () => {

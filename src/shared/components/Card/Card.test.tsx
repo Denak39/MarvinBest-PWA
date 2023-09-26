@@ -2,7 +2,7 @@ import { screen } from '@testing-library/react';
 
 import Card from '@components/Card/Card';
 import type { CardProps } from '@components/Card/Card.types';
-import renderWithRouter from '@src/tests';
+import renderWithRouter from '@tests/index';
 
 const props: CardProps = {
   className: 'custom-class',

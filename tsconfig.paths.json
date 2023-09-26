@@ -14,7 +14,8 @@
       "@sentences/*": ["src/sentences/*"],
       "@shared/*": ["src/shared/*"],
       "@src/*": ["src/*"],
-      "@styles/*": ["src/styles/*"]
+      "@styles/*": ["src/styles/*"],
+      "@tests/*": ["src/tests/*"]
     }
   }
 }
