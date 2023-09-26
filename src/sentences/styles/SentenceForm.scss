@@ -1,40 +1,42 @@
 @use '@styles/functions' as *;
 @use '@styles/variables' as *;
 @use '@styles/mixins' as *;
-@use '@components/Fields/TextField/TextField' as textfield;
-@use '@components/Layout/Layout' as layout;
 
 $border-radius: to-rem(10);
 
-form {
+.SentenceFormPage {
   display: flex;
   flex-direction: column;
   flex: 1;
-  margin-bottom: calc(
-    textfield.$height + to-rem(10) * 2 + $shadow-gradient-height
-  );
 
-  .field {
+  &__form {
     display: flex;
-    flex-direction: column;
-    margin-bottom: 40px;
-    gap: 6px;
     flex: 1;
+    justify-content: space-between;
+    flex-direction: column;
 
-    label {
-      font-weight: 500;
+    &-field {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 40px;
+      justify-content: flex-end;
+      gap: 6px;
+
+      label {
+        font-weight: 500;
+      }
     }
-  }
 
-  .error {
-    @include font-text-small;
+    .error {
+      @include font-text-small;
 
-    color: $color-pink;
-  }
+      color: $color-pink;
+    }
 
-  button {
-    .Icon--add {
-      width: to-rem(22);
+    &-button {
+      .Icon--add {
+        width: to-rem(22);
+      }
     }
   }
 }
