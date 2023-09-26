@@ -1,40 +1,32 @@
 @use '@styles/functions' as *;
 @use '@styles/variables' as *;
+@use '@styles/mixins' as *;
 
 $border-radius: to-rem(10);
 
-.field {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 40px;
-  gap: 6px;
+form {
+  min-height: 100vh;
 
-  label {
-    font-weight: 500;
+  .field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+    gap: 6px;
+
+    label {
+      font-weight: 500;
+    }
   }
 
-  // .SelectField {
-  //   &__placeholder {
-  //     color: red;
-  //   }
-  // }
-}
+  .error {
+    @include font-text-small;
 
-button {
-  display: flex;
-  width: 100%;
-  padding: to-rem(16) to-rem(20);
-  justify-content: center;
-  align-items: center;
-  border-radius: $border-radius;
-  background: $color-pink;
-  box-shadow: $shadow;
-  color: $color-white;
-  font-size: to-rem(18);
-  font-weight: 600;
-  gap: to-rem(14);
+    color: $color-pink;
+  }
 
-  .Icon--arrow-add {
-    width: to-rem(22);
+  button {
+    .Icon--arrow-add {
+      width: to-rem(22);
+    }
   }
 }

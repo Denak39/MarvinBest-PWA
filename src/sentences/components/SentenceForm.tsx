@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 
 import { usePostSentenceMutation } from '@app/sentence/sentenceSlice';
 import type { ISentencesForm } from '@app/types';
+import Button from '@components/Button/Button';
 import SelectField from '@components/Fields/SelectField/SelectField';
 import TextAreaField from '@components/Fields/TextAreaField/TextAreaField';
 import IconAdd from '@components/Icons/IconAdd';
@@ -52,7 +53,7 @@ function SentenceForm() {
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
-      {({ values, handleChange }) => (
+      {({ values, handleChange, isValid, dirty }) => (
         <Form>
           <div className="field">
             <label htmlFor="speaker">Personne</label>
@@ -82,10 +83,10 @@ function SentenceForm() {
             />
             <ErrorMessage name="sentence" component="div" className="error" />
           </div>
-          <button type="submit">
+          <Button type="submit" disabled={!isValid || !dirty}>
             Ajouter
             <IconAdd />
-          </button>
+          </Button>
         </Form>
       )}
     </Formik>

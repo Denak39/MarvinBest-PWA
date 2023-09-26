@@ -5,7 +5,7 @@ import type { SelectFieldProps } from '@components/Fields/SelectField/SelectFiel
 import '@components/Fields/SelectField/SelectField.scss';
 
 function SelectField({ className, ...props }: SelectFieldProps): JSX.Element {
-  return <select className={clsx('SelectField', className)} {...props} />;
+  return <select className={clsx('SelectField', className)} data-testid="SelectField" {...props} />;
 }
 
 export default SelectField;

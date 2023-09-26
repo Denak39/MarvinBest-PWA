@@ -4,11 +4,10 @@ import type { TextAreaFieldProps } from '@components/Fields/TextAreaField/TextAr
 
 import '@components/Fields/TextAreaField/TextAreaField.scss';
 
-function TextAreaField({
-  className,
-  ...props
-}: TextAreaFieldProps): JSX.Element {
-  return <textarea className={clsx('TextAreaField', className)} {...props} />;
+function TextAreaField({ className, ...props }: TextAreaFieldProps): JSX.Element {
+  return (
+    <textarea className={clsx('TextAreaField', className)} data-testid="TextAreaField" {...props} />
+  );
 }
 
 export default TextAreaField;
