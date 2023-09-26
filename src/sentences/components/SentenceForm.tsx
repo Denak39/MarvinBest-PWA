@@ -53,7 +53,7 @@ function SentenceForm() {
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
-      {({ values, handleChange, isValid, dirty }) => (
+      {({ values, handleChange, isValid, dirty, isSubmitting }) => (
         <Form>
           <div className="field">
             <label htmlFor="speaker">Personne</label>
@@ -83,7 +83,7 @@ function SentenceForm() {
             />
             <ErrorMessage name="sentence" component="div" className="error" />
           </div>
-          <Button type="submit" disabled={!isValid || !dirty}>
+          <Button type="submit" disabled={isSubmitting || !isValid || !dirty}>
             Ajouter
             <IconAdd />
           </Button>
