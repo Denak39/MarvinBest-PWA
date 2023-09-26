@@ -67,6 +67,11 @@ export type ApiPersonOptionData = {
   name: string;
 };
 
+export interface ApiPersonOptionDataWithId extends ApiPersonOptionData {
+  '@id': string;
+  '@type': string;
+}
+
 export type ApiPeopleOptionsResponse = ApiCollectionResponse<ApiPersonOptionData>;
 
 // Sentences

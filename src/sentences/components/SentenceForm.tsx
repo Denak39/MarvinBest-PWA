@@ -8,6 +8,7 @@ import SelectField from '@components/Fields/SelectField/SelectField';
 import TextAreaField from '@components/Fields/TextAreaField/TextAreaField';
 import IconAdd from '@components/Icons/IconAdd';
 import { useGetPeopleOptionsQuery } from '@people/slice';
+import type { PeopleOptions } from '@people/types';
 
 import '../styles/SentenceForm.scss';
 
@@ -15,7 +16,6 @@ function SentenceForm() {
   const [postSentence] = usePostSentenceMutation();
 
   const { data: people } = useGetPeopleOptionsQuery();
-  console.log(people);
 
   const initialValues = {
     sentence: '',
@@ -31,7 +31,6 @@ function SentenceForm() {
     values: ISentencesForm,
     formikHelpers: FormikHelpers<ISentencesForm>
   ) => {
-    // console.log(values);
     const { setSubmitting, resetForm } = formikHelpers;
     try {
       setSubmitting(true);
@@ -61,12 +60,13 @@ function SentenceForm() {
               <option className="SelectField__placeholder" value="" disabled>
                 Sélectionne une personne...
               </option>
-              {people?.length &&
-                people.data?.map((person) => (
-                  <option key={person.id} value={person.id}>
-                    {person.name}
-                  </option>
-                ))}
+              {people?.data
+                ? people.data?.map((person: PeopleOptions) => (
+                    <option key={person.id} value={person.id}>
+                      {person.name}
+                    </option>
+                  ))
+                : null}
             </SelectField>
             <ErrorMessage name="speaker" component="div" className="error" />
           </div>
