@@ -7,8 +7,12 @@ import '@components/Fields/SelectField/SelectField.scss';
 
 function SelectField({ className, ...props }: SelectFieldProps): JSX.Element {
   return (
-    <div className={clsx('SelectFieldWrapper', className)} data-testid="SelectField">
-      <select className="SelectFieldWrapper__field" {...props} />
+    <div className="SelectFieldWrapper">
+      <select
+        data-testid="SelectField"
+        className={clsx('SelectFieldWrapper__field', className)}
+        {...props}
+      />
       <IconSmallArrowDown />
     </div>
   );

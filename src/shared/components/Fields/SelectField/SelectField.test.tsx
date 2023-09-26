@@ -28,7 +28,7 @@ describe('shared/components/SelectField', () => {
     const option2 = screen.getByText('Option 2');
     const option3 = screen.getByText('Option 3');
 
-    expect(selectField).toHaveClass('SelectField custom-class');
+    expect(selectField).toHaveClass('SelectFieldWrapper__field custom-class');
 
     expect(option1).toBeInTheDocument();
     expect(option2).toBeInTheDocument();
