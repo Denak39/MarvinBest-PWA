@@ -5,6 +5,8 @@
 * {
   box-sizing: border-box;
   font-family: inherit;
+  margin: 0;
+  padding: 0;
 
   &::selection {
     color: $color-white;
@@ -18,23 +20,16 @@ body {
   font-family: $font-name-montserrat, sans-serif;
   font-weight: $font-weight-regular;
   margin: 0;
+  min-width: 200px;
+  overflow-x: hidden;
 }
 
 h1 {
   @include font-title-h1;
-
-  margin: 0;
 }
 
 p {
   @include font-text;
-
-  margin: 0;
-}
-
-ul {
-  margin: 0;
-  padding: 0;
 }
 
 li {
@@ -44,6 +39,17 @@ li {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+input {
+  border: none;
+  background-color: transparent;
 }
 
 @media (display-mode: standalone) {

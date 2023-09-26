@@ -3,5 +3,13 @@
 $padding: to-rem(20);
 
 .Layout {
+  display: flex;
+  min-height: 100vh;
   padding: $padding;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
 }

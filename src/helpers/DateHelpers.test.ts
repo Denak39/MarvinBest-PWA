@@ -42,4 +42,20 @@ describe('helpers/DateHelpers', () => {
       expect(newDate.getShortdate()).toBe('Hier');
     });
   });
+
+  describe('isSameDate', () => {
+    it('should return same date', () => {
+      const otherDate = new DateHelpers(now);
+      otherDate.setHours(otherDate.getHours() - 1);
+
+      expect(now.isSameDate(otherDate)).toBeTruthy();
+    });
+
+    it('should return different date', () => {
+      const otherDate = new DateHelpers(now);
+      otherDate.setDate(otherDate.getDate() - 1);
+
+      expect(now.isSameDate(otherDate)).toBeFalsy();
+    });
+  });
 });

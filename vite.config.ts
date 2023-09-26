@@ -120,6 +120,10 @@ export default defineConfig({
         find: '@styles',
         replacement: path.resolve(__dirname, 'src/styles'),
       },
+      {
+        find: '@tests',
+        replacement: path.resolve(__dirname, 'src/tests'),
+      },
     ],
   },
   test: {

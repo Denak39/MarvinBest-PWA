@@ -1,0 +1,57 @@
+@use "@styles/functions" as *;
+@use "@styles/mixins" as *;
+@use "@styles/variables" as *;
+@use "@components/Fields/TextField/TextField" as textfield;
+@use "@components/IconButton/IconButton" as iconbutton;
+@use "@components/Layout/Layout" as layout;
+
+.PersonPage {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-bottom: calc(
+    textfield.$height + to-rem(10) * 2 + $shadow-gradient-height
+  );
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: flex-end;
+    row-gap: to-rem(24);
+  }
+
+  &__form {
+    background-color: $color-purple;
+    bottom: 0;
+    left: 0;
+    padding: to-rem(10) layout.$padding to-rem(30);
+    position: fixed;
+    width: 100%;
+    z-index: $zindex-fixed;
+
+    &::after {
+      @include shadow-gradient;
+
+      content: "";
+      left: 0;
+      top: 0;
+      translate: 0 -100%;
+    }
+  }
+
+  &__field-wrapper {
+    position: relative;
+
+    .TextField {
+      padding-right: calc(textfield.$padding * 2 + iconbutton.$size-medium);
+    }
+  }
+
+  &__form-button {
+    position: absolute;
+    right: textfield.$padding;
+    top: 50%;
+    translate: 0 -50%;
+  }
+}

@@ -4,34 +4,26 @@
 @use "@styles/mixins" as *;
 @use "@styles/variables" as *;
 
-$nav-height: to-rem(84);
-$gradient-height: to-rem(40);
+$height: to-rem(84);
 
 .NavBar {
   background-color: $color-purple;
   bottom: 0;
-  height: $nav-height;
+  height: $height;
   left: 0;
   position: fixed;
-  width: 100vw;
+  width: 100%;
   display: flex;
   align-items: center;
   z-index: $zindex-fixed;
 
   &::after {
-    background: linear-gradient(
-      rgba($color-purple, 0),
-      rgba($color-purple, 100%)
-    );
+    @include shadow-gradient;
+
     content: "";
-    height: $gradient-height;
     left: 0;
-    pointer-events: none;
-    position: absolute;
     top: 0;
     translate: 0 -100%;
-    width: 100%;
-    z-index: -1;
   }
 
   &::before {
@@ -65,32 +57,23 @@ $gradient-height: to-rem(40);
     width: 100%;
   }
 
-  &__item:last-of-type {
+  &__item:nth-of-type(2) {
     position: absolute;
     top: 0;
     left: 50%;
     translate: -50% calc(-50% - 12px);
+  }
 
-    a {
-      @include fixed-size(to-rem(60));
+  &__item:not(:nth-of-type(2)) {
+    .Icon {
+      @include fixed-size(to-rem(40));
 
-      align-items: center;
-      background-color: $color-pink;
-      border-radius: 50%;
-      box-shadow: $shadow;
-      display: flex;
-      justify-content: center;
+      color: $color-white;
     }
-  }
 
-  .Icon {
-    @include fixed-size(to-rem(40));
-
-    color: $color-white;
-  }
-
-  &__item:not(:last-of-type) a.active .Icon {
-    color: $color-pink;
-    filter: drop-shadow($shadow);
+    a.active .Icon {
+      color: $color-pink;
+      filter: drop-shadow($shadow);
+    }
   }
 }

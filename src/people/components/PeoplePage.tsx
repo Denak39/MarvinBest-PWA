@@ -42,10 +42,10 @@ function PeoplePage(): JSX.Element {
         </ul>
       )}
 
-      {/* // TODO: add skeleton loader components. */}
+      {/* TODO: add skeleton loader components. */}
       {isFetching && <p>Chargement en cours...</p>}
 
-      {/* // TODO: add a no result component. */}
+      {/* TODO: add a no result component. */}
       {!people?.data.length && !isFetching && <p>Aucune personnes disponibles...</p>}
     </div>
   );
