@@ -32,6 +32,6 @@ $size-medium: to-rem(30);
   &:disabled {
     background-color: $color-gray;
     box-shadow: none;
-    pointer-events: none;
+    cursor: not-allowed;
   }
 }

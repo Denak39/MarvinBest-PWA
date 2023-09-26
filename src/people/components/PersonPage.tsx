@@ -45,6 +45,7 @@ function PersonPage(): JSX.Element {
       .unwrap()
       .then(() => {
         resetForm();
+        // TODO: unvalidate form because after this, isValid property is always to true.
       })
       .catch((error) => {
         // TODO: display an alert to inform user.
@@ -88,12 +89,12 @@ function PersonPage(): JSX.Element {
       {isLoading && <p>Chargement en cours...</p>}
 
       {/* // TODO: add a no result component. */}
-      {!person?.sentences.length && !isLoading && <p>Aucune phrases disponibles...</p>}
 
       {!!person && (
         <Formik
           initialValues={initialValues}
           onSubmit={handleSubmit}
+          validateOnMount
           validationSchema={validationSchema}
         >
           {({ isValid, isSubmitting, values, handleChange }) => (
@@ -113,7 +114,7 @@ function PersonPage(): JSX.Element {
                 <IconButton
                   aria-label="Envoyer la phrase"
                   className="PersonPage__form-button"
-                  disabled={!isValid || isSubmitting}
+                  disabled={isSubmitting || !isValid}
                   type="submit"
                 >
                   <IconSend />
