@@ -70,7 +70,7 @@ function PersonPage(): JSX.Element {
 
   return (
     <div className="PersonPage">
-      {/* // TODO: add title skeleton loader components. */}
+      {/* TODO: add title skeleton loader components. */}
       <Header title={person?.name || ''} goBack />
 
       {!!person?.sentences.length && (
@@ -85,10 +85,10 @@ function PersonPage(): JSX.Element {
         </ul>
       )}
 
-      {/* // TODO: add skeleton loader components. */}
+      {/* TODO: add skeleton loader components. */}
       {isLoading && <p>Chargement en cours...</p>}
 
-      {/* // TODO: add a no result component. */}
+      {/* TODO: add a no result component. */}
 
       {!!person && (
         <Formik
@@ -99,7 +99,7 @@ function PersonPage(): JSX.Element {
         >
           {({ isValid, isSubmitting, values, handleChange }) => (
             <Form className="PersonPage__form">
-              {/* // TODO: add skeleton loader components. */}
+              {/* TODO: add skeleton loader components. */}
               <div className="PersonPage__field-wrapper">
                 <TextField
                   aria-label={`Écrire une phrase de ${person.name}`}
@@ -110,7 +110,7 @@ function PersonPage(): JSX.Element {
                   value={values.sentence}
                 />
 
-                {/* // TODO: add a loader button when form is submitting. */}
+                {/* TODO: add a loader button when form is submitting. */}
                 <IconButton
                   aria-label="Envoyer la phrase"
                   className="PersonPage__form-button"
