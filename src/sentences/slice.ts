@@ -3,7 +3,7 @@ import type { ApiSentenceResponse } from '@api/types';
 import { parseSentenceResponse } from '@sentences/parsers';
 import type { AddSentence, Sentence } from '@sentences/types';
 
-export const peopleSlice = api.injectEndpoints({
+export const sentencesSlice = api.injectEndpoints({
   endpoints: (builder) => ({
     addSentence: builder.mutation<Sentence, AddSentence>({
       query: (body) => ({
@@ -20,4 +20,4 @@ export const peopleSlice = api.injectEndpoints({
   }),
 });
 
-export const { useAddSentenceMutation } = peopleSlice;
+export const { useAddSentenceMutation } = sentencesSlice;

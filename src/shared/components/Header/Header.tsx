@@ -16,7 +16,6 @@ function Header({ className, goBack = false, title, ...props }: HeaderProps): JS
       {...props}
     >
       <div className="Header__go-back">
-        {/* TODO: replace by <IconButton /> */}
         <button onClick={() => navigate(-1)} aria-label="Retour en arrière">
           <IconArrowBack />
         </button>
