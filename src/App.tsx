@@ -9,7 +9,7 @@ import '@styles/index.scss';
 const HomePage = lazy(() => import('@home/HomePage'));
 const PeoplePage = lazy(() => import('@people/components/PeoplePage'));
 const PersonPage = lazy(() => import('@people/components/PersonPage'));
-const SentenceFormPage = lazy(() => import('@sentences/SentenceFormPage'));
+const SentenceFormPage = lazy(() => import('@sentences/components/SentenceFormPage'));
 
 function App() {
   return (
