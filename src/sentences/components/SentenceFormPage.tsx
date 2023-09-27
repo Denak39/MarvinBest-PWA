@@ -16,7 +16,10 @@ import '@sentences/styles/SentenceForm.scss';
 function SentenceForm() {
   const [addSentence] = useAddSentenceMutation();
 
-  const { data: peopleOptions } = useGetPeopleOptionsQuery();
+  const { data: peopleOptions } = useGetPeopleOptionsQuery({
+    'order[name]': 'asc',
+    pagination: false,
+  });
 
   const initialValues: AddSentence = {
     personId: NaN,
@@ -49,18 +52,21 @@ function SentenceForm() {
           <Form className="SentenceFormPage__form">
             <div>
               <div className="SentenceFormPage__form-field">
-                <label htmlFor="speaker">Personne</label>
-                <Select id="speaker" name="speaker" value={values.personId} onChange={handleChange}>
-                  <option value="" disabled>
-                    Sélectionne une personne...
-                  </option>
+                <label htmlFor="personId">Personne</label>
+                <Select
+                  id="personId"
+                  name="personId"
+                  onChange={handleChange}
+                  placeholder="Sélectionner une personne..."
+                  value={values.personId || ''}
+                >
                   {peopleOptions?.map(({ id, name }) => (
                     <option key={id} value={id}>
                       {name}
                     </option>
                   ))}
                 </Select>
-                <ErrorMessage name="speaker" component="div" className="error" />
+                <ErrorMessage name="personId" component="div" className="error" />
               </div>
               <div className="SentenceFormPage__form-field">
                 <label htmlFor="sentence">Phrase</label>

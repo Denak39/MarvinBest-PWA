@@ -40,8 +40,8 @@ export const peopleSlice = api.injectEndpoints({
       providesTags: (_result, _error, id) => [{ type: 'People', id }],
       transformResponse: (data: ApiPersonResponse) => parsePersonResponse(data),
     }),
-    getPeopleOptions: builder.query<PeopleOptions, void>({
-      query: () => `/people/light?page=1&pagination=false`,
+    getPeopleOptions: builder.query<PeopleOptions, ApiQueryArg<PeopleOptions> | void>({
+      query: (args) => `/people/light${convertToQueryArg(args)}`,
       providesTags: ['PeopleOptions'],
       transformResponse: (data: ApiPeopleOptionsResponse) => parsePeopleOptionsResponse(data),
     }),

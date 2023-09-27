@@ -49,6 +49,7 @@ export type ApiQueryArg<T> = Partial<
     [key in keyof T as `order[${string}]`]: 'asc' | 'desc';
   } & {
     page: number;
+    pagination: false;
   }
 >;
 

@@ -5,10 +5,19 @@ import IconSmallArrowDown from '@components/Icons/IconSmallArrowDown';
 
 import '@components/Fields/Select/Select.scss';
 
-function Select({ className, ...props }: SelectProps): JSX.Element {
+function Select({ children, className, placeholder, ...props }: SelectProps): JSX.Element {
   return (
     <div data-testid="Select" className={clsx('Select', className)}>
-      <select data-testid="Select__field" className="Select__field" {...props} />
+      <select data-testid="Select__field" className="Select__field" {...props}>
+        {!!placeholder && (
+          <option value="" disabled>
+            {placeholder}
+          </option>
+        )}
+
+        {children}
+      </select>
+
       <IconSmallArrowDown />
     </div>
   );
