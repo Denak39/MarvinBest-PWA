@@ -1,6 +1,5 @@
 import type { FormikHelpers } from 'formik';
 import { ErrorMessage, Form, Formik } from 'formik';
-import * as Yup from 'yup';
 
 import Button from '@components/Button/Button';
 import Select from '@components/Fields/Select/Select';
@@ -8,6 +7,7 @@ import Textarea from '@components/Fields/Textarea/Textarea';
 import Header from '@components/Header/Header';
 import IconAdd from '@components/Icons/IconAdd';
 import { useGetPeopleOptionsQuery } from '@people/slice';
+import { addSentenceSchema } from '@sentences/constants';
 import { useAddSentenceMutation } from '@sentences/slice';
 import type { AddSentence } from '@sentences/types';
 
@@ -16,20 +16,16 @@ import '@sentences/styles/SentenceForm.scss';
 function SentenceForm() {
   const [addSentence] = useAddSentenceMutation();
 
-  const { data: people } = useGetPeopleOptionsQuery();
+  const { data: peopleOptions } = useGetPeopleOptionsQuery();
 
-  const initialValues = {
+  const initialValues: AddSentence = {
+    personId: NaN,
     sentence: '',
-    speaker: '',
   };
-
-  const validationSchema = Yup.object().shape({
-    sentence: Yup.string().required('Oublie pas la phrase !'),
-    speaker: Yup.string().required('Sélectionne une personne...'),
-  });
 
   const handleSubmit = async (values: AddSentence, formikHelpers: FormikHelpers<AddSentence>) => {
     const { setSubmitting, resetForm } = formikHelpers;
+
     await addSentence(values)
       .unwrap()
       .then(() => {
@@ -46,7 +42,7 @@ function SentenceForm() {
 
       <Formik
         initialValues={initialValues}
-        validationSchema={validationSchema}
+        validationSchema={addSentenceSchema}
         onSubmit={handleSubmit}
       >
         {({ values, handleChange, isValid, dirty, isSubmitting }) => (
@@ -54,11 +50,11 @@ function SentenceForm() {
             <div>
               <div className="SentenceFormPage__form-field">
                 <label htmlFor="speaker">Personne</label>
-                <Select id="speaker" name="speaker" value={values.speaker} onChange={handleChange}>
+                <Select id="speaker" name="speaker" value={values.personId} onChange={handleChange}>
                   <option value="" disabled>
                     Sélectionne une personne...
                   </option>
-                  {people?.map(({ id, name }) => (
+                  {peopleOptions?.map(({ id, name }) => (
                     <option key={id} value={id}>
                       {name}
                     </option>

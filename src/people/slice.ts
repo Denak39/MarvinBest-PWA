@@ -7,7 +7,6 @@ import type {
   ApiQueryArg,
   CollectionResponse,
 } from '@api/types';
-import type { BaseEntity } from '@app/types';
 import {
   parsePeopleOptionsResponse,
   parsePeopleResponse,
@@ -36,14 +35,14 @@ export const peopleSlice = api.injectEndpoints({
         return currentArg.page > previousArg.page;
       },
     }),
-    getPerson: builder.query<Person, BaseEntity['id']>({
+    getPerson: builder.query<Person, Person['id']>({
       query: (id) => `/people/${id}`,
       providesTags: (_result, _error, id) => [{ type: 'People', id }],
       transformResponse: (data: ApiPersonResponse) => parsePersonResponse(data),
     }),
     getPeopleOptions: builder.query<PeopleOptions, void>({
       query: () => `/people/light?page=1&pagination=false`,
-      providesTags: ['People'],
+      providesTags: ['PeopleOptions'],
       transformResponse: (data: ApiPeopleOptionsResponse) => parsePeopleOptionsResponse(data),
     }),
   }),
