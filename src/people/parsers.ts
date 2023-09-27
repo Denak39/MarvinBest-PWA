@@ -1,7 +1,12 @@
 import { findPage } from '@api/helpers';
 import { parseIdResponse } from '@api/parsers';
-import type { ApiPeopleResponse, ApiPersonResponse, CollectionResponse } from '@api/types';
-import type { People, Person } from '@people/types';
+import type {
+  ApiPeopleOptionsResponse,
+  ApiPeopleResponse,
+  ApiPersonResponse,
+  CollectionResponse,
+} from '@api/types';
+import type { People, PeopleOptions, Person } from '@people/types';
 import { parseSentenceResponse } from '@sentences/parsers';
 
 export function parsePersonResponse(
@@ -20,4 +25,11 @@ export function parsePeopleResponse(data: ApiPeopleResponse): CollectionResponse
     totalPages: findPage(data['hydra:view']['hydra:last']),
     data: data['hydra:member'].map((item) => parsePersonResponse(item)),
   };
+}
+
+export function parsePeopleOptionsResponse(data: ApiPeopleOptionsResponse): PeopleOptions {
+  return data['hydra:member'].map((item) => ({
+    id: parseIdResponse(item['@id']),
+    name: item.name,
+  }));
 }

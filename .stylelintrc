@@ -3,6 +3,7 @@
     "stylelint-config-standard-scss"
   ],
   "rules": {
+    "font-family-name-quotes": "always-unless-keyword",
     "function-no-unknown": [
       true,
       {
@@ -11,7 +12,9 @@
         ]
       }
     ],
+    "function-url-quotes": "always",
+    "selector-attribute-quotes": "always",
     "selector-class-pattern": "^([A-Za-z0-9-]+)?(__([A-Za-z0-9]+-?)+)?(--([a-z0-9]+-?)+){0,2}$",
-    "selector-id-pattern": "^([A-Za-z0-9-]+)?(__([A-Za-z0-9]+-?)+)?(--([a-z0-9]+-?)+){0,2}$"
+    "selector-id-pattern": "^([A-Za-z0-9-]+)?(__([A-Za-z0-9]+-?)+)?(--([a-z0-9]+-?)+){0,2}$",
   }
 }

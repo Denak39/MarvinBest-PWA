@@ -12,7 +12,10 @@ export const sentencesSlice = api.injectEndpoints({
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(body),
+        body: JSON.stringify({
+          sentence: body.sentence,
+          speaker: `/api/people/${body.personId}`,
+        }),
       }),
       invalidatesTags: ['People'],
       transformResponse: (data: ApiSentenceResponse) => parseSentenceResponse(data),

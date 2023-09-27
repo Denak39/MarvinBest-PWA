@@ -9,6 +9,7 @@ import '@styles/index.scss';
 const HomePage = lazy(() => import('@home/HomePage'));
 const PeoplePage = lazy(() => import('@people/components/PeoplePage'));
 const PersonPage = lazy(() => import('@people/components/PersonPage'));
+const SentenceFormPage = lazy(() => import('@sentences/components/SentenceFormPage'));
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route index element={<HomePage />} />
           <Route path={PATHS.PEOPLE} element={<PeoplePage />} />
           <Route path={PATHS.PERSON} element={<PersonPage />} />
+          <Route path={PATHS.SENTENCE_FORM} element={<SentenceFormPage />} />
         </Route>
       </Routes>
     </Suspense>

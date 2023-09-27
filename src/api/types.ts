@@ -49,6 +49,7 @@ export type ApiQueryArg<T> = Partial<
     [key in keyof T as `order[${string}]`]: 'asc' | 'desc';
   } & {
     page: number;
+    pagination: false;
   }
 >;
 
@@ -61,6 +62,13 @@ export type ApiPersonData = {
 
 export type ApiPersonResponse = ApiEntityResponse<ApiPersonData>;
 export type ApiPeopleResponse = ApiCollectionResponse<ApiPersonData>;
+
+// People options
+export interface ApiPersonOptionData {
+  name: string;
+}
+
+export type ApiPeopleOptionsResponse = ApiCollectionResponse<ApiPersonOptionData>;
 
 // Sentences
 export type ApiSentenceData = {

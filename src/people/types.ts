@@ -8,3 +8,5 @@ export interface Person extends BaseEntity {
 }
 
 export type People = Person[];
+
+export type PeopleOptions = Pick<Person, 'name' | 'id'>[];

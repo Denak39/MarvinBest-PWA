@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import type { FormikHelpers } from 'formik';
 import { Form, Formik } from 'formik';
-import * as Yup from 'yup';
 
 import TextField from '@components/Fields/TextField/TextField';
 import Header from '@components/Header/Header';
@@ -10,6 +9,7 @@ import IconButton from '@components/IconButton/IconButton';
 import IconSend from '@components/Icons/IconSend';
 import Message from '@components/Message/Message';
 import { useGetPersonQuery } from '@people/slice';
+import { addSentenceSchema } from '@sentences/constants';
 import { useAddSentenceMutation } from '@sentences/slice';
 import type { AddSentence } from '@sentences/types';
 
@@ -59,14 +59,9 @@ function PersonPage(): JSX.Element {
   };
 
   const initialValues: AddSentence = {
+    personId: person?.id ?? NaN,
     sentence: '',
-    speaker: `/api/people/${person?.id}`,
   };
-
-  const validationSchema = Yup.object<AddSentence>({
-    sentence: Yup.string().required().min(5),
-    speaker: Yup.string().required(),
-  });
 
   return (
     <div className="PersonPage">
@@ -95,7 +90,7 @@ function PersonPage(): JSX.Element {
           initialValues={initialValues}
           onSubmit={handleSubmit}
           validateOnMount
-          validationSchema={validationSchema}
+          validationSchema={addSentenceSchema}
         >
           {({ isValid, isSubmitting, values, handleChange }) => (
             <Form className="PersonPage__form">
