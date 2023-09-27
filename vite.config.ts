@@ -97,16 +97,16 @@ export default defineConfig({
         replacement: path.resolve(__dirname, 'src/home'),
       },
       {
+        find: '@images',
+        replacement: path.resolve(__dirname, 'src/images'),
+      },
+      {
         find: '@mocks',
         replacement: path.resolve(__dirname, 'src/mocks'),
       },
       {
         find: "@people",
         replacement: path.resolve(__dirname, "src/people"),
-      },
-      {
-        find: '@public',
-        replacement: path.resolve(__dirname, 'public'),
       },
       {
         find: "@sentences",

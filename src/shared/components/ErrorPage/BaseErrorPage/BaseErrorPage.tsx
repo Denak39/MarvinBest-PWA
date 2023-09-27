@@ -3,9 +3,10 @@ import clsx from 'clsx';
 
 import type { BaseErrorPageProps } from '@components/ErrorPage/BaseErrorPage/BaseErrorPage.types';
 import Header from '@components/Header/Header';
+import IconHome from '@components/Icons/IconHome';
 import { PATHS } from '@constants/index';
 
-import mascotMarvinBestSad from '@public/images/mascot-marvin-best-sad.png';
+import mascotMarvinBestSad from '@images/mascot-marvin-best-sad.png';
 
 import '@components/ErrorPage/BaseErrorPage/BaseErrorPage.scss';
 
@@ -25,9 +26,9 @@ function BaseErrorPage({ children, className, title, ...props }: BaseErrorPagePr
         <p className="BaseErrorPage__text">{children}</p>
       </div>
 
-      {/* TODO: use <Button /> component. */}
-      <NavLink to={PATHS.HOME} className="BaseErrorPage__link">
+      <NavLink to={PATHS.HOME} className="BaseErrorPage__link Button">
         Revenir à l’accueil
+        <IconHome />
       </NavLink>
     </div>
   );

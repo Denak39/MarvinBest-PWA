@@ -1,4 +1,5 @@
 @use "@styles/functions" as *;
+@use "@styles/mixins" as *;
 @use "@styles/variables" as *;
 
 .Button {
@@ -19,5 +20,9 @@
     cursor: not-allowed;
     background-color: $color-gray;
     box-shadow: none;
+  }
+
+  .Icon {
+    @include fixed-size(to-rem(22));
   }
 }

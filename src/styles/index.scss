@@ -2,4 +2,5 @@
 @use "@styles/global" as *;
 
 // Shared styles
+@use "@components/Button/Button" as button;
 @use "@components/IconButton/IconButton" as icon-button;
