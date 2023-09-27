@@ -6,14 +6,21 @@ import type { AddSentence, Sentence } from '@sentences/types';
 export const sentencesSlice = api.injectEndpoints({
   endpoints: (builder) => ({
     addSentence: builder.mutation<Sentence, AddSentence>({
-      query: (body) => ({
-        url: `/best_ofs`,
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(body),
-      }),
+      query: (body) => {
+        const transformedBody = {
+          ...body,
+          speaker: `/api/people/${body.speaker}`,
+        };
+
+        return {
+          url: `/best_ofs`,
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(transformedBody),
+        };
+      },
       invalidatesTags: ['People'],
       transformResponse: (data: ApiSentenceResponse) => parseSentenceResponse(data),
     }),

@@ -60,7 +60,7 @@ function PersonPage(): JSX.Element {
 
   const initialValues: AddSentence = {
     sentence: '',
-    speaker: `/api/people/${person?.id}`,
+    speaker: `${person?.id}`,
   };
 
   const validationSchema = Yup.object<AddSentence>({

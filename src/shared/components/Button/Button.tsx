@@ -4,14 +4,9 @@ import type { ButtonProps } from '@components/Button/Button.types';
 
 import '@components/Button/Button.scss';
 
-function Button({ className, disabled, children, ...props }: ButtonProps): JSX.Element {
+function Button({ className, children, ...props }: ButtonProps): JSX.Element {
   return (
-    <button
-      data-testid="Button"
-      className={clsx('Button', className)}
-      disabled={disabled}
-      {...props}
-    >
+    <button data-testid="Button" className={clsx('Button', className)} {...props}>
       {children}
     </button>
   );

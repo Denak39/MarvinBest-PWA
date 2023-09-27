@@ -1,13 +1,13 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 
-import SelectField from '@components/Fields/SelectField/SelectField';
-import type { SelectFieldProps } from '@components/Fields/SelectField/SelectField.types';
+import Select from '@components/Fields/Select/Select';
+import type { SelectProps } from '@components/Fields/Select/Select.types';
 
-const props: SelectFieldProps = {
+const props: SelectProps = {
   className: 'custom-class',
 };
 
-describe('shared/components/SelectField', () => {
+describe('shared/components/Select', () => {
   it('should render the expected component with options', () => {
     const options = [
       { label: 'Option 1', value: 'option1' },
@@ -16,19 +16,19 @@ describe('shared/components/SelectField', () => {
     ];
 
     render(
-      <SelectField {...props}>
+      <Select {...props}>
         {options.map((option) => (
           <option key={option.value}>{option.label}</option>
         ))}
-      </SelectField>
+      </Select>
     );
 
-    const selectField = screen.getByTestId('SelectField');
+    const select = screen.getByTestId('Select');
     const option1 = screen.getByText('Option 1');
     const option2 = screen.getByText('Option 2');
     const option3 = screen.getByText('Option 3');
 
-    expect(selectField).toHaveClass('SelectFieldWrapper__field custom-class');
+    expect(select).toHaveClass('Select custom-class');
 
     expect(option1).toBeInTheDocument();
     expect(option2).toBeInTheDocument();
@@ -43,16 +43,16 @@ describe('shared/components/SelectField', () => {
     ];
 
     render(
-      <SelectField {...props}>
+      <Select {...props}>
         {options.map((option) => (
           <option key={option.value}>{option.label}</option>
         ))}
-      </SelectField>
+      </Select>
     );
 
-    const selectField = screen.getByTestId('SelectField');
+    const select = screen.getByTestId('Select__field');
 
-    fireEvent.change(selectField, { target: { value: 'option2' } });
+    fireEvent.change(select, { target: { value: 'option2' } });
 
     expect(screen.getByText('Option 2')).toBeInTheDocument();
   });

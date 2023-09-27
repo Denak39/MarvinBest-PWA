@@ -12,12 +12,12 @@
   box-shadow: $shadow;
   color: $color-white;
   font-size: to-rem(18);
-  font-weight: 600;
+  font-weight: $font-weight-semibold;
   gap: to-rem(14);
 
   &:disabled {
     cursor: not-allowed;
-    color: white;
     background-color: $color-gray;
+    box-shadow: none;
   }
 }

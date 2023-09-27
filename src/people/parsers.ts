@@ -3,7 +3,6 @@ import { parseIdResponse } from '@api/parsers';
 import type {
   ApiPeopleOptionsResponse,
   ApiPeopleResponse,
-  ApiPersonOptionDataWithId,
   ApiPersonResponse,
   CollectionResponse,
 } from '@api/types';
@@ -21,13 +20,6 @@ export function parsePersonResponse(
   };
 }
 
-export function parsePersonOptionResponse(data: ApiPersonOptionDataWithId) {
-  return {
-    id: parseIdResponse(data['@id']),
-    name: data.name,
-  };
-}
-
 export function parsePeopleResponse(data: ApiPeopleResponse): CollectionResponse<People> {
   return {
     totalPages: findPage(data['hydra:view']['hydra:last']),
@@ -35,10 +27,9 @@ export function parsePeopleResponse(data: ApiPeopleResponse): CollectionResponse
   };
 }
 
-export function parsePeopleOptionsResponse(
-  data: ApiPeopleOptionsResponse
-): Omit<CollectionResponse<PeopleOptions[]>, 'totalPages'> {
-  return {
-    data: data['hydra:member'].map((item) => parsePersonOptionResponse(item)),
-  };
+export function parsePeopleOptionsResponse(data: ApiPeopleOptionsResponse): PeopleOptions {
+  return data['hydra:member'].map((item) => ({
+    id: parseIdResponse(item['@id']),
+    name: item.name,
+  }));
 }

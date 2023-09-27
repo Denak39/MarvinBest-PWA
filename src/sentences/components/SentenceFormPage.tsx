@@ -2,20 +2,19 @@ import type { FormikHelpers } from 'formik';
 import { ErrorMessage, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 
-import { usePostSentenceMutation } from '@app/sentence/sentenceSlice';
-import type { ISentencesForm } from '@app/types';
 import Button from '@components/Button/Button';
-import SelectField from '@components/Fields/SelectField/SelectField';
-import TextAreaField from '@components/Fields/TextAreaField/TextAreaField';
+import Select from '@components/Fields/Select/Select';
+import Textarea from '@components/Fields/Textarea/Textarea';
 import Header from '@components/Header/Header';
 import IconAdd from '@components/Icons/IconAdd';
 import { useGetPeopleOptionsQuery } from '@people/slice';
-import type { PeopleOptions } from '@people/types';
+import { useAddSentenceMutation } from '@sentences/slice';
+import type { AddSentence } from '@sentences/types';
 
-import '../styles/SentenceForm.scss';
+import '@sentences/styles/SentenceForm.scss';
 
 function SentenceForm() {
-  const [postSentence] = usePostSentenceMutation();
+  const [addSentence] = useAddSentenceMutation();
 
   const { data: people } = useGetPeopleOptionsQuery();
 
@@ -29,28 +28,21 @@ function SentenceForm() {
     speaker: Yup.string().required('Sélectionne une personne...'),
   });
 
-  const handleSubmit = async (
-    values: ISentencesForm,
-    formikHelpers: FormikHelpers<ISentencesForm>
-  ) => {
+  const handleSubmit = async (values: AddSentence, formikHelpers: FormikHelpers<AddSentence>) => {
     const { setSubmitting, resetForm } = formikHelpers;
-    try {
-      setSubmitting(true);
-
-      await postSentence(values);
-    } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error(error);
-    } finally {
-      setSubmitting(false);
-
-      resetForm();
-    }
+    await addSentence(values)
+      .unwrap()
+      .then(() => {
+        resetForm();
+      })
+      .finally(() => {
+        setSubmitting(false);
+      });
   };
 
   return (
     <div className="SentenceFormPage">
-      <Header title="Personnes" goBack />
+      <Header title="Ajouter une phrase" goBack />
 
       <Formik
         initialValues={initialValues}
@@ -62,28 +54,21 @@ function SentenceForm() {
             <div>
               <div className="SentenceFormPage__form-field">
                 <label htmlFor="speaker">Personne</label>
-                <SelectField
-                  id="speaker"
-                  name="speaker"
-                  value={values.speaker}
-                  onChange={handleChange}
-                >
+                <Select id="speaker" name="speaker" value={values.speaker} onChange={handleChange}>
                   <option value="" disabled>
                     Sélectionne une personne...
                   </option>
-                  {people?.data
-                    ? people.data?.map((person: PeopleOptions) => (
-                        <option key={person.id} value={person.id}>
-                          {person.name}
-                        </option>
-                      ))
-                    : null}
-                </SelectField>
+                  {people?.map(({ id, name }) => (
+                    <option key={id} value={id}>
+                      {name}
+                    </option>
+                  ))}
+                </Select>
                 <ErrorMessage name="speaker" component="div" className="error" />
               </div>
               <div className="SentenceFormPage__form-field">
-                <label htmlFor="review-text">Phrase</label>
-                <TextAreaField
+                <label htmlFor="sentence">Phrase</label>
+                <Textarea
                   placeholder="Saisis la phrase..."
                   id="sentence"
                   name="sentence"

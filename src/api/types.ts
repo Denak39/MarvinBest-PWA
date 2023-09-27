@@ -63,13 +63,8 @@ export type ApiPersonResponse = ApiEntityResponse<ApiPersonData>;
 export type ApiPeopleResponse = ApiCollectionResponse<ApiPersonData>;
 
 // People options
-export type ApiPersonOptionData = {
+export interface ApiPersonOptionData {
   name: string;
-};
-
-export interface ApiPersonOptionDataWithId extends ApiPersonOptionData {
-  '@id': string;
-  '@type': string;
 }
 
 export type ApiPeopleOptionsResponse = ApiCollectionResponse<ApiPersonOptionData>;

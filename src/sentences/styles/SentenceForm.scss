@@ -2,8 +2,6 @@
 @use '@styles/variables' as *;
 @use '@styles/mixins' as *;
 
-$border-radius: to-rem(10);
-
 .SentenceFormPage {
   display: flex;
   flex-direction: column;
@@ -18,12 +16,12 @@ $border-radius: to-rem(10);
     &-field {
       display: flex;
       flex-direction: column;
-      margin-bottom: 40px;
+      margin-bottom: to-rem(40);
       justify-content: flex-end;
-      gap: 6px;
+      gap: to-rem(6);
 
       label {
-        font-weight: 500;
+        font-weight: $font-weight-medium;
       }
     }
 

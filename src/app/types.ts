@@ -6,8 +6,3 @@ export type AppDispatch = typeof store.dispatch;
 export type BaseEntity = {
   id: number;
 };
-
-export interface ISentencesForm {
-  sentence: string;
-  speaker: string;
-}

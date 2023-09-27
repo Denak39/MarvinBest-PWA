@@ -2,7 +2,7 @@
 @use '@styles/mixins' as *;
 @use '@styles/variables' as *;
 
-.TextAreaField {
+.Textarea {
   @include font-text;
 
   background-color: $color-black;

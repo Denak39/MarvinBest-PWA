@@ -2,7 +2,7 @@
 @use '@styles/mixins' as *;
 @use '@styles/variables' as *;
 
-.SelectFieldWrapper {
+.Select {
   position: relative;
 
   &::placeholder {

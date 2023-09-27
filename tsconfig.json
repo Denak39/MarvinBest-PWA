@@ -8,7 +8,7 @@
       "@testing-library/jest-dom",
       "vite-plugin-pwa/client",
       "vite/client",
-      "vitest/globals",
+      "vitest/globals"
     ],
 
     /* Bundler mode */
