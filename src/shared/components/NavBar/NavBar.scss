@@ -27,18 +27,14 @@ $height: to-rem(84);
   }
 
   &::before {
-    -webkit-mask:
-      url("/images/mask.svg") 50% -1px no-repeat,
-      linear-gradient(#fff 0 0);
+    -webkit-mask: url("/images/mask.svg") 50% -1px no-repeat, linear-gradient($color-white, $color-white);
     -webkit-mask-composite: destination-out;
     background-color: $color-black;
     content: "";
     height: 100%;
     left: 0;
-    mask:
-      url("/images/mask.svg") 50% -1px no-repeat,
-      linear-gradient(#fff 0 0);
-    mask-composite: destination-out;
+    mask: url("/images/mask.svg") 50% -1px no-repeat, linear-gradient($color-white, $color-white);
+    mask-composite: intersect;
     pointer-events: none;
     position: absolute;
     top: 0;
