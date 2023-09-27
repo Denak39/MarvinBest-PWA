@@ -16,7 +16,7 @@ describe('shared/components/Header', () => {
   it('should renders the expected component', () => {
     renderWithRouter(
       <Routes>
-        <Route path={PATHS[0]} element={null} />
+        <Route path={PATHS[0]} element={<p>Home</p>} />
         <Route path={PATHS[1]} element={<Header {...props} />} />
       </Routes>,
       { initialEntries: PATHS }
@@ -32,6 +32,6 @@ describe('shared/components/Header', () => {
     expect(title.tagName.toLowerCase()).toBe('h1');
 
     fireEvent.click(button);
-    expect(header).not.toBeInTheDocument();
+    expect(screen.getByText('Home')).toBeInTheDocument();
   });
 });

@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import type { FormikHelpers } from 'formik';
 import { Form, Formik } from 'formik';
 
+import ErrorPage from '@components/ErrorPage/ErrorPage';
 import TextField from '@components/Fields/TextField/TextField';
 import Header from '@components/Header/Header';
 import IconButton from '@components/IconButton/IconButton';
@@ -19,11 +20,13 @@ function PersonPage(): JSX.Element {
   const { id } = useParams();
 
   const [addSentence] = useAddSentenceMutation();
-  const { data: person, isLoading } = useGetPersonQuery(parseInt(String(id), 10));
+  const { data: person, isLoading, isError } = useGetPersonQuery(parseInt(String(id), 10));
 
   useEffect(() => {
     window.scrollTo(0, document.body.scrollHeight);
   }, [person?.sentences]);
+
+  if (isError) return <ErrorPage />;
 
   /**
    * Handle submit form.
@@ -46,12 +49,6 @@ function PersonPage(): JSX.Element {
       .then(() => {
         resetForm();
         // TODO: unvalidate form because after this, isValid property is always to true.
-      })
-      .catch((error) => {
-        // TODO: display an alert to inform user.
-
-        // eslint-disable-next-line no-console
-        console.error(error);
       })
       .finally(() => {
         setSubmitting(false);

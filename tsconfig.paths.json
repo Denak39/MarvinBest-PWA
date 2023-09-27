@@ -11,6 +11,7 @@
       "@home/*": ["src/home/*"],
       "@mocks/*": ["src/mocks/*"],
       "@people/*": ["src/people/*"],
+      "@public/*": ["public/*"],
       "@sentences/*": ["src/sentences/*"],
       "@shared/*": ["src/shared/*"],
       "@src/*": ["src/*"],

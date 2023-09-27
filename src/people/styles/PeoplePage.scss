@@ -1,9 +1,11 @@
 @use "@styles/functions" as *;
 @use "@styles/variables" as *;
+@use "@components/Header/Header" as header;
 @use "@components/NavBar/NavBar" as navbar;
 
 .PeoplePage {
-  margin-bottom: calc(navbar.$height + $shadow-gradient-height + to-rem(10));
+  @include header.offset;
+  @include navbar.offset;
 
   &__list {
     display: flex;

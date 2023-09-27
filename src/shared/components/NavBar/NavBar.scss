@@ -6,10 +6,15 @@
 
 $height: to-rem(84);
 
+@mixin offset {
+  margin-bottom: calc($height + $shadow-gradient-height + to-rem(10));
+}
+
 .NavBar {
+  @include fixed-size-height($height);
+
   background-color: $color-purple;
   bottom: 0;
-  height: $height;
   left: 0;
   position: fixed;
   width: 100%;

@@ -4,8 +4,11 @@
 @use "@components/Fields/TextField/TextField" as textfield;
 @use "@components/IconButton/IconButton" as iconbutton;
 @use "@components/Layout/Layout" as layout;
+@use "@components/Header/Header" as header;
 
 .PersonPage {
+  @include header.offset;
+
   display: flex;
   flex-direction: column;
   flex: 1;
