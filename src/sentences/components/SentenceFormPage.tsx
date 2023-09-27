@@ -82,11 +82,7 @@ function SentenceForm() {
               </div>
             </div>
 
-            <Button
-              className="SentenceFormPage__form-button"
-              type="submit"
-              disabled={isSubmitting || !isValid || !dirty}
-            >
+            <Button type="submit" disabled={isSubmitting || !isValid || !dirty}>
               Ajouter
               <IconAdd />
             </Button>
