@@ -1,8 +1,11 @@
 @use "@styles/functions" as *;
 @use "@styles/variables" as *;
 @use "@styles/mixins" as *;
+@use "@components/Header/Header" as header;
 
 .SentenceFormPage {
+  @include header.offset;
+
   display: flex;
   flex-direction: column;
   flex: 1;
