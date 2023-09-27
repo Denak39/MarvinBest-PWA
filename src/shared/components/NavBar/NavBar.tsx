@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import IconButton from '@components/IconButton/IconButton';
@@ -39,4 +40,4 @@ function NavBar() {
   );
 }
 
-export default NavBar;
+export default memo(NavBar);

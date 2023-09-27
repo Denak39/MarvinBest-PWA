@@ -92,7 +92,7 @@ function PersonPage(): JSX.Element {
           validateOnMount
           validationSchema={addSentenceSchema}
         >
-          {({ isValid, isSubmitting, values, handleChange }) => (
+          {({ dirty, isValid, isSubmitting, values, handleChange }) => (
             <Form className="PersonPage__form">
               {/* TODO: add skeleton loader components. */}
               <div className="PersonPage__field-wrapper">
@@ -109,7 +109,7 @@ function PersonPage(): JSX.Element {
                 <IconButton
                   aria-label="Envoyer la phrase"
                   className="PersonPage__form-button"
-                  disabled={isSubmitting || !isValid}
+                  disabled={!dirty || isSubmitting || !isValid}
                   type="submit"
                 >
                   <IconSend />

@@ -1,0 +1,35 @@
+@use "@styles/functions" as *;
+@use "@styles/mixins" as *;
+@use "@styles/variables" as *;
+
+.Alert {
+  background-color: rgba($color-black, 0.8);
+  column-gap: to-rem(10);
+  display: flex;
+  justify-content: center;
+  left: 0;
+  padding: to-rem(10) to-rem(20);
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  transform: translateY(-100%);
+  transition: 0.3s ease-out;
+  visibility: hidden;
+  width: 100%;
+  z-index: calc($zindex-fixed + 1);
+
+  &--is-visible {
+    transform: translateY(0);
+    visibility: visible;
+  }
+
+  .Icon {
+    @include fixed-size(to-rem(14));
+  }
+
+  p {
+    font-size: to-rem(10);
+    line-height: to-rem(12);
+    opacity: 0.6;
+  }
+}
