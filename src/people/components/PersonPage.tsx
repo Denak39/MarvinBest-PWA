@@ -24,12 +24,12 @@ function PersonPage(): JSX.Element {
 
   const [addSentence] = useAddSentenceMutation();
 
-  const dateRecovered = useAppSelector((state) => selectPersonById(state, id));
+  const dataRecovered = useAppSelector((state) => selectPersonById(state, id));
   const {
-    data: person = dateRecovered,
+    data: person = dataRecovered,
     isLoading,
     isError,
-  } = useGetPersonQuery(id, { skip: !!dateRecovered });
+  } = useGetPersonQuery(id, { skip: !!dataRecovered });
 
   useEffect(() => {
     window.scrollTo(0, document.body.scrollHeight);
