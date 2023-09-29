@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 
 import Card from '@components/Card/Card';
-import ErrorPage from '@components/ErrorPage/ErrorPage';
 import Header from '@components/Header/Header';
 import { PATHS } from '@constants/index';
 import useScrolledToBottom from '@hooks/useScrolledToBottom';
@@ -14,11 +13,7 @@ function PeoplePage(): JSX.Element {
 
   const isBottom = useScrolledToBottom(100);
 
-  const {
-    data: people,
-    isFetching,
-    isError,
-  } = useGetPeopleQuery({
+  const { data: people, isFetching } = useGetPeopleQuery({
     'order[name]': 'asc',
     page,
   });
@@ -32,8 +27,6 @@ function PeoplePage(): JSX.Element {
     if (!isBottom) return;
     handleUpdatePage();
   }, [handleUpdatePage, isBottom]);
-
-  if (isError) return <ErrorPage />;
 
   return (
     <div className="PeoplePage">
