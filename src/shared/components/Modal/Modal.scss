@@ -1,0 +1,30 @@
+@use "@styles/functions" as *;
+@use "@styles/variables" as *;
+@use "@components/Layout/Layout" as layout;
+
+$-full-width: calc(100% - layout.$padding * 2);
+
+.Modal {
+  background-color: $color-purple;
+  border-radius: $border-radius;
+  border: none;
+  bottom: layout.$padding;
+  color: $color-white;
+  left: layout.$padding;
+  max-height: $-full-width;
+  overflow-y: auto;
+  padding: to-rem(40) to-rem(20);
+  position: fixed;
+  width: $-full-width;
+
+  &::backdrop {
+    background-color: $color-black;
+    opacity: 0.6;
+  }
+
+  &__button {
+    position: absolute;
+    right: to-rem(10);
+    top: to-rem(10);
+  }
+}
