@@ -7,8 +7,8 @@ import Select from '@components/Fields/Select/Select';
 import Textarea from '@components/Fields/Textarea/Textarea';
 import Header from '@components/Header/Header';
 import IconAdd from '@components/Icons/IconAdd';
+import { selectPeopleOptions } from '@people/selectors';
 import { addSentenceSchema } from '@sentences/constants';
-import { selectPeopleOptions } from '@sentences/selectors';
 import { useAddSentenceMutation } from '@sentences/slice';
 import type { AddSentence } from '@sentences/types';
 

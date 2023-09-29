@@ -17,7 +17,7 @@ export const sentencesSlice = api.injectEndpoints({
           speaker: `/api/people/${body.personId}`,
         }),
       }),
-      invalidatesTags: ['People'],
+      invalidatesTags: ['People', 'Sentences'],
       transformResponse: (data: ApiSentenceResponse) => parseSentenceResponse(data),
     }),
   }),
