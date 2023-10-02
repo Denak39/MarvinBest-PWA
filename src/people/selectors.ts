@@ -6,11 +6,11 @@ import { peopleSlice } from '@people/slice';
 import type { People, PeopleOptions, Person } from '@people/types';
 
 // People
-const selectPeopleState = (state: RootState): CollectionResponse<People> | undefined =>
+const selectPeople = (state: RootState): CollectionResponse<People> | undefined =>
   peopleSlice.endpoints.getPeople.select()(state).data;
 
 export const selectPersonById = createSelector(
-  selectPeopleState,
+  selectPeople,
   (_: RootState, id: Person['id']) => id,
   (peopleResponse: CollectionResponse<People> | undefined, id: Person['id']): Person | undefined =>
     peopleResponse?.data.find((person) => person.id === id)
