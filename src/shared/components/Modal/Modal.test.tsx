@@ -11,11 +11,6 @@ const props: ModalProps = {
 };
 
 describe('shared/components/Modal', () => {
-  beforeAll(() => {
-    HTMLDialogElement.prototype.showModal = vi.fn();
-    HTMLDialogElement.prototype.close = vi.fn();
-  });
-
   it('should renders the expected component', () => {
     render(<Modal {...props} />);
 
