@@ -23,7 +23,7 @@ function NavBar() {
             <NavLink
               to={PATHS.SENTENCE_FORM}
               aria-label="Ajouter une phrase"
-              className="IconButton IconButton--size-large"
+              className="IconButton IconButton--variant-primary IconButton--size-large"
             >
               <IconAdd />
             </NavLink>

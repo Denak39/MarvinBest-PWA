@@ -1,0 +1,35 @@
+@use "@styles/functions" as *;
+@use "@styles/mixins" as *;
+@use "@styles/variables" as *;
+
+.ReloadModal {
+  .Modal__content {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    row-gap: to-rem(22);
+    text-align: center;
+  }
+
+  &__icon {
+    @include fixed-size(to-rem(50));
+
+    align-items: center;
+    background-color: $color-pink;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+
+    .Icon {
+      @include fixed-size(to-rem(30));
+    }
+  }
+
+  &__title {
+    @include font-title-h1;
+  }
+
+  &__button {
+    margin-top: to-rem(18);
+  }
+}

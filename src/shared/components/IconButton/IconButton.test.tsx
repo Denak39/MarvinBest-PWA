@@ -17,7 +17,9 @@ describe('shared/components/IconButton', () => {
     const iconButton = screen.getByTestId('IconButton');
     const children = iconButton.querySelector('.Icon');
 
-    expect(iconButton).toHaveClass('IconButton IconButton--size-medium custom-class');
+    expect(iconButton).toHaveClass(
+      'IconButton IconButton--size-medium IconButton--variant-primary custom-class'
+    );
     expect(children).toBeInTheDocument();
 
     fireEvent.click(iconButton);
@@ -35,5 +37,20 @@ describe('shared/components/IconButton', () => {
     const iconButton = screen.getByTestId('IconButton');
 
     expect(iconButton).toHaveClass('IconButton IconButton--size-large custom-class');
+  });
+
+  it('should renders the expected component with secondary variant', () => {
+    const localProps: IconButtonProps = {
+      ...props,
+      variant: 'secondary',
+    };
+
+    render(<IconButton {...localProps} />);
+
+    const iconButton = screen.getByTestId('IconButton');
+
+    expect(iconButton).toHaveClass(
+      'IconButton IconButton--size-medium IconButton--variant-secondary custom-class'
+    );
   });
 });

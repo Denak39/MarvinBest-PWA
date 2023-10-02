@@ -6,12 +6,19 @@ $size-medium: to-rem(30);
 
 .IconButton {
   align-items: center;
-  background-color: $color-pink;
   border-radius: 50%;
-  box-shadow: $shadow;
   color: $color-white;
   display: flex;
   justify-content: center;
+
+  &--variant-primary {
+    background-color: $color-pink;
+    box-shadow: $shadow;
+  }
+
+  &--variant-secondary {
+    background-color: $color-purple;
+  }
 
   &--size-medium {
     @include fixed-size($size-medium);

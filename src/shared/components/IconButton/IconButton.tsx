@@ -6,11 +6,17 @@ function IconButton({
   children,
   className,
   size = 'medium',
+  variant = 'primary',
   ...props
 }: IconButtonProps): JSX.Element {
   return (
     <button
-      className={clsx('IconButton', `IconButton--size-${size}`, className)}
+      className={clsx(
+        'IconButton',
+        `IconButton--variant-${variant}`,
+        `IconButton--size-${size}`,
+        className
+      )}
       data-testid="IconButton"
       {...props}
     >

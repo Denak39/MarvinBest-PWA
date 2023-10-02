@@ -5,6 +5,11 @@ import { afterEach, expect } from 'vitest';
 // extends Vitest's expect method with methods from react-testing-library
 expect.extend(matchers);
 
+beforeAll(() => {
+  HTMLDialogElement.prototype.showModal = vi.fn();
+  HTMLDialogElement.prototype.close = vi.fn();
+});
+
 afterEach(() => {
   cleanup();
   vi.clearAllMocks();
