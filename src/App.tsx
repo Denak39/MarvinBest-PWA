@@ -7,7 +7,7 @@ import { useGetPeopleOptionsQuery, useGetPeopleQuery } from '@people/slice';
 
 import '@styles/index.scss';
 
-const HomePage = lazy(() => import('@home/HomePage'));
+const HomePage = lazy(() => import('@home/components/HomePage'));
 const PeoplePage = lazy(() => import('@people/components/PeoplePage'));
 const PersonPage = lazy(() => import('@people/components/PersonPage'));
 const SentenceFormPage = lazy(() => import('@sentences/components/SentenceFormPage'));

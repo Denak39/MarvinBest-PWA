@@ -4,6 +4,7 @@ import Alert from '@components/Alert/Alert';
 import IconOffline from '@components/Icons/IconOffline';
 import NavBar from '@components/NavBar/NavBar';
 import { PATHS } from '@constants/index';
+import ReloadModal from '@home/components/ReloadModal';
 import useOnlineStatus from '@hooks/useOnlineStatus';
 
 import '@components/Layout/Layout.scss';
@@ -27,6 +28,8 @@ function Layout(): JSX.Element {
       </main>
 
       {showNavBar && <NavBar />}
+
+      <ReloadModal />
     </div>
   );
 }

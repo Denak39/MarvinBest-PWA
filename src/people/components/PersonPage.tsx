@@ -3,13 +3,13 @@ import { useParams } from 'react-router-dom';
 import type { FormikHelpers } from 'formik';
 import { Form, Formik } from 'formik';
 
-import { useAppSelector } from '@app/hooks';
 import ErrorPage from '@components/ErrorPage/ErrorPage';
 import TextField from '@components/Fields/TextField/TextField';
 import Header from '@components/Header/Header';
 import IconButton from '@components/IconButton/IconButton';
 import IconSend from '@components/Icons/IconSend';
 import Message from '@components/Message/Message';
+import { useAppSelector } from '@hooks/useAppSelector';
 import { selectPersonById } from '@people/selectors';
 import { useGetPersonQuery } from '@people/slice';
 import { addSentenceSchema } from '@sentences/constants';
@@ -57,7 +57,6 @@ function PersonPage(): JSX.Element {
       .unwrap()
       .then(() => {
         resetForm();
-        // TODO: unvalidate form because after this, isValid property is always to true.
       })
       .finally(() => {
         setSubmitting(false);
