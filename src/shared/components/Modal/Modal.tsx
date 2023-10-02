@@ -7,7 +7,7 @@ import type { ModalProps } from '@components/Modal/Modal.types';
 
 import '@components/Modal/Modal.scss';
 
-function Modal({ children, className, isVisible, ...props }: ModalProps): JSX.Element {
+function Modal({ children, className, isVisible, onClose, ...props }: ModalProps): JSX.Element {
   const ref = useRef<HTMLDialogElement>(null);
 
   const handleClose = useCallback(() => ref.current?.close(), [ref]);
@@ -20,7 +20,12 @@ function Modal({ children, className, isVisible, ...props }: ModalProps): JSX.El
 
   return (
     <dialog className={clsx('Modal', className)} data-testid="Modal" ref={ref} {...props}>
-      <IconButton aria-label="Fermer la modal" className="Modal__button" onClick={handleClose}>
+      <IconButton
+        aria-label="Fermer la fenêtre"
+        className="Modal__button"
+        onClick={onClose}
+        variant="secondary"
+      >
         <IconClose />
       </IconButton>
 

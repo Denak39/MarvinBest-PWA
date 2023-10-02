@@ -4,11 +4,22 @@
 
 $-full-width: calc(100% - layout.$padding * 2);
 
+@keyframes slide-in {
+  from {
+    translate: 0 0;
+  }
+
+  to {
+    translate: 0 calc(-100% - #{layout.$padding});
+  }
+}
+
 .Modal {
   background-color: $color-purple;
   border-radius: $border-radius;
   border: none;
-  bottom: layout.$padding;
+  top: 100%;
+  translate: 0 0;
   color: $color-white;
   left: layout.$padding;
   max-height: $-full-width;
@@ -16,10 +27,15 @@ $-full-width: calc(100% - layout.$padding * 2);
   padding: to-rem(40) to-rem(20);
   position: fixed;
   width: $-full-width;
+  transition: 0.3s ease-out;
 
   &::backdrop {
     background-color: $color-black;
     opacity: 0.6;
+  }
+
+  &[open] {
+    animation: slide-in 0.3s ease-out forwards;
   }
 
   &__button {

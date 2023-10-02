@@ -1,6 +1,6 @@
-import type { ButtonHTMLAttributes, ElementType } from 'react';
+import type { ButtonHTMLAttributes } from 'react';
 
 export interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  component?: ElementType;
   size?: 'medium' | 'large';
+  variant?: 'primary' | 'secondary';
 }
