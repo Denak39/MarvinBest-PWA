@@ -2,7 +2,7 @@
 @use "@styles/variables" as *;
 @use "@components/Layout/Layout" as layout;
 
-$-full-width: calc(100% - layout.$padding * 2);
+$-full-size: calc(100% - layout.$padding * 2);
 
 @keyframes slide-in {
   from {
@@ -22,11 +22,11 @@ $-full-width: calc(100% - layout.$padding * 2);
   translate: 0 0;
   color: $color-white;
   left: layout.$padding;
-  max-height: $-full-width;
+  max-height: $-full-size;
   overflow-y: auto;
   padding: to-rem(40) to-rem(20);
   position: fixed;
-  width: $-full-width;
+  width: $-full-size;
   transition: 0.3s ease-out;
 
   &::backdrop {

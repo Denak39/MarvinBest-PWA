@@ -19,10 +19,9 @@ describe('shared/components/Modal', () => {
 
     expect(modal).toHaveClass('Modal custom-class');
     expect(modal).toHaveTextContent(props.children as string);
-
-    // IconButton
     expect(button).toHaveAccessibleName('Fermer la fenêtre');
     expect(button).toHaveClass('Modal__button IconButton--variant-secondary');
+
     fireEvent.click(button);
     expect(modal).not.toBeVisible();
   });
