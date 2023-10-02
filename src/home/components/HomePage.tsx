@@ -1,5 +1,10 @@
 // import { useEffect } from 'react';
 
+import { useState } from 'react';
+
+import IconButton from '@components/IconButton/IconButton';
+import Modal from '@components/Modal/Modal';
+
 // import { useAppDispatch, useAppSelector } from '@app/hooks';
 // import { loadSentencesFromLocalStorage } from '@app/sentence/sentenceSlice';
 // import type { RootState } from '@app/types';
@@ -15,6 +20,8 @@ function HomePage(): JSX.Element {
   //   dispatch(loadSentencesFromLocalStorage());
   // }, [dispatch]);
 
+  const [isVisible, setIsVisible] = useState(false);
+
   return (
     <>
       <h1>marvin.best</h1>
@@ -29,6 +36,12 @@ function HomePage(): JSX.Element {
           ))} */}
         </ul>
       </div>
+
+      <IconButton onClick={() => setIsVisible(true)}>Ouvrir</IconButton>
+
+      <Modal isVisible={isVisible} onClose={() => setIsVisible(false)}>
+        Content
+      </Modal>
     </>
   );
 }
