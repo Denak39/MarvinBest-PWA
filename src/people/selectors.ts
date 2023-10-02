@@ -16,6 +16,6 @@ export const selectPersonById = createSelector(
     peopleResponse?.data.find((person) => person.id === id)
 );
 
-// People options
+// People options, not working need to fix for sentenceForm (getting empty array)
 export const selectPeopleOptions = (state: RootState): PeopleOptions =>
   peopleSlice.endpoints.getPeopleOptions.select()(state).data ?? [];

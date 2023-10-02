@@ -1,13 +1,12 @@
 import type { FormikHelpers } from 'formik';
 import { ErrorMessage, Form, Formik } from 'formik';
 
-import { useAppSelector } from '@app/hooks';
 import Button from '@components/Button/Button';
 import Select from '@components/Fields/Select/Select';
 import Textarea from '@components/Fields/Textarea/Textarea';
 import Header from '@components/Header/Header';
 import IconAdd from '@components/Icons/IconAdd';
-import { selectPeopleOptions } from '@people/selectors';
+import { useGetPeopleOptionsQuery } from '@people/slice';
 import { addSentenceSchema } from '@sentences/constants';
 import { useAddSentenceMutation } from '@sentences/slice';
 import type { AddSentence } from '@sentences/types';
@@ -17,7 +16,11 @@ import '@sentences/styles/SentenceForm.scss';
 function SentenceForm() {
   const [addSentence] = useAddSentenceMutation();
 
-  const peopleOptions = useAppSelector(selectPeopleOptions);
+  // TODO use appSelector selectPeopleOptions
+  const { data: peopleOptions } = useGetPeopleOptionsQuery({
+    'order[name]': 'asc',
+    pagination: false,
+  });
 
   const initialValues: AddSentence = {
     personId: NaN,
@@ -58,7 +61,7 @@ function SentenceForm() {
                   placeholder="Sélectionner une personne..."
                   value={values.personId || ''}
                 >
-                  {peopleOptions.map(({ id, name }) => (
+                  {peopleOptions?.map(({ id, name }) => (
                     <option key={id} value={id}>
                       {name}
                     </option>
