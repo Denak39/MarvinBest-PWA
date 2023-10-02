@@ -3,12 +3,14 @@ import { useParams } from 'react-router-dom';
 import type { FormikHelpers } from 'formik';
 import { Form, Formik } from 'formik';
 
+import { useAppSelector } from '@app/hooks';
 import ErrorPage from '@components/ErrorPage/ErrorPage';
 import TextField from '@components/Fields/TextField/TextField';
 import Header from '@components/Header/Header';
 import IconButton from '@components/IconButton/IconButton';
 import IconSend from '@components/Icons/IconSend';
 import Message from '@components/Message/Message';
+import { selectPersonById } from '@people/selectors';
 import { useGetPersonQuery } from '@people/slice';
 import { addSentenceSchema } from '@sentences/constants';
 import { useAddSentenceMutation } from '@sentences/slice';
@@ -17,10 +19,17 @@ import type { AddSentence } from '@sentences/types';
 import '@people/styles/PersonPage.scss';
 
 function PersonPage(): JSX.Element {
-  const { id } = useParams();
+  const { id: stringId } = useParams();
+  const id = parseInt(String(stringId), 10);
 
   const [addSentence] = useAddSentenceMutation();
-  const { data: person, isLoading, isError } = useGetPersonQuery(parseInt(String(id), 10));
+
+  const dataRecovered = useAppSelector((state) => selectPersonById(state, id));
+  const {
+    data: person = dataRecovered,
+    isLoading,
+    isError,
+  } = useGetPersonQuery(id, { skip: !!dataRecovered });
 
   useEffect(() => {
     window.scrollTo(0, document.body.scrollHeight);

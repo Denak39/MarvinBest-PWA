@@ -16,6 +16,7 @@ import '@sentences/styles/SentenceForm.scss';
 function SentenceForm() {
   const [addSentence] = useAddSentenceMutation();
 
+  // TODO: use appSelector selectPeopleOptions
   const { data: peopleOptions } = useGetPeopleOptionsQuery({
     'order[name]': 'asc',
     pagination: false,

@@ -5,6 +5,21 @@ import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
 import * as path from 'path';
 
+const getCache = ({ name, urlPattern }) => ({
+  urlPattern,
+  handler: 'CacheFirst' as const,
+  options: {
+    cacheName: name,
+    expiration: {
+      maxEntries: 500,
+      maxAgeSeconds: 60 * 60 * 24 * 30, // 30 Days.
+    },
+    cacheableResponse: {
+      statuses: [200],
+    },
+  },
+});
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -63,6 +78,16 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*'],
+        runtimeCaching: [
+          getCache({
+            urlPattern: ({ url }) => /\/api\/people\?/.test(url.href),
+            name: "api-cache-people",
+          }),
+          getCache({
+            urlPattern: ({ url }) => /^\/api\/people\/light/.test(url.pathname),
+            name: "api-cache-people-options",
+          }),
+        ]
       },
     }),
   ],

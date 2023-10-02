@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 
 import Layout from '@components/Layout/Layout';
 import { PATHS } from '@constants/index';
+import { useGetPeopleOptionsQuery, useGetPeopleQuery } from '@people/slice';
 
 import '@styles/index.scss';
 
@@ -13,6 +14,15 @@ const SentenceFormPage = lazy(() => import('@sentences/components/SentenceFormPa
 const NotFoundPage = lazy(() => import('@components/ErrorPage/NotFoundPage'));
 
 function App() {
+  useGetPeopleOptionsQuery({
+    'order[name]': 'asc',
+    pagination: false,
+  });
+  useGetPeopleQuery({
+    'order[name]': 'asc',
+    page: 1,
+  });
+
   return (
     <Suspense fallback={null}>
       <Routes>

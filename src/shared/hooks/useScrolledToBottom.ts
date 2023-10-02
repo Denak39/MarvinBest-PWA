@@ -4,11 +4,8 @@ function useScrolledToBottom(offset: number = 0): boolean {
   const [isBottom, setIsBottom] = useState<boolean>(false);
 
   const handleScroll = useCallback(() => {
-    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - offset) {
-      setIsBottom(true);
-    } else {
-      setIsBottom(false);
-    }
+    const newIsBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - offset;
+    setIsBottom(newIsBottom);
   }, [offset]);
 
   useEffect(() => {
