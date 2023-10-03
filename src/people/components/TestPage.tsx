@@ -1,140 +1,92 @@
 /* eslint-disable no-console */
+import type React from 'react';
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 
 import Button from '@components/Button/Button';
-import Header from '@components/Header/Header';
-import { addImage, selectImages } from '@people/imageSlice';
+import { useAppDispatch } from '@hooks/useAppDispatch';
+import { useAppSelector } from '@hooks/useAppSelector';
+import { addImage, clearImagesFromDB, selectImages } from '@people/imageSlice';
 
-import '@people/styles/PeoplePage.scss';
+import { addImageToDB, openDB } from '../indexedDB';
 
-function FileUpload() {
-  const dispatch = useDispatch();
+import '../styles/TestPage.scss';
 
-  const handleFileUpload = async (event: any) => {
+function ImageUpload() {
+  const dispatch = useAppDispatch();
+
+  const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = event.target;
 
-    const openDB = indexedDB.open('myDatabase', 2);
+    if (files) {
+      Array.from(files).forEach(async (file: File) => {
+        console.log(file);
+        const reader = new FileReader();
 
-    openDB.onupgradeneeded = function (event) {
-      const db = openDB.result;
-      const objectStore = db.createObjectStore('images', { keyPath: 'id' });
-      objectStore.createIndex('name', 'name', { unique: false });
-    };
-
-    openDB.onsuccess = function () {
-      const db = openDB.result;
-      const transaction = db.transaction(['images'], 'readwrite');
-      const objectStore = transaction.objectStore('images');
-
-      Array.from(files).forEach(async (file: any) => {
-        const imageUrl = URL.createObjectURL(file);
-        const image = { id: file.name, name: file.name, url: imageUrl };
-        dispatch(addImage(image));
-
-        // Store image URL in IndexedDB
-        const request = objectStore.add(image);
-
-        request.onsuccess = function () {
-          console.log('Image added to IndexDB successfully');
+        reader.onload = () => {
+          const image = { id: file.name, name: file.name, url: reader.result as string };
+          dispatch(addImage(image));
+          addImageToDB(image);
         };
 
-        request.onerror = function (error) {
-          console.error('Error adding image to IndexDB:', error);
-        };
+        reader.readAsDataURL(file);
       });
-    };
+    }
   };
 
   return <input type="file" multiple onChange={handleFileUpload} />;
 }
 
-function TestPage(): JSX.Element {
-  const dispatch = useDispatch();
-  const images = useSelector(selectImages);
-  console.log('images', images);
+function TestPage() {
+  const dispatch = useAppDispatch();
+  const images = useAppSelector(selectImages);
 
   useEffect(() => {
-    const openDB = indexedDB.open('myDatabase', 2); // Increment the version number
+    let isMounted = true;
 
-    openDB.onupgradeneeded = function (event) {
-      const db = openDB.result;
-      const objectStore = db.createObjectStore('images', { keyPath: 'id' });
-      objectStore.createIndex('name', 'name', { unique: false });
+    const fetchImagesFromIndexedDB = async () => {
+      try {
+        const db = await openDB();
+        const transaction = db.transaction(['images'], 'readonly');
+        const objectStore = transaction.objectStore('images');
+
+        const getAllImagesRequest = objectStore.getAll();
+
+        getAllImagesRequest.onsuccess = function handleGetAllImagesSuccess() {
+          const storedImages = getAllImagesRequest.result;
+
+          if (isMounted) {
+            if (images.length === 0) {
+              storedImages.forEach((image) => {
+                dispatch(addImage(image));
+              });
+            }
+          }
+        };
+
+        getAllImagesRequest.onerror = function handleGetAllImagesError(error) {
+          console.error('Error retrieving images from IndexedDB:', error);
+        };
+      } catch (error) {
+        console.error('Error opening IndexedDB:', error);
+      }
     };
 
-    openDB.onsuccess = function handleOpenDBSuccess() {
-      const db = openDB.result;
-      const transaction = db.transaction(['images'], 'readonly');
-      const objectStore = transaction.objectStore('images');
+    fetchImagesFromIndexedDB();
 
-      const getAllImagesRequest = objectStore.getAll();
-
-      getAllImagesRequest.onsuccess = function handleGetAllImagesSuccess() {
-        const storedImages = getAllImagesRequest.result;
-
-        const uniqueImages = new Map();
-
-        // Use Map to ensure unique images based on the 'id' property
-        storedImages.forEach((image) => {
-          uniqueImages.set(image.id, image);
-        });
-
-        // Convert Map back to an array
-        const uniqueImagesArray = Array.from(uniqueImages.values());
-        console.log('unique', uniqueImagesArray);
-
-        uniqueImagesArray.forEach((image) => {
-          dispatch(addImage(image));
-        });
-      };
-
-      getAllImagesRequest.onerror = function handleGetAllImagesError(error) {
-        console.error('Error retrieving images from IndexedDB:', error);
-      };
+    return () => {
+      isMounted = false;
     };
-  }, []);
+  }, [dispatch, images]);
 
-  function clearAllImages() {
-    const openDB = indexedDB.open('myDatabase', 2); // Increment the version number
-
-    openDB.onupgradeneeded = function (event) {
-      const db = openDB.result;
-      const objectStore = db.createObjectStore('images', { keyPath: 'id' });
-      objectStore.createIndex('name', 'name', { unique: false });
-    };
-
-    openDB.onsuccess = function () {
-      const db = openDB.result;
-      const transaction = db.transaction(['images'], 'readwrite');
-      const objectStore = transaction.objectStore('images');
-
-      const clearRequest = objectStore.clear();
-
-      clearRequest.onsuccess = function () {
-        console.log('All images cleared from IndexedDB successfully');
-      };
-
-      clearRequest.onerror = function (error) {
-        console.error('Error clearing images from IndexedDB:', error);
-      };
-
-      transaction.oncomplete = function () {
-        db.close();
-      };
-    };
-  }
-
-  const handleClearImagesClick = () => {
-    clearAllImages();
+  const handleClearImages = () => {
+    dispatch(clearImagesFromDB());
   };
 
   return (
-    <div className="PeoplePage">
-      <Header title="Test" />
-      <Button onClick={handleClearImagesClick}>Clear All Images</Button>
-
-      <FileUpload />
+    <div className="TestPage">
+      <h1>Image Uploader</h1>
+      <ImageUpload />
+      <Button onClick={handleClearImages}>Clear Images</Button>
       <div>
         <h2>Uploaded Images:</h2>
         <ul>
@@ -143,7 +95,7 @@ function TestPage(): JSX.Element {
               <img
                 src={image.url}
                 alt={image.name}
-                style={{ maxWidth: '100px', maxHeight: '100px' }}
+                style={{ maxWidth: '300px', maxHeight: '300px' }}
               />
               <p>{image.name}</p>
             </li>
