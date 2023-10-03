@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
-import type { Image } from './imageSlice';
+import type { Media } from './imageSlice';
 
 const DB_NAME = 'imageUploaderDB';
-const OBJECT_STORE_NAME = 'images';
+const OBJECT_STORE_NAME = 'media';
 
 export const openDB = () => {
   return new Promise<IDBDatabase>((resolve, reject) => {
@@ -24,15 +24,15 @@ export const openDB = () => {
   });
 };
 
-export const addImageToDB = (image: Image) => {
+export const addMediaToDB = (media: Media) => {
   const onSuccess = () => {
-    console.log('Image added to IndexedDB successfully');
+    console.log('Media added to IndexedDB successfully');
   };
 
   const onError = (event: Event) => {
     const error = event.target as unknown as DOMException;
     if (error instanceof DOMException) {
-      console.error('Error adding image to IndexedDB:', error);
+      console.error('Error adding media to IndexedDB:', error);
     } else {
       console.error('Unexpected error type:', error);
     }
@@ -41,20 +41,20 @@ export const addImageToDB = (image: Image) => {
   const onTransactionComplete = (db: IDBDatabase) => {
     db.close();
   };
-
+  console.log(media);
   openDB()
     .then((db) => {
       const transaction = db.transaction([OBJECT_STORE_NAME], 'readwrite');
       const objectStore = transaction.objectStore(OBJECT_STORE_NAME);
 
-      const serializableImage = {
-        id: image.id,
-        name: image.name,
-        url: image.url,
+      const serializableMedia = {
+        id: media.id,
+        name: media.name,
+        url: media.url,
+        type: media.type,
       };
 
-      const request = objectStore.add(serializableImage);
-
+      const request = objectStore.add(serializableMedia);
       request.onsuccess = onSuccess;
       request.onerror = onError;
       transaction.oncomplete = () => onTransactionComplete(db);
@@ -74,13 +74,13 @@ export const clearIndexedDB = () => {
         const clearRequest = objectStore.clear();
 
         clearRequest.onsuccess = () => {
-          console.log('All images cleared from IndexedDB successfully');
+          console.log('All media cleared from IndexedDB successfully');
           resolve();
         };
 
         clearRequest.onerror = (error) => {
-          console.error('Error clearing images from IndexedDB:', error);
-          reject(new Error('Error clearing images from IndexedDB'));
+          console.error('Error clearing media from IndexedDB:', error);
+          reject(new Error('Error clearing media from IndexedDB'));
         };
 
         transaction.oncomplete = () => {

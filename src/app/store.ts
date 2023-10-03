@@ -4,12 +4,12 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import { api } from '@api/index';
 import syncMiddleware from '@app/middleware';
-import imageReducer from '@people/imageSlice';
+import mediaReducer from '@people/imageSlice';
 
 export const store = configureStore({
   reducer: {
     [api.reducerPath]: api.reducer,
-    images: imageReducer,
+    media: mediaReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(api.middleware, syncMiddleware),

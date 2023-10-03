@@ -5,13 +5,22 @@ import { useEffect } from 'react';
 import Button from '@components/Button/Button';
 import { useAppDispatch } from '@hooks/useAppDispatch';
 import { useAppSelector } from '@hooks/useAppSelector';
-import { addImage, clearImagesFromDB, selectImages } from '@people/imageSlice';
+import type { Media } from '@people/imageSlice';
+import { addMedia, clearMediaFromDB, selectMediaData } from '@people/imageSlice';
 
-import { addImageToDB, openDB } from '../indexedDB';
+import { addMediaToDB, openDB } from '../indexedDB';
 
 import '../styles/TestPage.scss';
 
-function ImageUpload() {
+const createVideoURL = (data: string | ArrayBuffer): string => {
+  if (typeof data === 'string') {
+    return data;
+  }
+  const blob = new Blob([data], { type: 'video/mp4' });
+  return URL.createObjectURL(blob);
+};
+
+function MediaUpload() {
   const dispatch = useAppDispatch();
 
   const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,35 +28,86 @@ function ImageUpload() {
 
     if (files) {
       Array.from(files).forEach(async (file: File) => {
-        console.log(file);
         const reader = new FileReader();
 
         reader.onload = () => {
-          const image = { id: file.name, name: file.name, url: reader.result as string };
-          dispatch(addImage(image));
-          addImageToDB(image);
+          const media: Media = {
+            id: file.name,
+            name: file.name,
+            type: file.type.startsWith('image') ? 'image' : 'video',
+            url: file.type.startsWith('video')
+              ? createVideoURL(reader.result as ArrayBuffer)
+              : (reader.result as string),
+          };
+
+          dispatch(addMedia(media));
+          addMediaToDB(media);
         };
 
-        reader.readAsDataURL(file);
+        if (file.type.startsWith('image')) {
+          reader.readAsDataURL(file);
+        } else if (file.type.startsWith('video')) {
+          reader.readAsArrayBuffer(file);
+        }
       });
     }
   };
 
-  return <input type="file" multiple onChange={handleFileUpload} />;
+  return <input type="file" multiple accept="image/*,video/*" onChange={handleFileUpload} />;
+}
+
+function MediaList() {
+  const mediaList = useAppSelector(selectMediaData);
+
+  const renderMediaElement = (media: Media) => {
+    // const videoUrl = createVideoURL(media.url);
+    // console.log(videoUrl);
+    if (media.type === 'image') {
+      return (
+        <img src={media.url} alt={media.name} style={{ maxWidth: '300px', maxHeight: '300px' }} />
+      );
+    }
+
+    if (media.type === 'video') {
+      return (
+        <video width="320" height="240" controls>
+          <source src={createVideoURL(media.url)} type="video/mp4" />
+          <track kind="captions" srcLang="en" label="English" />
+          Your browser does not support the video tag.
+        </video>
+      );
+    }
+
+    return null;
+  };
+
+  return (
+    <div>
+      <h2>Uploaded Media:</h2>
+      <ul>
+        {mediaList.map((media) => (
+          <li key={media.id}>
+            {renderMediaElement(media)}
+            <p>{media.name}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 }
 
 function TestPage() {
   const dispatch = useAppDispatch();
-  const images = useAppSelector(selectImages);
+  const media = useAppSelector(selectMediaData);
 
   useEffect(() => {
     let isMounted = true;
 
-    const fetchImagesFromIndexedDB = async () => {
+    const fetchMediaFromIndexedDB = async () => {
       try {
         const db = await openDB();
-        const transaction = db.transaction(['images'], 'readonly');
-        const objectStore = transaction.objectStore('images');
+        const transaction = db.transaction(['media'], 'readonly');
+        const objectStore = transaction.objectStore('media');
 
         const getAllImagesRequest = objectStore.getAll();
 
@@ -55,9 +115,9 @@ function TestPage() {
           const storedImages = getAllImagesRequest.result;
 
           if (isMounted) {
-            if (images.length === 0) {
+            if (media.length === 0) {
               storedImages.forEach((image) => {
-                dispatch(addImage(image));
+                dispatch(addMedia(image));
               });
             }
           }
@@ -71,37 +131,23 @@ function TestPage() {
       }
     };
 
-    fetchImagesFromIndexedDB();
+    fetchMediaFromIndexedDB();
 
     return () => {
       isMounted = false;
     };
-  }, [dispatch, images]);
+  }, [dispatch, media]);
 
   const handleClearImages = () => {
-    dispatch(clearImagesFromDB());
+    dispatch(clearMediaFromDB());
   };
 
   return (
     <div className="TestPage">
       <h1>Image Uploader</h1>
-      <ImageUpload />
+      <MediaUpload />
+      <MediaList />
       <Button onClick={handleClearImages}>Clear Images</Button>
-      <div>
-        <h2>Uploaded Images:</h2>
-        <ul>
-          {images.map((image) => (
-            <li key={image.id}>
-              <img
-                src={image.url}
-                alt={image.name}
-                style={{ maxWidth: '300px', maxHeight: '300px' }}
-              />
-              <p>{image.name}</p>
-            </li>
-          ))}
-        </ul>
-      </div>
     </div>
   );
 }
