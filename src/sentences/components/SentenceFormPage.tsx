@@ -6,17 +6,20 @@ import Select from '@components/Fields/Select/Select';
 import Textarea from '@components/Fields/Textarea/Textarea';
 import Header from '@components/Header/Header';
 import IconAdd from '@components/Icons/IconAdd';
+import useOnlineStatus from '@hooks/useOnlineStatus';
 import { useGetPeopleOptionsQuery } from '@people/slice';
 import { addSentenceSchema } from '@sentences/constants';
 import { useAddSentenceMutation } from '@sentences/slice';
-import type { AddSentence } from '@sentences/types';
+import type { AddSentence, SentenceFormPageProps } from '@sentences/types';
 
 import '@sentences/styles/SentenceForm.scss';
 
-function SentenceForm() {
+function SentenceFormPage({ saveSentenceToStorage }: SentenceFormPageProps) {
   const [addSentence] = useAddSentenceMutation();
 
-  // TODO: use appSelector selectPeopleOptions
+  const isOnline = useOnlineStatus();
+
+  // TODO: use selectPeopleOptions instead of useGetPeopleOptionsQuery.
   const { data: peopleOptions } = useGetPeopleOptionsQuery({
     'order[name]': 'asc',
     pagination: false,
@@ -30,14 +33,16 @@ function SentenceForm() {
   const handleSubmit = async (values: AddSentence, formikHelpers: FormikHelpers<AddSentence>) => {
     const { setSubmitting, resetForm } = formikHelpers;
 
-    await addSentence(values)
-      .unwrap()
-      .then(() => {
-        resetForm();
-      })
-      .finally(() => {
-        setSubmitting(false);
-      });
+    if (!isOnline) {
+      await saveSentenceToStorage({ ...values, id: Date.now() })
+        .then(() => resetForm())
+        .finally(() => setSubmitting(false));
+    } else {
+      await addSentence(values)
+        .unwrap()
+        .then(() => resetForm())
+        .finally(() => setSubmitting(false));
+    }
   };
 
   return (
@@ -94,4 +99,4 @@ function SentenceForm() {
   );
 }
 
-export default SentenceForm;
+export default SentenceFormPage;

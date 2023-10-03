@@ -5,10 +5,11 @@ import Header from '@components/Header/Header';
 import { PATHS } from '@constants/index';
 import useScrolledToBottom from '@hooks/useScrolledToBottom';
 import { useGetPeopleQuery } from '@people/slice';
+import type { PeoplePageProps } from '@people/types';
 
 import '@people/styles/PeoplePage.scss';
 
-function PeoplePage(): JSX.Element {
+function PeoplePage({ sentencesFromStorage }: PeoplePageProps): JSX.Element {
   const [page, setPage] = useState<number>(1);
 
   const isBottom = useScrolledToBottom(100);
@@ -36,7 +37,14 @@ function PeoplePage(): JSX.Element {
         <ul className="PeoplePage__list">
           {people.data.map(({ id, name, countSentences }) => (
             <li className="PeoplePage__item" key={id}>
-              <Card countSentences={countSentences} name={name} to={`${PATHS.PEOPLE}/${id}`} />
+              <Card
+                countSentences={
+                  countSentences +
+                  sentencesFromStorage.filter((sentence) => sentence.personId === id).length
+                }
+                name={name}
+                to={`${PATHS.PEOPLE}/${id}`}
+              />
             </li>
           ))}
         </ul>

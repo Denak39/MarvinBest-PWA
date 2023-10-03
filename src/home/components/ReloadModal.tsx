@@ -16,6 +16,10 @@ function ReloadModal(): JSX.Element {
     setNeedRefresh(false);
   };
 
+  const handleUpdateServiceWorker = async () => {
+    await updateServiceWorker(true);
+  };
+
   return (
     <Modal className="ReloadModal" isVisible={needRefresh} onClose={handleClose}>
       <span className="ReloadModal__icon">
@@ -30,7 +34,7 @@ function ReloadModal(): JSX.Element {
         <br /> là dès maintenant !
       </p>
 
-      <Button onClick={() => updateServiceWorker(true)} className="ReloadModal__button">
+      <Button onClick={handleUpdateServiceWorker} className="ReloadModal__button">
         Mettre à jour
       </Button>
     </Modal>

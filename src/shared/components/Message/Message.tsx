@@ -2,12 +2,20 @@ import { memo } from 'react';
 import clsx from 'clsx';
 
 import Avatar from '@components/Avatar/Avatar';
+import IconSpinner from '@components/Icons/IconSpinner';
 import type { MessageProps } from '@components/Message/Message.types';
 import DateHelpers from '@helpers/DateHelpers';
 
 import '@components/Message/Message.scss';
 
-function Message({ children, className, date = '', name, ...props }: MessageProps): JSX.Element {
+function Message({
+  children,
+  className,
+  date = '',
+  isWaiting = false,
+  name,
+  ...props
+}: MessageProps): JSX.Element {
   const dateTime = new DateHelpers(date);
 
   return (
@@ -17,7 +25,17 @@ function Message({ children, className, date = '', name, ...props }: MessageProp
       <span className="Message__content">
         <p className="Message__text">{children}</p>
 
-        {!!dateTime.toJSON() && (
+        {isWaiting && (
+          <span
+            className="Message__waiting"
+            title="Le message sera envoyé lorsque que la connexion sera revenue."
+          >
+            <p>En attente</p>
+            <IconSpinner />
+          </span>
+        )}
+
+        {!!dateTime.toJSON() && !isWaiting && (
           <time
             className="Message__date"
             dateTime={dateTime.getLocaleString()}
