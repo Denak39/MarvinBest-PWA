@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import type React from 'react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import Button from '@components/Button/Button';
 import { useAppDispatch } from '@hooks/useAppDispatch';
@@ -70,8 +70,6 @@ function MediaList() {
   const mediaList = useAppSelector(selectMediaData);
 
   const renderMediaElement = (media: Media) => {
-    // const videoUrl = createVideoURL(media.url);
-    // console.log(videoUrl);
     if (media.type === 'image') {
       return (
         <img src={media.url} alt={media.name} style={{ maxWidth: '300px', maxHeight: '300px' }} />
@@ -109,6 +107,7 @@ function MediaList() {
 function TestPage() {
   const dispatch = useAppDispatch();
   const media = useAppSelector(selectMediaData);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     let isMounted = true;
@@ -130,6 +129,7 @@ function TestPage() {
                 dispatch(addMedia(image));
               });
             }
+            setIsLoading(false);
           }
         };
 
@@ -156,8 +156,14 @@ function TestPage() {
     <div className="TestPage">
       <h1>Image Uploader</h1>
       <MediaUpload />
-      <MediaList />
-      <Button onClick={handleClearImages}>Clear Images</Button>
+      {isLoading ? (
+        <p>Loading media from IndexedDB...</p>
+      ) : (
+        <>
+          <MediaList />
+          <Button onClick={handleClearImages}>Clear Images</Button>
+        </>
+      )}
     </div>
   );
 }
