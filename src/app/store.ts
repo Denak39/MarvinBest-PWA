@@ -4,7 +4,7 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import { api } from '@api/index';
 import syncMiddleware from '@app/middleware';
-import mediaReducer from '@people/imageSlice';
+import mediaReducer from '@people/Test/imageSlice';
 
 export const store = configureStore({
   reducer: {

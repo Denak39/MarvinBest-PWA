@@ -67,7 +67,7 @@ if (!self.define) {
     });
   };
 }
-define(['./workbox-16108a29'], (function (workbox) { 'use strict';
+define(['./workbox-8a2f3c02'], (function (workbox) { 'use strict';
 
   self.addEventListener('message', event => {
     if (event.data && event.data.type === 'SKIP_WAITING') {
@@ -82,11 +82,33 @@ define(['./workbox-16108a29'], (function (workbox) { 'use strict';
    */
   workbox.precacheAndRoute([{
     "url": "index.html",
-    "revision": "0.k71ckcjv9s"
+    "revision": "0.vc2c4619ckg"
   }], {});
   workbox.cleanupOutdatedCaches();
   workbox.registerRoute(new workbox.NavigationRoute(workbox.createHandlerBoundToURL("index.html"), {
     allowlist: [/^\/$/]
   }));
+  workbox.registerRoute(({
+    url
+  }) => /\/api\/people\?/.test(url.href), new workbox.CacheFirst({
+    "cacheName": "api-cache-people",
+    plugins: [new workbox.ExpirationPlugin({
+      maxEntries: 500,
+      maxAgeSeconds: 2592000
+    }), new workbox.CacheableResponsePlugin({
+      statuses: [200]
+    })]
+  }), 'GET');
+  workbox.registerRoute(({
+    url
+  }) => /^\/api\/people\/light/.test(url.pathname), new workbox.CacheFirst({
+    "cacheName": "api-cache-people-options",
+    plugins: [new workbox.ExpirationPlugin({
+      maxEntries: 500,
+      maxAgeSeconds: 2592000
+    }), new workbox.CacheableResponsePlugin({
+      statuses: [200]
+    })]
+  }), 'GET');
 
 }));

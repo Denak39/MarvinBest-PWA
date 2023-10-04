@@ -16,7 +16,7 @@ const PeoplePage = lazy(() => import('@people/components/PeoplePage'));
 const PersonPage = lazy(() => import('@people/components/PersonPage'));
 const SentenceFormPage = lazy(() => import('@sentences/components/SentenceFormPage'));
 const NotFoundPage = lazy(() => import('@components/ErrorPage/NotFoundPage'));
-const TestPage = lazy(() => import('@people/components/TestPage'));
+const TestPage = lazy(() => import('@people/Test/TestPage'));
 
 function App() {
   const [addSentence] = useAddSentenceMutation();

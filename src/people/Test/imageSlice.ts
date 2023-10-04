@@ -1,5 +1,5 @@
 import type { Dispatch, PayloadAction } from '@reduxjs/toolkit';
-import { createSelector, createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 import { clearIndexedDB } from './indexedDB';
 
@@ -43,10 +43,5 @@ export const clearMediaFromDB = () => {
 };
 
 export const selectMediaData = (state: { media: MediaState }) => state.media.media;
-
-export const selectMedia = createSelector(
-  (state: { media: MediaState }) => state.media.media,
-  (media) => media
-);
 
 export default mediaSlice.reducer;

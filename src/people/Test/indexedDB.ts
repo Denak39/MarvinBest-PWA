@@ -41,7 +41,6 @@ export const addMediaToDB = (media: Media) => {
   const onTransactionComplete = (db: IDBDatabase) => {
     db.close();
   };
-  console.log(media);
   openDB()
     .then((db) => {
       const transaction = db.transaction([OBJECT_STORE_NAME], 'readwrite');
@@ -85,6 +84,33 @@ export const clearIndexedDB = () => {
 
         transaction.oncomplete = () => {
           db.close();
+        };
+      })
+      .catch((error) => {
+        console.error('Error opening IndexedDB:', error);
+        reject(new Error('Error opening IndexedDB'));
+      });
+  });
+};
+
+export const fetchMediaFromDB = () => {
+  return new Promise<Media[]>((resolve, reject) => {
+    openDB()
+      .then((db) => {
+        const transaction = db.transaction([OBJECT_STORE_NAME], 'readonly');
+        const objectStore = transaction.objectStore(OBJECT_STORE_NAME);
+
+        const getAllMediaRequest = objectStore.getAll();
+
+        getAllMediaRequest.onsuccess = function handleGetAllMediaSuccess() {
+          const mediaList = getAllMediaRequest.result;
+          console.log(mediaList);
+          resolve(mediaList);
+        };
+
+        getAllMediaRequest.onerror = function handleGetAllMediaError(error) {
+          console.error('Error retrieving media from IndexedDB:', error);
+          reject(new Error('Error retrieving media from IndexedDB'));
         };
       })
       .catch((error) => {
