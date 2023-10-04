@@ -12,12 +12,22 @@ import { addMediaToDB, openDB } from '../indexedDB';
 
 import '../styles/TestPage.scss';
 
-const createVideoURL = (data: string | ArrayBuffer): string => {
+const createVideoURL = async (data: string | ArrayBuffer): Promise<string> => {
   if (typeof data === 'string') {
     return data;
   }
+
   const blob = new Blob([data], { type: 'video/mp4' });
-  return URL.createObjectURL(blob);
+  const reader = new FileReader();
+
+  return new Promise<string>((resolve) => {
+    reader.onload = () => {
+      const dataURL = reader.result as string;
+      resolve(dataURL);
+    };
+
+    reader.readAsDataURL(blob);
+  });
 };
 
 function MediaUpload() {
@@ -30,13 +40,13 @@ function MediaUpload() {
       Array.from(files).forEach(async (file: File) => {
         const reader = new FileReader();
 
-        reader.onload = () => {
+        reader.onload = async () => {
           const media: Media = {
             id: file.name,
             name: file.name,
             type: file.type.startsWith('image') ? 'image' : 'video',
             url: file.type.startsWith('video')
-              ? createVideoURL(reader.result as ArrayBuffer)
+              ? await createVideoURL(reader.result as ArrayBuffer)
               : (reader.result as string),
           };
 
@@ -71,7 +81,7 @@ function MediaList() {
     if (media.type === 'video') {
       return (
         <video width="320" height="240" controls>
-          <source src={createVideoURL(media.url)} type="video/mp4" />
+          <source src={media.url} type="video/mp4" />
           <track kind="captions" srcLang="en" label="English" />
           Your browser does not support the video tag.
         </video>
