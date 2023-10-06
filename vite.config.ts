@@ -27,9 +27,6 @@ export default defineConfig({
     VitePWA({
       includeAssets: ['**/*'],
       injectRegister: 'script',
-      // devOptions: {
-      //   enabled: true
-      // },
       manifest: {
         background_color: '#190B17',
         categories: ['entertainment', 'games', 'social'],
