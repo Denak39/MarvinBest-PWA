@@ -10,32 +10,36 @@ import IconButton from '@components/IconButton/IconButton';
 import IconSend from '@components/Icons/IconSend';
 import Message from '@components/Message/Message';
 import { useAppSelector } from '@hooks/useAppSelector';
+import useOnlineStatus from '@hooks/useOnlineStatus';
 import { selectPersonById } from '@people/selectors';
 import { useGetPersonQuery } from '@people/slice';
+import type { PersonPageProps } from '@people/types';
 import { addSentenceSchema } from '@sentences/constants';
 import { useAddSentenceMutation } from '@sentences/slice';
 import type { AddSentence } from '@sentences/types';
 
 import '@people/styles/PersonPage.scss';
 
-function PersonPage(): JSX.Element {
+function PersonPage({ saveSentenceToStorage, sentencesFromStorage }: PersonPageProps): JSX.Element {
   const { id: stringId } = useParams();
   const id = parseInt(String(stringId), 10);
 
   const [addSentence] = useAddSentenceMutation();
+
+  const isOnline = useOnlineStatus();
 
   const dataRecovered = useAppSelector((state) => selectPersonById(state, id));
   const {
     data: person = dataRecovered,
     isLoading,
     isError,
-  } = useGetPersonQuery(id, { skip: !!dataRecovered });
+  } = useGetPersonQuery(id, { skip: !isOnline });
 
   useEffect(() => {
     window.scrollTo(0, document.body.scrollHeight);
-  }, [person?.sentences]);
+  }, [person?.sentences, sentencesFromStorage]);
 
-  if (isError) return <ErrorPage />;
+  if (isError && !dataRecovered) return <ErrorPage />;
 
   /**
    * Handle submit form.
@@ -50,17 +54,16 @@ function PersonPage(): JSX.Element {
   ): Promise<void> => {
     const { resetForm, setSubmitting } = formikHelpers;
 
-    if (!person) return;
-    setSubmitting(true);
-
-    await addSentence(values)
-      .unwrap()
-      .then(() => {
-        resetForm();
-      })
-      .finally(() => {
-        setSubmitting(false);
-      });
+    if (!isOnline) {
+      await saveSentenceToStorage({ ...values, id: Date.now() })
+        .then(() => resetForm())
+        .finally(() => setSubmitting(false));
+    } else {
+      await addSentence(values)
+        .unwrap()
+        .then(() => resetForm())
+        .finally(() => setSubmitting(false));
+    }
   };
 
   const initialValues: AddSentence = {
@@ -73,7 +76,7 @@ function PersonPage(): JSX.Element {
       {/* TODO: add title skeleton loader components. */}
       <Header title={person?.name || ''} goBack />
 
-      {!!person?.sentences.length && (
+      {!!person && (
         <ul className="PersonPage__list">
           {[...person.sentences].reverse().map((sentence) => (
             <li key={sentence.id}>
@@ -82,13 +85,22 @@ function PersonPage(): JSX.Element {
               </Message>
             </li>
           ))}
+
+          {sentencesFromStorage
+            .filter((sentence) => sentence.personId === id)
+            .map((item, index) => (
+              // eslint-disable-next-line react/no-array-index-key
+              <li key={`waiting-${index}`}>
+                <Message name={person.name} isWaiting>
+                  {item.sentence}
+                </Message>
+              </li>
+            ))}
         </ul>
       )}
 
       {/* TODO: add skeleton loader components. */}
-      {isLoading && <p>Chargement en cours...</p>}
-
-      {/* TODO: add a no result component. */}
+      {isLoading && !dataRecovered && <p>Chargement en cours...</p>}
 
       {!!person && (
         <Formik

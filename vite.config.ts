@@ -1,4 +1,4 @@
-/// <reference types="vitest" />
+/// <reference types='vitest' />
 
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
@@ -7,7 +7,7 @@ import * as path from 'path';
 
 const getCache = ({ name, urlPattern }) => ({
   urlPattern,
-  handler: 'CacheFirst' as const,
+  handler: 'NetworkFirst' as const,
   options: {
     cacheName: name,
     expiration: {
@@ -77,17 +77,18 @@ export default defineConfig({
         theme_color: '#E83668',
       },
       workbox: {
+        cleanupOutdatedCaches: true,
         globPatterns: ['**/*'],
         runtimeCaching: [
           getCache({
             urlPattern: ({ url }) => /\/api\/people\?/.test(url.href),
-            name: "api-cache-people",
+            name: 'api-cache-people',
           }),
           getCache({
             urlPattern: ({ url }) => /^\/api\/people\/light/.test(url.pathname),
-            name: "api-cache-people-options",
+            name: 'api-cache-people-options',
           }),
-        ]
+        ],
       },
     }),
   ],
@@ -130,20 +131,20 @@ export default defineConfig({
         replacement: path.resolve(__dirname, 'src/mocks'),
       },
       {
-        find: "@people",
-        replacement: path.resolve(__dirname, "src/people"),
+        find: '@people',
+        replacement: path.resolve(__dirname, 'src/people'),
       },
       {
-        find: "@sentences",
-        replacement: path.resolve(__dirname, "src/sentences"),
+        find: '@sentences',
+        replacement: path.resolve(__dirname, 'src/sentences'),
       },
       {
         find: '@shared',
         replacement: path.resolve(__dirname, 'src/shared'),
       },
       {
-        find: "@src",
-        replacement: path.resolve(__dirname, "src"),
+        find: '@src',
+        replacement: path.resolve(__dirname, 'src'),
       },
       {
         find: '@styles',
@@ -156,12 +157,12 @@ export default defineConfig({
     ],
   },
   test: {
-    globals: true,
-    environment: 'jsdom',
-    setupFiles: './src/tests/setup.ts',
     coverage: {
       provider: 'istanbul',
       reporter: ['html'],
     },
+    environment: 'jsdom',
+    globals: true,
+    setupFiles: './src/tests/setup.ts',
   },
 });

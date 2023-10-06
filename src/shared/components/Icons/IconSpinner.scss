@@ -1,0 +1,5 @@
+@use "@styles/keyframes" as *;
+
+.Icon--spinner {
+  animation: keyframes-spin 0.7s linear infinite;
+}

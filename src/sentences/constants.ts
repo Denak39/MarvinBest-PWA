@@ -7,6 +7,7 @@ import type { AddSentence } from '@sentences/types';
 export const addSentenceSchema = Yup.object<AddSentence>({
   personId: Yup.number().required('Sélectionne une personne !'),
   sentence: Yup.string()
+    .trim()
     .required('Oublie pas la phrase !')
     .min(5, 'Eh, pas trop court non plus...'),
 });
