@@ -1,3 +1,5 @@
+import type { Person } from '@people/types';
+
 // Response
 export type ApiData<T> = T & {
   '@id': string;
@@ -76,4 +78,9 @@ export type ApiSentenceData = {
   sentence: string;
 };
 
+export interface ApiLastSentenceData extends ApiSentenceData {
+  speaker: ApiEntityResponse<Pick<Person, 'name'>>;
+}
+
 export type ApiSentenceResponse = ApiEntityResponse<ApiSentenceData>;
+export type ApiLastSentenceResponse = ApiEntityResponse<ApiLastSentenceData>;

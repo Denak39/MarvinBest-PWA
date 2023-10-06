@@ -82,11 +82,15 @@ export default defineConfig({
         runtimeCaching: [
           getCache({
             urlPattern: ({ url }) => /\/api\/people\?/.test(url.href),
-            name: 'api-cache-people',
+            name: 'api_get_people',
           }),
           getCache({
             urlPattern: ({ url }) => /^\/api\/people\/light/.test(url.pathname),
-            name: 'api-cache-people-options',
+            name: 'api_get_people-options',
+          }),
+          getCache({
+            urlPattern: ({ url }) => /^\/api\/last_best_of/.test(url.pathname),
+            name: 'api_get_last-sentence',
           }),
         ],
       },

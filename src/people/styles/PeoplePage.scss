@@ -7,6 +7,8 @@
   @include header.offset;
   @include navbar.offset;
 
+  flex: 1;
+
   &__list {
     display: flex;
     flex-direction: column;

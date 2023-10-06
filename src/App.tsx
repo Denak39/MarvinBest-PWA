@@ -6,7 +6,7 @@ import { IndexedDBStores, PATHS } from '@constants/index';
 import useIndexedDB from '@hooks/useIndexedDB';
 import useOnlineStatus from '@hooks/useOnlineStatus';
 import { useGetPeopleOptionsQuery, useGetPeopleQuery } from '@people/slice';
-import { useAddSentenceMutation } from '@sentences/slice';
+import { useAddSentenceMutation, useGetLastSentenceQuery } from '@sentences/slice';
 import type { AddSentenceIndexedDB } from '@sentences/types';
 
 import '@styles/index.scss';
@@ -38,6 +38,7 @@ function App() {
     'order[name]': 'asc',
     page: 1,
   });
+  useGetLastSentenceQuery();
 
   const fetchSentenceFromStorage = useCallback(async (): Promise<void> => {
     const sentence = sentencesFromStorage[0];
