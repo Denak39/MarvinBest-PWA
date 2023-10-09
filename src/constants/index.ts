@@ -3,6 +3,7 @@ export const PATHS = {
   PEOPLE: '/people',
   PERSON: '/people/:id',
   SENTENCE_FORM: '/sentence-form',
+  TEST: '/test',
 };
 
 export enum IndexedDBStores {

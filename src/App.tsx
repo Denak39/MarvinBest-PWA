@@ -16,6 +16,7 @@ const PeoplePage = lazy(() => import('@people/components/PeoplePage'));
 const PersonPage = lazy(() => import('@people/components/PersonPage'));
 const SentenceFormPage = lazy(() => import('@sentences/components/SentenceFormPage'));
 const NotFoundPage = lazy(() => import('@components/ErrorPage/NotFoundPage'));
+const TestPage = lazy(() => import('@people/Test/TestPage'));
 
 function App() {
   const [addSentence] = useAddSentenceMutation();
@@ -75,6 +76,7 @@ function App() {
             path={PATHS.SENTENCE_FORM}
             element={<SentenceFormPage saveSentenceToStorage={saveSentenceToStorage} />}
           />
+          <Route path={PATHS.TEST} element={<TestPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
