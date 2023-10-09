@@ -6,6 +6,7 @@ import Select from '@components/Fields/Select/Select';
 import Textarea from '@components/Fields/Textarea/Textarea';
 import Header from '@components/Header/Header';
 import IconAdd from '@components/Icons/IconAdd';
+import Skeleton from '@components/Skeleton/Skeleton';
 import useOnlineStatus from '@hooks/useOnlineStatus';
 import { useGetPeopleOptionsQuery } from '@people/slice';
 import { addSentenceSchema } from '@sentences/constants';
@@ -20,7 +21,7 @@ function SentenceFormPage({ saveSentenceToStorage }: SentenceFormPageProps) {
   const isOnline = useOnlineStatus();
 
   // TODO: use selectPeopleOptions instead of useGetPeopleOptionsQuery.
-  const { data: peopleOptions } = useGetPeopleOptionsQuery({
+  const { data: peopleOptions, isLoading } = useGetPeopleOptionsQuery({
     'order[name]': 'asc',
     pagination: false,
   });
@@ -47,7 +48,7 @@ function SentenceFormPage({ saveSentenceToStorage }: SentenceFormPageProps) {
 
   return (
     <div className="SentenceFormPage">
-      <Header title="Ajouter une phrase" goBack />
+      <Header goBack>Ajouter une phrase</Header>
 
       <Formik
         initialValues={initialValues}
@@ -59,19 +60,23 @@ function SentenceFormPage({ saveSentenceToStorage }: SentenceFormPageProps) {
             <div>
               <div className="SentenceFormPage__form-field">
                 <label htmlFor="personId">Personne</label>
-                <Select
-                  id="personId"
-                  name="personId"
-                  onChange={handleChange}
-                  placeholder="Sélectionner une personne..."
-                  value={values.personId || ''}
-                >
-                  {peopleOptions?.map(({ id, name }) => (
-                    <option key={id} value={id}>
-                      {name}
-                    </option>
-                  ))}
-                </Select>
+                {isLoading ? (
+                  <Skeleton height="3rem" />
+                ) : (
+                  <Select
+                    id="personId"
+                    name="personId"
+                    onChange={handleChange}
+                    placeholder="Sélectionner une personne..."
+                    value={values.personId || ''}
+                  >
+                    {peopleOptions?.map(({ id, name }) => (
+                      <option key={id} value={id}>
+                        {name}
+                      </option>
+                    ))}
+                  </Select>
+                )}
                 <ErrorMessage name="personId" component="div" className="error" />
               </div>
               <div className="SentenceFormPage__form-field">

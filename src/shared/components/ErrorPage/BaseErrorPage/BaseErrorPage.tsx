@@ -13,7 +13,7 @@ import '@components/ErrorPage/BaseErrorPage/BaseErrorPage.scss';
 function BaseErrorPage({ children, className, title, ...props }: BaseErrorPageProps): JSX.Element {
   return (
     <div className={clsx('BaseErrorPage', className)} data-testid="BaseErrorPage" {...props}>
-      <Header title={title} goBack />
+      <Header goBack>{title}</Header>
 
       <div className="BaseErrorPage__image-wrapper">
         <img

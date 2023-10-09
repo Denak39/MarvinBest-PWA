@@ -6,7 +6,7 @@ import IconArrowBack from '@components/Icons/IconArrowBack';
 
 import '@components/Header/Header.scss';
 
-function Header({ className, goBack = false, title, ...props }: HeaderProps): JSX.Element {
+function Header({ children, className, goBack = false, ...props }: HeaderProps): JSX.Element {
   const navigate = useNavigate();
 
   return (
@@ -21,7 +21,7 @@ function Header({ className, goBack = false, title, ...props }: HeaderProps): JS
         </button>
       </div>
 
-      <h1 className="Header__title">{title}</h1>
+      <h1 className="Header__title">{children}</h1>
     </header>
   );
 }

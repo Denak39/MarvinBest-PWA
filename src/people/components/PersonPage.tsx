@@ -8,7 +8,9 @@ import TextField from '@components/Fields/TextField/TextField';
 import Header from '@components/Header/Header';
 import IconButton from '@components/IconButton/IconButton';
 import IconSend from '@components/Icons/IconSend';
+import IconSpinner from '@components/Icons/IconSpinner';
 import Message from '@components/Message/Message';
+import Skeleton from '@components/Skeleton/Skeleton';
 import { useAppSelector } from '@hooks/useAppSelector';
 import useOnlineStatus from '@hooks/useOnlineStatus';
 import { selectPersonById } from '@people/selectors';
@@ -73,8 +75,13 @@ function PersonPage({ saveSentenceToStorage, sentencesFromStorage }: PersonPageP
 
   return (
     <div className="PersonPage">
-      {/* TODO: add title skeleton loader components. */}
-      <Header title={person?.name || ''} goBack />
+      <Header goBack>
+        {isLoading ? (
+          <Skeleton height="1.625rem" width="clamp(2rem, 30%, 10rem)" />
+        ) : (
+          person?.name || ''
+        )}
+      </Header>
 
       {!!person && (
         <ul className="PersonPage__list">
@@ -99,19 +106,17 @@ function PersonPage({ saveSentenceToStorage, sentencesFromStorage }: PersonPageP
         </ul>
       )}
 
-      {/* TODO: add skeleton loader components. */}
-      {isLoading && !dataRecovered && <p>Chargement en cours...</p>}
-
-      {!!person && (
-        <Formik
-          initialValues={initialValues}
-          onSubmit={handleSubmit}
-          validateOnMount
-          validationSchema={addSentenceSchema}
-        >
-          {({ dirty, isValid, isSubmitting, values, handleChange }) => (
-            <Form className="PersonPage__form">
-              {/* TODO: add skeleton loader components. */}
+      <Formik
+        initialValues={initialValues}
+        onSubmit={handleSubmit}
+        validateOnMount
+        validationSchema={addSentenceSchema}
+      >
+        {({ dirty, isValid, isSubmitting, values, handleChange }) => (
+          <Form className="PersonPage__form">
+            {isLoading || !person ? (
+              <Skeleton height="3.625rem" />
+            ) : (
               <div className="PersonPage__field-wrapper">
                 <TextField
                   aria-label={`Écrire une phrase de ${person.name}`}
@@ -122,20 +127,19 @@ function PersonPage({ saveSentenceToStorage, sentencesFromStorage }: PersonPageP
                   value={values.sentence}
                 />
 
-                {/* TODO: add a loader button when form is submitting. */}
                 <IconButton
                   aria-label="Envoyer la phrase"
                   className="PersonPage__form-button"
                   disabled={!dirty || isSubmitting || !isValid}
                   type="submit"
                 >
-                  <IconSend />
+                  {isSubmitting ? <IconSpinner /> : <IconSend />}
                 </IconButton>
               </div>
-            </Form>
-          )}
-        </Formik>
-      )}
+            )}
+          </Form>
+        )}
+      </Formik>
     </div>
   );
 }

@@ -8,8 +8,8 @@ import renderWithRouter from '@tests/index';
 const PATHS = ['/', '/people'];
 
 const props: HeaderProps = {
+  children: 'Title',
   className: 'custom-class',
-  title: 'Title',
 };
 
 describe('shared/components/Header', () => {
@@ -28,7 +28,7 @@ describe('shared/components/Header', () => {
 
     expect(header).toHaveClass('Header custom-class');
     expect(header.tagName.toLowerCase()).toBe('header');
-    expect(title).toHaveTextContent(props.title);
+    expect(title).toHaveTextContent(props.children as string);
     expect(title.tagName.toLowerCase()).toBe('h1');
 
     fireEvent.click(button);
