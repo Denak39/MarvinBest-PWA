@@ -10,6 +10,7 @@ function Skeleton({ className, delay, height, style, width, ...attr }: SkeletonP
     <span
       className={clsx('Skeleton', className)}
       style={{ ...style, animationDelay: delay, height, width }}
+      data-testid="Skeleton"
       {...attr}
     />
   );
