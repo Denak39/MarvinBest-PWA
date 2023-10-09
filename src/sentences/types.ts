@@ -7,6 +7,10 @@ export interface Sentence extends BaseEntity {
   message: string;
 }
 
+export interface SentenceWithSpeaker extends Sentence {
+  speaker: Pick<Person, 'name'>;
+}
+
 export type AddSentence = {
   personId: Person['id'];
   sentence: Sentence['message'];

@@ -1,0 +1,30 @@
+@use "@styles/functions" as *;
+@use "@styles/mixins" as *;
+@use "@styles/variables" as *;
+@use "@components/NavBar/NavBar" as navbar;
+
+.HomePage {
+  @include navbar.offset;
+
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+
+  &__logo {
+    filter: drop-shadow(0 0 to-rem(60) rgba($color-pink, 0.4));
+    height: auto;
+    margin: to-rem(40) 0 to-rem(140);
+    width: clamp(to-rem(100), 70%, to-rem(400));
+  }
+
+  &__title {
+    @include font-text;
+
+    color: $color-pink;
+    font-weight: $font-weight-semibold;
+    margin-bottom: to-rem(20);
+    text-align: center;
+  }
+}
