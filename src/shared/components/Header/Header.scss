@@ -47,6 +47,8 @@ $height: to-rem(86);
   &__title {
     @include text-overflow;
 
+    display: flex;
+    justify-content: center;
     text-align: center;
     white-space: nowrap;
   }

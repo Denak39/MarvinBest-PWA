@@ -86,11 +86,11 @@ export default defineConfig({
           }),
           getCache({
             urlPattern: ({ url }) => /^\/api\/people\/light/.test(url.pathname),
-            name: 'api_get_people-options',
+            name: 'api_get_people_options',
           }),
           getCache({
             urlPattern: ({ url }) => /^\/api\/last_best_of/.test(url.pathname),
-            name: 'api_get_last-sentence',
+            name: 'api_get_sentences_last',
           }),
         ],
       },
