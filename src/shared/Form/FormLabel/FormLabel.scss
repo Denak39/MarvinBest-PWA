@@ -1,0 +1,12 @@
+@use "@styles/functions" as *;
+@use "@styles/mixins" as *;
+@use "@styles/variables" as *;
+
+.FormLabel {
+  @include font-text;
+
+  display: block;
+  font-weight: $font-weight-medium;
+  margin-bottom: to-rem(6);
+  width: fit-content;
+}

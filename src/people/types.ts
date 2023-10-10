@@ -1,6 +1,6 @@
 import type { BaseEntity } from '@app/types';
 import type { UseIndexedDBReturn } from '@hooks/types';
-import type { AddSentenceIndexedDB, Sentence } from '@sentences/types';
+import type { AddSentenceStorage, Sentence } from '@sentences/types';
 
 export interface Person extends BaseEntity {
   countSentences: number;
@@ -12,11 +12,12 @@ export type People = Person[];
 
 export type PeopleOptions = Pick<Person, 'name' | 'id'>[];
 
+// Page
 export type PersonPageProps = {
-  saveSentenceToStorage: UseIndexedDBReturn<AddSentenceIndexedDB>['saveData'];
-  sentencesFromStorage: UseIndexedDBReturn<AddSentenceIndexedDB>['data'];
+  saveSentenceToStorage: UseIndexedDBReturn<AddSentenceStorage>['saveData'];
+  sentencesFromStorage: UseIndexedDBReturn<AddSentenceStorage>['data'];
 };
 
 export type PeoplePageProps = {
-  sentencesFromStorage: UseIndexedDBReturn<AddSentenceIndexedDB>['data'];
+  sentencesFromStorage: UseIndexedDBReturn<AddSentenceStorage>['data'];
 };

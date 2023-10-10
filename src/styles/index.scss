@@ -1,6 +1,34 @@
 @use "@styles/fonts" as *;
 @use "@styles/global" as *;
 
+// Sentences
+@use "@sentences/styles/SentenceFormPage" as *;
+
+// People
+@use "@people/styles/PeoplePage" as *;
+@use "@people/styles/PersonPage" as *;
+
+// Home
+@use "@home/styles/HomePage" as *;
+@use "@home/styles/ReloadModal" as *;
+
 // Shared styles
-@use "@components/Button/Button" as button;
-@use "@components/IconButton/IconButton" as icon-button;
+@use "@shared/Alert/Alert" as *;
+@use "@shared/Avatar/Avatar" as *;
+@use "@shared/Button/Button" as *;
+@use "@shared/Card/Card" as *;
+@use "@shared/ErrorPage/BaseErrorPage/BaseErrorPage" as *;
+@use "@shared/Form/FormControl/FormControl" as *;
+@use "@shared/Form/FormErrorMessage/FormErrorMessage" as *;
+@use "@shared/Form/FormLabel/FormLabel" as *;
+@use "@shared/Form/Select/Select" as *;
+@use "@shared/Form/Textarea/Textarea" as *;
+@use "@shared/Form/TextField/TextField" as *;
+@use "@shared/Header/Header" as *;
+@use "@shared/IconButton/IconButton" as *;
+@use "@shared/Icons/IconSpinner" as *;
+@use "@shared/Layout/Layout" as *;
+@use "@shared/Message/Message" as *;
+@use "@shared/Modal/Modal" as *;
+@use "@shared/NavBar/NavBar" as *;
+@use "@shared/Skeleton/Skeleton" as *;

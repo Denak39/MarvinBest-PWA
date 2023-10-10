@@ -19,13 +19,13 @@ export const sentencesSlice = api.injectEndpoints({
       }),
       invalidatesTags: (_result, _error, arg) => [
         { type: 'People', id: arg.personId },
-        'Sentences',
+        'LastSentence',
       ],
       transformResponse: (data: ApiSentenceResponse) => parseSentenceResponse(data),
     }),
     getLastSentence: builder.query<SentenceWithSpeaker, void>({
       query: () => `/last_best_of`,
-      providesTags: () => ['Sentences'],
+      providesTags: ['LastSentence'],
       transformResponse: (data: ApiLastSentenceResponse) => parseLastSentenceResponse(data),
     }),
   }),

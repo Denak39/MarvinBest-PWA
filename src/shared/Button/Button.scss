@@ -1,0 +1,32 @@
+@use "@styles/functions" as *;
+@use "@styles/mixins" as *;
+@use "@styles/variables" as *;
+
+.Button {
+  align-items: center;
+  background-color: $color-pink;
+  border-radius: $border-radius;
+  box-shadow: $shadow;
+  display: flex;
+  font-size: to-rem(18);
+  font-weight: $font-weight-semibold;
+  justify-content: center;
+  padding: to-rem(16) to-rem(20);
+  width: 100%;
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: $color-gray;
+    box-shadow: none;
+  }
+
+  &:focus-visible {
+    @include outline;
+  }
+
+  .Icon {
+    @include fixed-size(to-rem(22));
+
+    margin-left: to-rem(14);
+  }
+}

@@ -1,0 +1,12 @@
+@use "@styles/functions" as *;
+@use "@styles/mixins" as *;
+@use "@styles/variables" as *;
+
+.FormErrorMessage {
+  @include font-text;
+
+  color: $color-pink;
+  display: block;
+  font-weight: $font-weight-light;
+  margin-top: to-rem(8);
+}

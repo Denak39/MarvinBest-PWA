@@ -1,10 +1,13 @@
 @use "@styles/functions" as *;
 @use "@styles/mixins" as *;
 @use "@styles/variables" as *;
-@use "@components/Fields/TextField/TextField" as textfield;
-@use "@components/IconButton/IconButton" as iconbutton;
-@use "@components/Layout/Layout" as layout;
-@use "@components/Header/Header" as header;
+@use "@shared/Form/index" as form;
+@use "@shared/IconButton/IconButton" as iconbutton;
+@use "@shared/Layout/Layout" as layout;
+@use "@shared/Header/Header" as header;
+
+$-padding: to-rem(10);
+$-field-height: to-rem(58);
 
 .PersonPage {
   @include header.offset;
@@ -12,9 +15,14 @@
   display: flex;
   flex-direction: column;
   flex: 1;
-  margin-bottom: calc(
-    textfield.$height + to-rem(10) * 2 + $shadow-gradient-height
-  );
+  margin-bottom: calc(form.$height + ($-padding * 2) + $shadow-gradient-height);
+
+  .Skeleton--name {
+    @include fixed-size-height(to-rem(30));
+
+    margin-inline: auto;
+    width: clamp(3rem, 50%, 10rem);
+  }
 
   &__list {
     display: flex;
@@ -22,13 +30,29 @@
     flex: 1;
     justify-content: flex-end;
     row-gap: to-rem(24);
+
+    &-error {
+      @include font-text-small;
+    }
+
+    &-loading {
+      @include font-text-small;
+
+      align-items: center;
+      column-gap: to-rem(4);
+      display: flex;
+
+      .Icon {
+        @include fixed-size(to-rem(10));
+      }
+    }
   }
 
   &__form {
     background-color: $color-purple;
     bottom: 0;
     left: 0;
-    padding: to-rem(10) layout.$padding to-rem(30);
+    padding: $-padding layout.$padding calc($-padding + layout.$padding);
     position: fixed;
     width: 100%;
     z-index: $zindex-fixed;
@@ -39,7 +63,18 @@
       content: "";
       left: 0;
       top: 0;
-      translate: 0 -100%;
+      transform: translateY(-100%);
+    }
+
+    .Skeleton--field {
+      @include fixed-size-height($-field-height);
+    }
+
+    @include bp-desktop {
+      @include layout.max-width;
+
+      left: 50%;
+      transform: translateX(-50%);
     }
   }
 
@@ -47,14 +82,16 @@
     position: relative;
 
     .TextField {
-      padding-right: calc(textfield.$padding * 2 + iconbutton.$size-medium);
+      @include fixed-size-height($-field-height);
+
+      padding-right: calc(form.$padding * 2 + iconbutton.$size-medium);
     }
   }
 
   &__form-button {
     position: absolute;
-    right: textfield.$padding;
+    right: form.$padding;
     top: 50%;
-    translate: 0 -50%;
+    transform: translateY(-50%);
   }
 }

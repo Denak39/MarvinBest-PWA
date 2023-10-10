@@ -1,0 +1,33 @@
+@use "@styles/functions" as *;
+@use "@styles/mixins" as *;
+@use "@styles/variables" as *;
+@use "@shared/Form/index" as *;
+
+$-icon-size: to-rem(20);
+
+.Select {
+  position: relative;
+  width: 100%;
+
+  select {
+    @include fixed-size-height($height);
+    @include input;
+    @include text-overflow;
+
+    padding-right: calc($-icon-size + ($padding * 2));
+
+    option {
+      color: inherit;
+    }
+  }
+
+  > .Icon {
+    @include fixed-size($-icon-size);
+
+    color: $color-pink;
+    position: absolute;
+    right: to-rem(14);
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}

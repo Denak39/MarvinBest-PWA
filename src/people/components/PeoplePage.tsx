@@ -1,40 +1,51 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import Card from '@components/Card/Card';
-import Header from '@components/Header/Header';
-import Skeleton from '@components/Skeleton/Skeleton';
+import type { CollectionResponse } from '@api/types';
 import { PATHS } from '@constants/index';
-import useOnlineStatus from '@hooks/useOnlineStatus';
 import useScrolledToBottom from '@hooks/useScrolledToBottom';
 import { useGetPeopleQuery } from '@people/slice';
-import type { PeoplePageProps } from '@people/types';
+import type { People, PeoplePageProps } from '@people/types';
+import Card from '@shared/Card/Card';
+import Header from '@shared/Header/Header';
+import Skeleton from '@shared/Skeleton/Skeleton';
 
-import '@people/styles/PeoplePage.scss';
-
+/**
+ * People page.
+ *
+ * @param {PeoplePageProps} props Props
+ * @return {JSX.Element}
+ */
 function PeoplePage({ sentencesFromStorage }: PeoplePageProps): JSX.Element {
   const [page, setPage] = useState<number>(1);
+  const [peopleList, setPeopleList] = useState<CollectionResponse<People> | undefined>(undefined);
 
   const isBottom = useScrolledToBottom(100);
-  const isOnline = useOnlineStatus();
 
-  const { data: people, isFetching } = useGetPeopleQuery({
-    'order[name]': 'asc',
-    page,
-  });
+  const { data: people, isFetching, isLoading } = useGetPeopleQuery({ page });
 
+  /**
+   * Update page.
+   *
+   * @return {void}
+   */
   const handleUpdatePage = useCallback((): void => {
-    if (!people || page >= people.totalPages) return;
+    if (!peopleList || page >= peopleList.totalPages) return;
     setPage(page + 1);
-  }, [page, people]);
+  }, [page, peopleList]);
 
+  /**
+   * Render card skeletons.
+   *
+   * @return {JSX.Element[]|null}
+   */
   const renderSkeletons = (): JSX.Element[] | null => {
-    if (!isFetching && isOnline) return null;
+    if (!isFetching) return null;
 
-    return Array.from({ length: !isOnline ? 3 : 10 }, (_v, i) => i).map((_item, index) => (
+    return Array.from({ length: isLoading ? 10 : 3 }, (_v, i) => i).map((_item, index) => (
       <Skeleton
+        aria-label="Chargement des personnes"
+        className="Skeleton--card"
         delay={`${index * 0.2}s`}
-        height="4.875rem"
-        // eslint-disable-next-line react/no-array-index-key
         key={`skeleton-${index}`}
       />
     ));
@@ -45,23 +56,32 @@ function PeoplePage({ sentencesFromStorage }: PeoplePageProps): JSX.Element {
     handleUpdatePage();
   }, [handleUpdatePage, isBottom]);
 
+  useEffect(() => {
+    if (!people || people.data.slice(-1)[0].id === peopleList?.data.slice(-1)[0].id) return;
+
+    // Merge data.
+    setPeopleList({
+      totalPages: people.totalPages,
+      data: [...(peopleList?.data ?? []), ...people.data],
+    });
+  }, [people, peopleList]);
+
   return (
     <div className="PeoplePage">
       <Header>Personnes</Header>
 
       <ul className="PeoplePage__list">
-        {people?.data.map(({ id, name, countSentences }) => (
-          <li className="PeoplePage__item" key={id}>
-            <Card
-              countSentences={
-                countSentences +
-                sentencesFromStorage.filter((sentence) => sentence.personId === id).length
-              }
-              name={name}
-              to={`${PATHS.PEOPLE}/${id}`}
-            />
-          </li>
-        ))}
+        {peopleList?.data.map(({ id, name, countSentences }) => {
+          const count =
+            countSentences +
+            sentencesFromStorage.filter((sentence) => sentence.personId === id).length;
+
+          return (
+            <li className="PeoplePage__item" key={id}>
+              <Card countSentences={count} name={name} to={`${PATHS.PEOPLE}/${id}`} />
+            </li>
+          );
+        })}
 
         {renderSkeletons()}
       </ul>

@@ -1,0 +1,10 @@
+@use "@styles/keyframes" as *;
+@use "@styles/variables" as *;
+
+.Skeleton {
+  animation: 2s ease-in-out 0.5s infinite normal none running keyframes-pulse;
+  background-color: $color-black;
+  border-radius: $border-radius;
+  display: block;
+  width: 100%;
+}

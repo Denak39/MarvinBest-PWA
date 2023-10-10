@@ -1,7 +1,8 @@
 @use "@styles/functions" as *;
+@use "@styles/mixins" as *;
 @use "@styles/variables" as *;
-@use "@components/Header/Header" as header;
-@use "@components/NavBar/NavBar" as navbar;
+@use "@shared/Header/Header" as header;
+@use "@shared/NavBar/NavBar" as navbar;
 
 .PeoplePage {
   @include header.offset;
@@ -13,5 +14,9 @@
     display: flex;
     flex-direction: column;
     row-gap: to-rem(6);
+
+    .Skeleton--card {
+      @include fixed-size-height(to-rem(78)); // Card height
+    }
   }
 }

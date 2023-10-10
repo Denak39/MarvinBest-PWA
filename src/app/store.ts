@@ -3,12 +3,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import { api } from '@api/index';
-import syncMiddleware from '@app/middleware';
 
 export const store = configureStore({
   reducer: {
     [api.reducerPath]: api.reducer,
   },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(api.middleware, syncMiddleware),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(api.middleware),
 });

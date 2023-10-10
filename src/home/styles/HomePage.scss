@@ -1,7 +1,7 @@
 @use "@styles/functions" as *;
 @use "@styles/mixins" as *;
 @use "@styles/variables" as *;
-@use "@components/NavBar/NavBar" as navbar;
+@use "@shared/NavBar/NavBar" as navbar;
 
 .HomePage {
   @include navbar.offset;
@@ -13,10 +13,13 @@
   justify-content: center;
 
   &__logo {
-    filter: drop-shadow(0 0 to-rem(60) rgba($color-pink, 0.4));
     height: auto;
     margin: to-rem(40) 0 to-rem(140);
     width: clamp(to-rem(100), 70%, to-rem(400));
+
+    img {
+      filter: drop-shadow(0 0 to-rem(60) rgba($color-pink, 0.4));
+    }
   }
 
   &__title {

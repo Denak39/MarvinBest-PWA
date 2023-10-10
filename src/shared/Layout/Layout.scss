@@ -1,0 +1,28 @@
+@use "@styles/functions" as *;
+@use "@styles/mixins" as *;
+
+$padding: to-rem(20);
+
+@mixin max-width {
+  max-width: to-rem(700);
+  width: 60%;
+}
+
+.Layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: $padding;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    @include bp-desktop {
+      @include max-width;
+
+      margin-inline: auto;
+    }
+  }
+}

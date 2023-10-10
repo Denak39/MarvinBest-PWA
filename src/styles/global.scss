@@ -4,6 +4,7 @@
 * {
   box-sizing: border-box;
   font-family: inherit;
+  color: inherit;
   margin: 0;
   padding: 0;
 
@@ -37,6 +38,7 @@ li {
 
 a {
   color: inherit;
+  display: inline-block;
   text-decoration: none;
 }
 
@@ -46,7 +48,10 @@ button {
   cursor: pointer;
 }
 
-input {
+input,
+select,
+textarea {
+  appearance: none;
   border: none;
   background-color: transparent;
 }
