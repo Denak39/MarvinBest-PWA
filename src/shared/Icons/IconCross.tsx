@@ -1,8 +1,8 @@
-function IconClose(): JSX.Element {
+function IconCross(): JSX.Element {
   return (
     <svg
       aria-hidden
-      className="Icon Icon--close"
+      className="Icon Icon--cross"
       fill="currentColor"
       viewBox="0 0 30 30"
       xmlns="http://www.w3.org/2000/svg"
@@ -13,4 +13,4 @@ function IconClose(): JSX.Element {
   );
 }
 
-export default IconClose;
+export default IconCross;

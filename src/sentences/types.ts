@@ -12,14 +12,10 @@ export interface SentenceWithSpeaker extends Sentence {
 }
 
 // Form
-export type AddSentenceForm = {
-  personId: Person['id'] | null;
+export type AddSentence = {
+  personId: string;
   sentence: Sentence['message'];
 };
-
-export interface AddSentence extends Pick<AddSentenceForm, 'sentence'> {
-  personId: Person['id'];
-}
 
 export type AddSentenceStorage = AddSentence & BaseEntity;
 

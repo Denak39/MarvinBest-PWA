@@ -2,9 +2,9 @@
 
 import * as Yup from 'yup';
 
-import type { AddSentenceForm } from '@sentences/types';
+import type { AddSentence } from '@sentences/types';
 
-export const addSentenceSchema = Yup.object<AddSentenceForm>({
+export const addSentenceSchema = Yup.object<AddSentence>({
   personId: Yup.number()
     .typeError("Oups, le type du champ n'est pas correct...")
     .required('Sélectionne une personne !'),

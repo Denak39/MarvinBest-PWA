@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef } from 'react';
 import clsx from 'clsx';
 
 import IconButton from '@shared/IconButton/IconButton';
-import IconClose from '@shared/Icons/IconClose';
+import IconCross from '@shared/Icons/IconCross';
 import type { ModalProps } from '@shared/Modal/Modal.types';
 
 /**
@@ -11,7 +11,15 @@ import type { ModalProps } from '@shared/Modal/Modal.types';
  * @param {ModalProps} props Props
  * @return {JSX.Element}
  */
-function Modal({ children, className, isVisible, onClose, ...props }: ModalProps): JSX.Element {
+function Modal({
+  children,
+  className,
+  icon: Icon,
+  isVisible,
+  onClose,
+  title,
+  ...props
+}: ModalProps): JSX.Element {
   const ref = useRef<HTMLDialogElement>(null);
 
   const handleClose = useCallback(() => ref.current?.close(), [ref]);
@@ -30,10 +38,14 @@ function Modal({ children, className, isVisible, onClose, ...props }: ModalProps
         onClick={onClose}
         variant="secondary"
       >
-        <IconClose />
+        <IconCross />
       </IconButton>
 
-      <div className="Modal__content">{children}</div>
+      <div className="Modal__content">
+        <Icon />
+        <h2 className="Modal__title">{title}</h2>
+        {children}
+      </div>
     </dialog>
   );
 }

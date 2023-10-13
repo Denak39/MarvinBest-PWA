@@ -3,27 +3,7 @@
 @use "@styles/variables" as *;
 
 .ReloadModal {
-  .Modal__content {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    row-gap: to-rem(22);
-    text-align: center;
-
-    .Icon {
-      @include fixed-size(to-rem(50));
-
-      background-color: $color-pink;
-      border-radius: 50%;
-      padding: to-rem(10);
-    }
-  }
-
-  &__title {
-    @include font-title-h1;
-  }
-
-  &__button {
+  .Button {
     margin-top: to-rem(18);
   }
 }

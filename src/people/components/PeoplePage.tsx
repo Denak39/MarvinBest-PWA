@@ -74,7 +74,8 @@ function PeoplePage({ sentencesFromStorage }: PeoplePageProps): JSX.Element {
         {peopleList?.data.map(({ id, name, countSentences }) => {
           const count =
             countSentences +
-            sentencesFromStorage.filter((sentence) => sentence.personId === id).length;
+            sentencesFromStorage.filter((sentence) => parseInt(sentence.personId, 10) === id)
+              .length;
 
           return (
             <li className="PeoplePage__item" key={id}>

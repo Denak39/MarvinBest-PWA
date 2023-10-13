@@ -20,20 +20,20 @@ function ReloadModal(): JSX.Element {
   const handleUpdateServiceWorker = async (): Promise<void> => updateServiceWorker(true);
 
   return (
-    <Modal className="ReloadModal" isVisible={needRefresh} onClose={handleClose}>
-      <IconReload />
-
-      <h2 className="ReloadModal__title">Mise à jour disponible</h2>
-
-      <p className="ReloadModal__text">
+    <Modal
+      className="ReloadModal"
+      icon={IconReload}
+      isVisible={needRefresh}
+      onClose={handleClose}
+      title="Mise à jour disponible"
+    >
+      <p>
         Une nouvelle mise à jour de
         <br /> l’application est disponible. Installez
         <br /> là dès maintenant !
       </p>
 
-      <Button onClick={handleUpdateServiceWorker} className="ReloadModal__button">
-        Mettre à jour
-      </Button>
+      <Button onClick={handleUpdateServiceWorker}>Mettre à jour</Button>
     </Modal>
   );
 }

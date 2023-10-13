@@ -8,7 +8,7 @@ import { useGetPeopleOptionsQuery, useGetPersonQuery } from '@people/slice';
 import type { PersonPageProps } from '@people/types';
 import { addSentenceSchema } from '@sentences/constants';
 import { useAddSentenceMutation } from '@sentences/slice';
-import type { AddSentence, AddSentenceForm, AddSentenceStorage } from '@sentences/types';
+import type { AddSentence, AddSentenceStorage } from '@sentences/types';
 import ErrorPage from '@shared/ErrorPage/ErrorPage';
 import TextField from '@shared/Form/TextField/TextField';
 import Header from '@shared/Header/Header';
@@ -49,13 +49,13 @@ function PersonPage({ saveSentenceToStorage, sentencesFromStorage }: PersonPageP
   /**
    * Submit form.
    *
-   * @param {AddSentenceForm} values Form values
-   * @param {FormikHelpers<AddSentenceForm>} formikHelpers Formik helpers
+   * @param {AddSentence} values Form values
+   * @param {FormikHelpers<AddSentence>} formikHelpers Formik helpers
    * @return {Promise<void>}
    */
   const handleSubmit = async (
-    values: AddSentenceForm,
-    formikHelpers: FormikHelpers<AddSentenceForm>
+    values: AddSentence,
+    formikHelpers: FormikHelpers<AddSentence>
   ): Promise<void> => {
     const { resetForm, setSubmitting } = formikHelpers;
 
@@ -73,8 +73,8 @@ function PersonPage({ saveSentenceToStorage, sentencesFromStorage }: PersonPageP
     }
   };
 
-  const initialValues: AddSentenceForm = {
-    personId: person?.id ?? personInfo?.id ?? null,
+  const initialValues: AddSentence = {
+    personId: String(person?.id ?? personInfo?.id ?? ''),
     sentence: '',
   };
 
@@ -119,7 +119,7 @@ function PersonPage({ saveSentenceToStorage, sentencesFromStorage }: PersonPageP
           ))}
 
         {sentencesFromStorage
-          .filter((sentence) => sentence.personId === id)
+          .filter((sentence) => parseInt(sentence.personId, 10) === id)
           .map((item, index) => (
             <li key={`waiting-${index}`}>
               <Message name={name} isWaiting>
