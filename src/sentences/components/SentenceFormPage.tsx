@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import type { FormikHelpers } from 'formik';
 import { Form, Formik } from 'formik';
 
@@ -5,12 +6,7 @@ import useOnlineStatus from '@hooks/useOnlineStatus';
 import { useGetPeopleOptionsQuery } from '@people/slice';
 import { addSentenceSchema } from '@sentences/constants';
 import { useAddSentenceMutation } from '@sentences/slice';
-import type {
-  AddSentence,
-  AddSentenceForm,
-  AddSentenceStorage,
-  SentenceFormPageProps,
-} from '@sentences/types';
+import type { AddSentence, AddSentenceStorage, SentenceFormPageProps } from '@sentences/types';
 import Button from '@shared/Button/Button';
 import FormControl from '@shared/Form/FormControl/FormControl';
 import FormErrorMessage from '@shared/Form/FormErrorMessage/FormErrorMessage';
@@ -19,6 +15,9 @@ import Select from '@shared/Form/Select/Select';
 import Textarea from '@shared/Form/Textarea/Textarea';
 import Header from '@shared/Header/Header';
 import IconAdd from '@shared/Icons/IconAdd';
+import IconCheck from '@shared/Icons/IconCheck';
+import IconCross from '@shared/Icons/IconCross';
+import Modal from '@shared/Modal/Modal';
 import Skeleton from '@shared/Skeleton/Skeleton';
 
 /**
@@ -28,39 +27,53 @@ import Skeleton from '@shared/Skeleton/Skeleton';
  * @return {JSX.Element}
  */
 function SentenceFormPage({ saveSentenceToStorage }: SentenceFormPageProps): JSX.Element {
+  const [showModalSuccess, setShowModalSuccess] = useState<boolean>(false);
+  const [showModalError, setShowModalError] = useState<boolean>(false);
+
   const isOnline = useOnlineStatus();
 
   const [addSentence] = useAddSentenceMutation();
   const { data: peopleOptions, isLoading, isError } = useGetPeopleOptionsQuery();
 
-  const initialValues: AddSentenceForm = {
-    personId: null,
+  const initialValues: AddSentence = {
+    personId: '',
     sentence: '',
   };
 
   /**
    * Submit form.
    *
-   * @param {AddSentenceForm} values Form values
-   * @param {FormikHelpers<AddSentenceForm>} formikHelpers Form helpers
+   * @param {AddSentence} values Form values
+   * @param {FormikHelpers<AddSentence>} formikHelpers Form helpers
    * @return {Promise<void>}
    */
   const handleSubmit = async (
-    values: AddSentenceForm,
-    formikHelpers: FormikHelpers<AddSentenceForm>
+    values: AddSentence,
+    formikHelpers: FormikHelpers<AddSentence>
   ): Promise<void> => {
     const { setSubmitting, resetForm } = formikHelpers;
 
+    const initialValuesReset = { ...initialValues, personId: values.personId };
+
     if (!isOnline) {
-      // TODO: catch error.
       await saveSentenceToStorage({ ...values, id: Date.now() } as AddSentenceStorage)
-        .then(() => resetForm())
+        .then(() => {
+          setShowModalSuccess(true);
+          resetForm({ values: initialValuesReset });
+        })
+        .catch(() => {
+          setShowModalError(true);
+        })
         .finally(() => setSubmitting(false));
     } else {
-      // TODO: catch error.
       await addSentence(values as AddSentence)
-        .unwrap()
-        .then(() => resetForm())
+        .then(() => {
+          setShowModalSuccess(true);
+          resetForm({ values: initialValuesReset });
+        })
+        .catch(() => {
+          setShowModalError(true);
+        })
         .finally(() => setSubmitting(false));
     }
   };
@@ -88,7 +101,7 @@ function SentenceFormPage({ saveSentenceToStorage }: SentenceFormPageProps): JSX
                     onChange={handleChange}
                     placeholder="Sélectionner une personne..."
                     required
-                    value={values.personId ?? ''}
+                    value={values.personId}
                   >
                     {peopleOptions?.map(({ id, name }) => (
                       <option key={id} value={id}>
@@ -126,6 +139,27 @@ function SentenceFormPage({ saveSentenceToStorage }: SentenceFormPageProps): JSX
           </Form>
         )}
       </Formik>
+
+      <Modal
+        icon={IconCheck}
+        isVisible={showModalSuccess}
+        onClose={() => setShowModalSuccess(false)}
+        title="Phrase ajoutée"
+      >
+        <p>La phrase a bien été ajoutée !</p>
+      </Modal>
+
+      <Modal
+        icon={IconCross}
+        isVisible={showModalError}
+        onClose={() => setShowModalError(false)}
+        title="Oups..."
+      >
+        <p>
+          Une erreur est survenue !
+          <br /> La phrase n&apos;a pas pu être ajoutée.
+        </p>
+      </Modal>
     </div>
   );
 }
