@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 
 import { store } from '@app/store';
+import { SentenceIndexedDBContextProvider } from '@sentences/context';
 import App from '@src/App';
 
 import '@styles/index.scss';
@@ -11,9 +12,11 @@ import '@styles/index.scss';
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <SentenceIndexedDBContextProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </SentenceIndexedDBContextProvider>
     </Provider>
   </React.StrictMode>
 );

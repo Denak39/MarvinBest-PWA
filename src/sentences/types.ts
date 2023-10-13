@@ -1,5 +1,4 @@
 import type { BaseEntity } from '@app/types';
-import type { UseIndexedDBReturn } from '@hooks/types';
 import type { Person } from '@people/types';
 
 export interface Sentence extends BaseEntity {
@@ -18,8 +17,3 @@ export type AddSentence = {
 };
 
 export type AddSentenceStorage = AddSentence & BaseEntity;
-
-// Page
-export type SentenceFormPageProps = {
-  saveSentenceToStorage: UseIndexedDBReturn<AddSentenceStorage>['saveData'];
-};
