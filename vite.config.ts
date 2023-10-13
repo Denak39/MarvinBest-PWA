@@ -92,6 +92,10 @@ export default defineConfig({
             urlPattern: ({ url }) => /^\/api\/last_best_of/.test(url.pathname),
             name: 'api_get_sentences_last',
           }),
+          getCache({
+            urlPattern: ({ url }) => /\/api\/people\/[0-9]+/.test(url.href),
+            name: 'api_get_person',
+          }),
         ],
       },
     }),
@@ -99,16 +103,16 @@ export default defineConfig({
   resolve: {
     alias: [
       {
+        find: '@assets',
+        replacement: path.resolve(__dirname, 'src/assets'),
+      },
+      {
         find: '@api',
         replacement: path.resolve(__dirname, 'src/api'),
       },
       {
         find: '@app',
         replacement: path.resolve(__dirname, 'src/app'),
-      },
-      {
-        find: '@components',
-        replacement: path.resolve(__dirname, 'src/shared/components'),
       },
       {
         find: '@constants',
@@ -120,16 +124,13 @@ export default defineConfig({
       },
       {
         find: '@hooks',
-        replacement: path.resolve(__dirname, 'src/shared/hooks'),
+        replacement: path.resolve(__dirname, 'src/hooks'),
       },
       {
         find: '@home',
         replacement: path.resolve(__dirname, 'src/home'),
       },
-      {
-        find: '@images',
-        replacement: path.resolve(__dirname, 'src/images'),
-      },
+      
       {
         find: '@mocks',
         replacement: path.resolve(__dirname, 'src/mocks'),

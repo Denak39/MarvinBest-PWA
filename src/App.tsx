@@ -1,21 +1,19 @@
 import { lazy, Suspense, useCallback, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import Layout from '@components/Layout/Layout';
 import { IndexedDBStores, PATHS } from '@constants/index';
 import useIndexedDB from '@hooks/useIndexedDB';
 import useOnlineStatus from '@hooks/useOnlineStatus';
 import { useGetPeopleOptionsQuery, useGetPeopleQuery } from '@people/slice';
 import { useAddSentenceMutation, useGetLastSentenceQuery } from '@sentences/slice';
-import type { AddSentenceIndexedDB } from '@sentences/types';
-
-import '@styles/index.scss';
+import type { AddSentenceStorage } from '@sentences/types';
+import Layout from '@shared/Layout/Layout';
 
 const HomePage = lazy(() => import('@home/components/HomePage'));
 const PeoplePage = lazy(() => import('@people/components/PeoplePage'));
 const PersonPage = lazy(() => import('@people/components/PersonPage'));
 const SentenceFormPage = lazy(() => import('@sentences/components/SentenceFormPage'));
-const NotFoundPage = lazy(() => import('@components/ErrorPage/NotFoundPage'));
+const NotFoundPage = lazy(() => import('@shared/ErrorPage/NotFoundPage'));
 
 function App() {
   const [addSentence] = useAddSentenceMutation();
@@ -24,20 +22,14 @@ function App() {
     data: sentencesFromStorage,
     removeData,
     clearData,
-  } = useIndexedDB<AddSentenceIndexedDB>({
+  } = useIndexedDB<AddSentenceStorage>({
     name: IndexedDBStores.SENTENCES,
   });
 
   const isOnline = useOnlineStatus();
 
-  useGetPeopleOptionsQuery({
-    'order[name]': 'asc',
-    pagination: false,
-  });
-  useGetPeopleQuery({
-    'order[name]': 'asc',
-    page: 1,
-  });
+  useGetPeopleOptionsQuery();
+  useGetPeopleQuery({ page: 1 });
   useGetLastSentenceQuery();
 
   const fetchSentenceFromStorage = useCallback(async (): Promise<void> => {
@@ -73,7 +65,7 @@ function App() {
             }
           />
           <Route
-            path={PATHS.SENTENCE_FORM}
+            path={PATHS.SENTENCE_ADD}
             element={<SentenceFormPage saveSentenceToStorage={saveSentenceToStorage} />}
           />
           <Route path="*" element={<NotFoundPage />} />

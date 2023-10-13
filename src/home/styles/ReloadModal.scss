@@ -9,19 +9,13 @@
     flex-direction: column;
     row-gap: to-rem(22);
     text-align: center;
-  }
-
-  &__icon {
-    @include fixed-size(to-rem(50));
-
-    align-items: center;
-    background-color: $color-pink;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
 
     .Icon {
-      @include fixed-size(to-rem(30));
+      @include fixed-size(to-rem(50));
+
+      background-color: $color-pink;
+      border-radius: 50%;
+      padding: to-rem(10);
     }
   }
 

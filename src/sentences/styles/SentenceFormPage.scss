@@ -1,0 +1,24 @@
+@use "@styles/functions" as *;
+@use "@styles/variables" as *;
+@use "@styles/mixins" as *;
+@use "@shared/Form/index" as form;
+@use "@shared/Header/Header" as header;
+
+.SentenceFormPage {
+  @include header.offset;
+
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  &__form {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    flex-direction: column;
+
+    .Skeleton {
+      @include fixed-size-height(form.$height);
+    }
+  }
+}

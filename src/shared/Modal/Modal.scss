@@ -1,0 +1,46 @@
+@use "@styles/functions" as *;
+@use "@styles/variables" as *;
+@use "@shared/Layout/Layout" as layout;
+
+$-full-size: calc(100% - layout.$padding * 2);
+
+@keyframes slide-in {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(calc(-100% - #{layout.$padding}));
+  }
+}
+
+.Modal {
+  background-color: $color-purple;
+  border-radius: $border-radius;
+  border: none;
+  color: $color-white;
+  left: layout.$padding;
+  max-height: $-full-size;
+  overflow-y: auto;
+  padding: to-rem(40) to-rem(20);
+  position: fixed;
+  top: 100%;
+  transform: translate(0);
+  transition: 0.3s ease-out;
+  width: $-full-size;
+
+  &::backdrop {
+    background-color: $color-black;
+    opacity: 0.6;
+  }
+
+  &[open] {
+    animation: slide-in 0.3s ease-out forwards;
+  }
+
+  &__button {
+    position: absolute;
+    right: to-rem(10);
+    top: to-rem(10);
+  }
+}

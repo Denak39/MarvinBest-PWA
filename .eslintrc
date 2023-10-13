@@ -59,6 +59,7 @@
     ],
     "react/jsx-one-expression-per-line": [0],
     "react/jsx-props-no-spreading": "off",
+    "react/no-array-index-key": "off",
     "react/prefer-stateless-function": [1],
     "react/static-property-placement": [1, "property assignment"],
     "simple-import-sort/imports": [
@@ -69,7 +70,7 @@
           ["^react", "^@?\\w"],
           // Custom paths, aliases referenced in tsconfig.path.json (except assets, styles and utils)
           [
-            "^@(api|app|components|constants|helpers|hooks|home|mocks|people|sentences|shared|src|tests)(/.*|$)"
+            "^@(api|app|constants|helpers|hooks|home|mocks|people|sentences|shared|src|tests)(/.*|$)"
           ],
           // Side effect imports.
           ["^\\u0000"],
@@ -78,7 +79,7 @@
           // Other relative imports. Put same-folder imports and `.` last.
           ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
           // Images imports.
-          ["^@images(/.*|$)"],
+          ["^@assets(/.*|$)"],
           // Style imports.
           ["^.+\\.s?css$"]
         ]

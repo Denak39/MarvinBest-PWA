@@ -1,21 +1,25 @@
-import Message from '@components/Message/Message';
 import { useGetLastSentenceQuery } from '@sentences/slice';
+import Message from '@shared/Message/Message';
 
-import logo from '@images/logo.svg';
+import logo from '@assets/logo.svg';
 
-import '@home/styles/HomePage.scss';
-
+/**
+ * Home page.
+ *
+ * @return {JSX.Element}
+ */
 function HomePage(): JSX.Element {
-  // TODO: use selector instead of useGetLastSentenceQuery.
   const { data: lastSentence } = useGetLastSentenceQuery();
 
   return (
     <div className="HomePage">
-      <img alt="Logo marvin.best" className="HomePage__logo" src={logo} draggable={false} />
+      <h1 className="HomePage__logo">
+        <img alt="Logo marvin.best" src={logo} draggable={false} />
+      </h1>
 
       {!!lastSentence && (
         <>
-          <h1 className="HomePage__title">Dernière phrase ajoutée</h1>
+          <h2 className="HomePage__title">Dernière phrase ajoutée</h2>
           <Message name={lastSentence.speaker.name} date={lastSentence.createdAt}>
             {lastSentence.message}
           </Message>

@@ -2,12 +2,16 @@
 
 import * as Yup from 'yup';
 
-import type { AddSentence } from '@sentences/types';
+import type { AddSentenceForm } from '@sentences/types';
 
-export const addSentenceSchema = Yup.object<AddSentence>({
-  personId: Yup.number().required('Sélectionne une personne !'),
+export const addSentenceSchema = Yup.object<AddSentenceForm>({
+  personId: Yup.number()
+    .typeError("Oups, le type du champ n'est pas correct...")
+    .required('Sélectionne une personne !'),
   sentence: Yup.string()
+    .typeError("Oups, le type du champ n'est pas correct...")
     .trim()
-    .required('Oublie pas la phrase !')
-    .min(5, 'Eh, pas trop court non plus...'),
+    .required("N'oublies pas la phrase !")
+    .min(5, 'Eh ! Pas trop court la phrase !')
+    .max(255, 'Heuu, ça fait beaucoup de caractères quand même...'),
 });

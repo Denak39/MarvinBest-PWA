@@ -1,0 +1,12 @@
+@use "@styles/functions" as *;
+@use "@styles/mixins" as *;
+@use "@styles/variables" as *;
+@use "@shared/Form/index" as *;
+
+.Textarea {
+  @include input;
+
+  max-height: 100vh;
+  min-height: to-rem(150);
+  resize: vertical;
+}

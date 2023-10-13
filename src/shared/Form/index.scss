@@ -1,0 +1,27 @@
+@use "@styles/functions" as *;
+@use "@styles/mixins" as *;
+@use "@styles/variables" as *;
+
+$padding: to-rem(14);
+$height: to-rem(48);
+
+@mixin input {
+  @include font-text;
+
+  background-color: $color-black;
+  border-radius: $border-radius;
+  padding: $padding;
+  width: 100%;
+
+  &:focus-visible {
+    @include outline;
+  }
+
+  &::placeholder {
+    @include font-text;
+
+    color: $color-white;
+    font-weight: $font-weight-light;
+    opacity: 0.6;
+  }
+}

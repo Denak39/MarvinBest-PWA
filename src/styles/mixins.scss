@@ -63,3 +63,10 @@
   max-height: $height;
   min-height: $height;
 }
+
+// Breakpoints
+@mixin bp-desktop {
+  @media (width >= 992px) {
+    @content;
+  }
+}

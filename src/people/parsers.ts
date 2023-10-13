@@ -9,6 +9,12 @@ import type {
 import type { People, PeopleOptions, Person } from '@people/types';
 import { parseSentenceResponse } from '@sentences/parsers';
 
+/**
+ * Parse person response.
+ *
+ * @param {ApiPersonResponse|Omit<ApiPersonResponse, '@context'>} data Data
+ * @return {Person}
+ */
 export function parsePersonResponse(
   data: ApiPersonResponse | Omit<ApiPersonResponse, '@context'>
 ): Person {
@@ -20,6 +26,12 @@ export function parsePersonResponse(
   };
 }
 
+/**
+ * Parse people response.
+ *
+ * @param {ApiPeopleResponse} data Data
+ * @return {CollectionResponse<People>}
+ */
 export function parsePeopleResponse(data: ApiPeopleResponse): CollectionResponse<People> {
   return {
     totalPages: findPage(data['hydra:view']['hydra:last']),
@@ -27,6 +39,12 @@ export function parsePeopleResponse(data: ApiPeopleResponse): CollectionResponse
   };
 }
 
+/**
+ * Parse people options response.
+ *
+ * @param {ApiPeopleOptionsResponse} data Data
+ * @return {PeopleOptions}
+ */
 export function parsePeopleOptionsResponse(data: ApiPeopleOptionsResponse): PeopleOptions {
   return data['hydra:member'].map((item) => ({
     id: parseIdResponse(item['@id']),

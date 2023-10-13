@@ -1,0 +1,7 @@
+@use "@styles/functions" as *;
+@use "@styles/mixins" as *;
+@use "@styles/variables" as *;
+
+.FormControl {
+  margin-bottom: to-rem(40);
+}

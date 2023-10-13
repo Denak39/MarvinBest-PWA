@@ -1,0 +1,51 @@
+@use "@styles/functions" as *;
+@use "@styles/variables" as *;
+@use "@styles/mixins" as *;
+@use "@shared/Layout/Layout" as layout;
+
+$-height: to-rem(86);
+$-icon-size: to-rem(24);
+$-margin: invert-sign(layout.$padding);
+
+@mixin offset {
+  margin-top: calc($-height - layout.$padding + to-rem(10));
+}
+
+.Header {
+  @include fixed-size-height($-height);
+
+  align-items: center;
+  background-color: $color-purple;
+  display: grid;
+  grid-column-start: 2;
+  grid-gap: to-rem(20);
+  grid-template-columns: $-icon-size 1fr $-icon-size;
+  left: 0;
+  padding: 0 to-rem(20);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: $zindex-fixed;
+
+  .IconButton {
+    align-items: center;
+    color: $color-pink;
+    display: flex;
+    justify-content: center;
+
+    .Icon {
+      @include fixed-size($-icon-size);
+    }
+  }
+
+  .IconButton[hidden] {
+    visibility: hidden;
+  }
+
+  &__title {
+    @include text-overflow;
+
+    text-align: center;
+    white-space: nowrap;
+  }
+}

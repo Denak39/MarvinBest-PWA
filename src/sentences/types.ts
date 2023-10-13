@@ -11,13 +11,19 @@ export interface SentenceWithSpeaker extends Sentence {
   speaker: Pick<Person, 'name'>;
 }
 
-export type AddSentence = {
-  personId: Person['id'];
+// Form
+export type AddSentenceForm = {
+  personId: Person['id'] | null;
   sentence: Sentence['message'];
 };
 
-export type AddSentenceIndexedDB = AddSentence & BaseEntity;
+export interface AddSentence extends Pick<AddSentenceForm, 'sentence'> {
+  personId: Person['id'];
+}
 
+export type AddSentenceStorage = AddSentence & BaseEntity;
+
+// Page
 export type SentenceFormPageProps = {
-  saveSentenceToStorage: UseIndexedDBReturn<AddSentenceIndexedDB>['saveData'];
+  saveSentenceToStorage: UseIndexedDBReturn<AddSentenceStorage>['saveData'];
 };

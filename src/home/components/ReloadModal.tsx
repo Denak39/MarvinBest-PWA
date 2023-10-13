@@ -1,30 +1,27 @@
 import { useRegisterSW } from 'virtual:pwa-register/react';
 
-import Button from '@components/Button/Button';
-import IconReload from '@components/Icons/IconReload';
-import Modal from '@components/Modal/Modal';
+import Button from '@shared/Button/Button';
+import IconReload from '@shared/Icons/IconReload';
+import Modal from '@shared/Modal/Modal';
 
-import '@home/styles/ReloadModal.scss';
-
+/**
+ * Modal prompting user to update service worker.
+ *
+ * @return {JSX.Element}
+ */
 function ReloadModal(): JSX.Element {
   const {
     needRefresh: [needRefresh, setNeedRefresh],
     updateServiceWorker,
   } = useRegisterSW();
 
-  const handleClose = () => {
-    setNeedRefresh(false);
-  };
+  const handleClose = (): void => setNeedRefresh(false);
 
-  const handleUpdateServiceWorker = async () => {
-    await updateServiceWorker(true);
-  };
+  const handleUpdateServiceWorker = async (): Promise<void> => updateServiceWorker(true);
 
   return (
     <Modal className="ReloadModal" isVisible={needRefresh} onClose={handleClose}>
-      <span className="ReloadModal__icon">
-        <IconReload />
-      </span>
+      <IconReload />
 
       <h2 className="ReloadModal__title">Mise à jour disponible</h2>
 

@@ -1,0 +1,10 @@
+@use "@styles/functions" as *;
+@use "@styles/mixins" as *;
+@use "@styles/variables" as *;
+@use "@shared/Form/index" as *;
+
+.TextField {
+  @include fixed-size-height($height);
+  @include input;
+  @include text-overflow;
+}
