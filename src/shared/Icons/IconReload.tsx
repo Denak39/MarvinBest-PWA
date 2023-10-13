@@ -1,4 +1,4 @@
-function IconReload() {
+function IconReload(): JSX.Element {
   return (
     <svg
       aria-hidden

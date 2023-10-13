@@ -2,7 +2,7 @@
 @use "@styles/mixins" as *;
 @use "@styles/variables" as *;
 
-$padding: to-rem(20);
+$-padding: to-rem(20);
 
 .Card {
   background-color: $color-black;
@@ -10,7 +10,7 @@ $padding: to-rem(20);
   column-gap: to-rem(16);
   display: flex;
   overflow: hidden;
-  padding: $padding;
+  padding: $-padding;
 
   &:focus-visible {
     @include outline;

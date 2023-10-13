@@ -1,4 +1,4 @@
-function IconSmallArrowDown() {
+function IconSmallArrowDown(): JSX.Element {
   return (
     <svg
       aria-hidden

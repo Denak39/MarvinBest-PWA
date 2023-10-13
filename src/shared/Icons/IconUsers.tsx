@@ -1,4 +1,4 @@
-function IconUsers() {
+function IconUsers(): JSX.Element {
   return (
     <svg
       aria-hidden

@@ -1,4 +1,4 @@
-function IconSpinner() {
+function IconSpinner(): JSX.Element {
   return (
     <svg
       aria-hidden

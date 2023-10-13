@@ -1,4 +1,4 @@
-function IconClose() {
+function IconClose(): JSX.Element {
   return (
     <svg
       aria-hidden

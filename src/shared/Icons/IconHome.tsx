@@ -1,4 +1,4 @@
-function IconHome() {
+function IconHome(): JSX.Element {
   return (
     <svg
       aria-hidden

@@ -1,4 +1,4 @@
-function IconAdd() {
+function IconAdd(): JSX.Element {
   return (
     <svg
       aria-hidden

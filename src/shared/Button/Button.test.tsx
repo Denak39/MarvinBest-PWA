@@ -20,6 +20,7 @@ describe('shared/components/Button', () => {
     expect(button).toHaveTextContent(props.children as string);
     expect(button).toHaveAccessibleDescription(props.title);
   });
+
   it('should render the expected component with icon', () => {
     const localProps: ButtonProps = {
       ...props,
