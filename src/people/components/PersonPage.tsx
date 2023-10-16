@@ -1,10 +1,11 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import type { FormikHelpers } from 'formik';
 import { Form, Formik } from 'formik';
 
 import useOnlineStatus from '@hooks/useOnlineStatus';
 import { useGetPeopleOptionsQuery, useGetPersonQuery } from '@people/slice';
+import ModalAddSentenceError from '@sentences/components/ModalAddSentenceError';
 import { addSentenceSchema } from '@sentences/constants';
 import { SentenceIndexedDBContext } from '@sentences/context';
 import { useAddSentenceMutation } from '@sentences/slice';
@@ -26,6 +27,8 @@ import Skeleton from '@shared/Skeleton/Skeleton';
 function PersonPage(): JSX.Element {
   const { id: stringId } = useParams();
   const id = parseInt(String(stringId), 10);
+
+  const [showModalError, setShowModalError] = useState<boolean>(false);
 
   const { data: sentencesFromStorage, saveData: saveSentenceToStorage } =
     useContext(SentenceIndexedDBContext);
@@ -62,15 +65,19 @@ function PersonPage(): JSX.Element {
     const { resetForm, setSubmitting } = formikHelpers;
 
     if (!isOnline) {
-      // TODO: catch error.
       await saveSentenceToStorage({ ...values, id: Date.now() } as AddSentenceStorage)
         .then(() => resetForm())
+        .catch(() => {
+          setShowModalError(true);
+        })
         .finally(() => setSubmitting(false));
     } else {
-      // TODO: catch error.
       await addSentence(values as AddSentence)
         .unwrap()
         .then(() => resetForm())
+        .catch(() => {
+          setShowModalError(true);
+        })
         .finally(() => setSubmitting(false));
     }
   };
@@ -165,6 +172,8 @@ function PersonPage(): JSX.Element {
           </Form>
         )}
       </Formik>
+
+      <ModalAddSentenceError isVisible={showModalError} onClose={() => setShowModalError(false)} />
     </div>
   );
 }

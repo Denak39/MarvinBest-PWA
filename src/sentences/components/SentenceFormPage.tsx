@@ -4,6 +4,7 @@ import { Form, Formik } from 'formik';
 
 import useOnlineStatus from '@hooks/useOnlineStatus';
 import { useGetPeopleOptionsQuery } from '@people/slice';
+import ModalAddSentenceError from '@sentences/components/ModalAddSentenceError';
 import { addSentenceSchema } from '@sentences/constants';
 import { SentenceIndexedDBContext } from '@sentences/context';
 import { useAddSentenceMutation } from '@sentences/slice';
@@ -17,7 +18,6 @@ import Textarea from '@shared/Form/Textarea/Textarea';
 import Header from '@shared/Header/Header';
 import IconAdd from '@shared/Icons/IconAdd';
 import IconCheck from '@shared/Icons/IconCheck';
-import IconCross from '@shared/Icons/IconCross';
 import Modal from '@shared/Modal/Modal';
 import Skeleton from '@shared/Skeleton/Skeleton';
 
@@ -151,17 +151,7 @@ function SentenceFormPage(): JSX.Element {
         <p>La phrase a bien été ajoutée !</p>
       </Modal>
 
-      <Modal
-        icon={IconCross}
-        isVisible={showModalError}
-        onClose={() => setShowModalError(false)}
-        title="Oups..."
-      >
-        <p>
-          Une erreur est survenue !
-          <br /> La phrase n&apos;a pas pu être ajoutée.
-        </p>
-      </Modal>
+      <ModalAddSentenceError isVisible={showModalError} onClose={() => setShowModalError(false)} />
     </div>
   );
 }
