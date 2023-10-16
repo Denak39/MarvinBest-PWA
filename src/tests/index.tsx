@@ -1,14 +1,36 @@
 import type { PropsWithChildren, ReactElement } from 'react';
+import { Provider } from 'react-redux';
 import type { MemoryRouterProps } from 'react-router-dom';
 import { MemoryRouter } from 'react-router-dom';
-import { render } from '@testing-library/react';
+import type { RenderResult } from '@testing-library/react';
+import { render as defaultRender } from '@testing-library/react';
 
-function renderWithRouter(ui: ReactElement, props: MemoryRouterProps = { initialEntries: ['/'] }) {
+import store from '@app/store';
+import { PATHS } from '@constants/index';
+import { SentenceIndexedDBContextProvider } from '@sentences/context';
+
+/**
+ * Render ui.
+ *
+ * @param {ReactElement} ui Element to render
+ * @param {MemoryRouterProps} props Props for router
+ * @return {RenderResult}
+ */
+function render(
+  ui: ReactElement,
+  props: MemoryRouterProps = { initialEntries: [PATHS.HOME] }
+): RenderResult {
   const wrapper = ({ children }: PropsWithChildren) => {
-    return <MemoryRouter {...props}>{children}</MemoryRouter>;
+    return (
+      <Provider store={store}>
+        <SentenceIndexedDBContextProvider>
+          <MemoryRouter {...props}>{children}</MemoryRouter>
+        </SentenceIndexedDBContextProvider>
+      </Provider>
+    );
   };
 
-  return { ...render(ui, { wrapper }) };
+  return { ...defaultRender(ui, { wrapper }) };
 }
 
-export default renderWithRouter;
+export { defaultRender, render };

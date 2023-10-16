@@ -7,7 +7,7 @@ import BaseErrorPage from '@shared/ErrorPage/BaseErrorPage/BaseErrorPage';
  */
 function ErrorPage(): JSX.Element {
   return (
-    <BaseErrorPage title="Oups...">
+    <BaseErrorPage title="Oups..." data-testid="ErrorPage">
       Une erreur est survenue !
       <br /> Contactez un administrateur
       <br /> pour plus d’informations.

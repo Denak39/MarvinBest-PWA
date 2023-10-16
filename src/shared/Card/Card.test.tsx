@@ -2,7 +2,7 @@ import { screen } from '@testing-library/react';
 
 import Card from '@shared/Card/Card';
 import type { CardProps } from '@shared/Card/Card.types';
-import renderWithRouter from '@tests/index';
+import { render } from '@tests/index';
 
 const props: CardProps = {
   className: 'custom-class',
@@ -13,7 +13,7 @@ const props: CardProps = {
 
 describe('shared/components/Card', () => {
   it('should renders the expected component', () => {
-    renderWithRouter(<Card {...props} />);
+    render(<Card {...props} />);
 
     const card = screen.getByTestId('Card');
     const avatar = screen.getByTestId('Avatar');
@@ -33,11 +33,8 @@ describe('shared/components/Card', () => {
       countSentences: 1,
     };
 
-    renderWithRouter(<Card {...localProps} />);
+    const { container } = render(<Card {...localProps} />);
 
-    const card = screen.getByTestId('Card');
-    const count = card.querySelector('.Card__count-sentences');
-
-    expect(count).toHaveTextContent('1 phrase');
+    expect(container.querySelector('.Card__count-sentences')).toHaveTextContent('1 phrase');
   });
 });

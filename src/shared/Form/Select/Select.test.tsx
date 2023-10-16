@@ -1,7 +1,8 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 
 import Select from '@shared/Form/Select/Select';
 import type { SelectProps } from '@shared/Form/Select/Select.types';
+import { defaultRender } from '@tests/index';
 
 const props: SelectProps = {
   className: 'custom-class',
@@ -17,17 +18,16 @@ const props: SelectProps = {
 
 describe('shared/components/Select', () => {
   it('should render the expected component', () => {
-    render(<Select {...props} />);
+    defaultRender(<Select {...props} />);
 
     const selectContainer = screen.getByTestId('Select');
-    const select = selectContainer.querySelector('select');
+    const select = screen.getByTestId('FieldSelect');
     const option1 = screen.getByText('Option 1');
     const option2 = screen.getByText('Option 2');
     const option3 = screen.getByText('Option 3');
 
     expect(selectContainer).toHaveClass(`Select ${props.className}`);
     expect(select).toBeRequired();
-
     expect(option1).toBeInTheDocument();
     expect(option2).toBeInTheDocument();
     expect(option3).toBeInTheDocument();
@@ -39,10 +39,8 @@ describe('shared/components/Select', () => {
       placeholder: 'Placeholder',
     };
 
-    render(<Select {...localProps} />);
+    defaultRender(<Select {...localProps} />);
 
-    const optionPlaceholder = screen.getByText(localProps.placeholder as string);
-
-    expect(optionPlaceholder).toBeInTheDocument();
+    expect(screen.getByText(localProps.placeholder as string)).toBeInTheDocument();
   });
 });

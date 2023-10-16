@@ -1,7 +1,7 @@
 import { api } from '@api/index';
-import type { ApiLastSentenceResponse, ApiSentenceResponse } from '@api/types';
-import { parseLastSentenceResponse, parseSentenceResponse } from '@sentences/parsers';
-import type { AddSentence, Sentence, SentenceWithSpeaker } from '@sentences/types';
+import type { ApiSentenceResponse } from '@api/types';
+import { parseSentenceResponse } from '@sentences/parsers';
+import type { AddSentence, Sentence } from '@sentences/types';
 
 export const sentencesSlice = api.injectEndpoints({
   endpoints: (builder) => ({
@@ -23,10 +23,10 @@ export const sentencesSlice = api.injectEndpoints({
       ],
       transformResponse: (data: ApiSentenceResponse) => parseSentenceResponse(data),
     }),
-    getLastSentence: builder.query<SentenceWithSpeaker, void>({
+    getLastSentence: builder.query<Sentence, void>({
       query: () => `/last_best_of`,
       providesTags: ['LastSentence'],
-      transformResponse: (data: ApiLastSentenceResponse) => parseLastSentenceResponse(data),
+      transformResponse: (data: ApiSentenceResponse) => parseSentenceResponse(data),
     }),
   }),
 });

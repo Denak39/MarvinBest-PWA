@@ -1,7 +1,8 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 
 import Textarea from '@shared/Form/Textarea/Textarea';
 import type { TextareaProps } from '@shared/Form/Textarea/Textarea.types';
+import { defaultRender } from '@tests/index';
 
 const props: TextareaProps = {
   className: 'custom-class',
@@ -11,7 +12,7 @@ const props: TextareaProps = {
 
 describe('shared/components/Textarea', () => {
   it('should renders the expected component', () => {
-    render(<Textarea {...props} />);
+    defaultRender(<Textarea {...props} />);
 
     const textarea = screen.getByTestId('Textarea');
 

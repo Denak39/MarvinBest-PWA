@@ -1,7 +1,8 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 
 import Skeleton from '@shared/Skeleton/Skeleton';
 import type { SkeletonProps } from '@shared/Skeleton/Skeleton.types';
+import { defaultRender } from '@tests/index';
 
 const props: SkeletonProps = {
   className: 'custom-class',
@@ -11,7 +12,7 @@ const props: SkeletonProps = {
 
 describe('shared/components/Skeleton', () => {
   it('should renders the expected component', () => {
-    render(<Skeleton {...props} />);
+    defaultRender(<Skeleton {...props} />);
 
     const skeleton = screen.getByTestId('Skeleton');
 

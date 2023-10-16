@@ -1,7 +1,8 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 
 import TextField from '@shared/Form/TextField/TextField';
 import type { TextFieldProps } from '@shared/Form/TextField/TextField.types';
+import { defaultRender } from '@tests/index';
 
 const props: TextFieldProps = {
   className: 'custom-class',
@@ -11,7 +12,7 @@ const props: TextFieldProps = {
 
 describe('shared/components/TextField', () => {
   it('should renders the expected component', () => {
-    render(<TextField {...props} />);
+    defaultRender(<TextField {...props} />);
 
     const textField = screen.getByTestId('TextField');
 

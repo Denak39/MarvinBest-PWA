@@ -12,7 +12,7 @@ function HomePage(): JSX.Element {
   const { data: lastSentence } = useGetLastSentenceQuery();
 
   return (
-    <div className="HomePage">
+    <div className="HomePage" data-testid="HomePage">
       <h1 className="HomePage__logo">
         <img alt="Logo marvin.best" src={logo} draggable={false} />
       </h1>
@@ -20,7 +20,7 @@ function HomePage(): JSX.Element {
       {!!lastSentence && (
         <>
           <h2 className="HomePage__title">Dernière phrase ajoutée</h2>
-          <Message name={lastSentence.speaker.name} date={lastSentence.createdAt}>
+          <Message name={lastSentence.person.name} date={lastSentence.createdAt}>
             {lastSentence.message}
           </Message>
         </>

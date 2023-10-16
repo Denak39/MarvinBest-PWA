@@ -1,7 +1,8 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 
 import Avatar from '@shared/Avatar/Avatar';
 import type { AvatarProps } from '@shared/Avatar/Avatar.types';
+import { defaultRender } from '@tests/index';
 
 const props: AvatarProps = {
   className: 'custom-class',
@@ -10,7 +11,7 @@ const props: AvatarProps = {
 
 describe('shared/components/Avatar', () => {
   it('should renders the expected component', () => {
-    render(<Avatar {...props} />);
+    defaultRender(<Avatar {...props} />);
 
     const avatar = screen.getByTestId('Avatar');
 

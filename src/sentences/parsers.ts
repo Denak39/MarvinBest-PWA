@@ -1,7 +1,10 @@
+/* eslint-disable import/no-cycle */
+
 import { parseIdResponse } from '@api/parsers';
-import type { ApiLastSentenceResponse, ApiSentenceResponse } from '@api/types';
+import type { ApiData, ApiSentenceResponse, ApiShortSentenceData } from '@api/types';
 import DateHelpers from '@helpers/DateHelpers';
-import type { Sentence, SentenceWithSpeaker } from '@sentences/types';
+import { parseShortPersonData } from '@people/parsers';
+import type { Sentence, ShortSentence } from '@sentences/types';
 
 /**
  * Return createdAt value.
@@ -20,6 +23,20 @@ const getCreatedAt = (createdAt: Sentence['createdAt']): Sentence['createdAt'] =
 };
 
 /**
+ * Parse short sentence data.
+ *
+ * @param {ApiData<ApiShortSentenceData>} data Data
+ * @return {ShortSentence}
+ */
+export function parseShortSentenceData(data: ApiData<ApiShortSentenceData>): ShortSentence {
+  return {
+    createdAt: getCreatedAt(data.createdAt),
+    id: parseIdResponse(data['@id']),
+    message: data.sentence,
+  };
+}
+
+/**
  * Parse sentence response.
  *
  * @param {ApiSentenceResponse|Omit<ApiSentenceResponse, '@context'>} data Data
@@ -29,25 +46,7 @@ export function parseSentenceResponse(
   data: ApiSentenceResponse | Omit<ApiSentenceResponse, '@context'>
 ): Sentence {
   return {
-    createdAt: getCreatedAt(data.createdAt),
-    id: parseIdResponse(data['@id']),
-    message: data.sentence,
-  };
-}
-
-/**
- * Parse last sentence response.
- *
- * @param {ApiLastSentenceResponse|Omit<ApiLastSentenceResponse, '@context'>} data Data
- * @return {SentenceWithSpeaker}
- */
-export function parseLastSentenceResponse(
-  data: ApiLastSentenceResponse | Omit<ApiLastSentenceResponse, '@context'>
-): SentenceWithSpeaker {
-  return {
-    ...parseSentenceResponse(data as ApiSentenceResponse),
-    speaker: {
-      name: data.speaker.name,
-    },
+    ...parseShortSentenceData(data),
+    person: parseShortPersonData(data.speaker),
   };
 }

@@ -5,6 +5,8 @@ export const PATHS = {
   SENTENCE_ADD: '/sentence/add',
 };
 
+export const DB_NAME = 'marvin-best';
+
 export enum IndexedDBStores {
   SENTENCES = 'sentences',
 }

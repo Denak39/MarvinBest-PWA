@@ -1,7 +1,8 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 
 import Alert from '@shared/Alert/Alert';
 import type { AlertProps } from '@shared/Alert/Alert.types';
+import { defaultRender } from '@tests/index';
 
 const props: AlertProps = {
   children: <p>An error has occurred</p>,
@@ -11,7 +12,7 @@ const props: AlertProps = {
 
 describe('shared/components/Alert', () => {
   it('should renders the expected component', () => {
-    render(<Alert {...props} />);
+    defaultRender(<Alert {...props} />);
 
     const alert = screen.getByTestId('Alert');
 
@@ -26,10 +27,11 @@ describe('shared/components/Alert', () => {
       isVisible: false,
     };
 
-    render(<Alert {...localProps} />);
+    defaultRender(<Alert {...localProps} />);
 
     const alert = screen.getByTestId('Alert');
 
     expect(alert).not.toHaveClass('Alert--is-visible');
+    expect(alert).not.toBeVisible();
   });
 });
