@@ -9,7 +9,6 @@
       "@helpers/*": ["src/helpers/*"],
       "@home/*": ["src/home/*"],
       "@hooks/*": ["src/hooks/*"],
-      "@mocks/*": ["src/mocks/*"],
       "@people/*": ["src/people/*"],
       "@sentences/*": ["src/sentences/*"],
       "@shared/*": ["src/shared/*"],

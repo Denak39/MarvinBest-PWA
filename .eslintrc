@@ -70,7 +70,7 @@
           ["^react", "^@?\\w"],
           // Custom paths, aliases referenced in tsconfig.path.json (except assets, styles and utils)
           [
-            "^@(api|app|constants|helpers|hooks|home|mocks|people|sentences|shared|src|tests)(/.*|$)"
+            "^@(api|app|constants|helpers|home|hooks|people|sentences|shared|src|tests)(/.*|$)"
           ],
           // Side effect imports.
           ["^\\u0000"],
