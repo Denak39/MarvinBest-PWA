@@ -1,12 +1,13 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import type { FormikHelpers } from 'formik';
 import { Form, Formik } from 'formik';
 
 import useOnlineStatus from '@hooks/useOnlineStatus';
 import { useGetPeopleOptionsQuery } from '@people/slice';
 import { addSentenceSchema } from '@sentences/constants';
+import { SentenceIndexedDBContext } from '@sentences/context';
 import { useAddSentenceMutation } from '@sentences/slice';
-import type { AddSentence, AddSentenceStorage, SentenceFormPageProps } from '@sentences/types';
+import type { AddSentence, AddSentenceStorage } from '@sentences/types';
 import Button from '@shared/Button/Button';
 import FormControl from '@shared/Form/FormControl/FormControl';
 import FormErrorMessage from '@shared/Form/FormErrorMessage/FormErrorMessage';
@@ -23,10 +24,11 @@ import Skeleton from '@shared/Skeleton/Skeleton';
 /**
  * SentenceForm page.
  *
- * @param {SentenceFormPageProps} props Props
  * @return {JSX.Element}
  */
-function SentenceFormPage({ saveSentenceToStorage }: SentenceFormPageProps): JSX.Element {
+function SentenceFormPage(): JSX.Element {
+  const { saveData: saveSentenceToStorage } = useContext(SentenceIndexedDBContext);
+
   const [showModalSuccess, setShowModalSuccess] = useState<boolean>(false);
   const [showModalError, setShowModalError] = useState<boolean>(false);
 

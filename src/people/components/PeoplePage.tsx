@@ -1,10 +1,11 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 
 import type { CollectionResponse } from '@api/types';
 import { PATHS } from '@constants/index';
 import useScrolledToBottom from '@hooks/useScrolledToBottom';
 import { useGetPeopleQuery } from '@people/slice';
-import type { People, PeoplePageProps } from '@people/types';
+import type { People } from '@people/types';
+import { SentenceIndexedDBContext } from '@sentences/context';
 import Card from '@shared/Card/Card';
 import Header from '@shared/Header/Header';
 import Skeleton from '@shared/Skeleton/Skeleton';
@@ -12,10 +13,11 @@ import Skeleton from '@shared/Skeleton/Skeleton';
 /**
  * People page.
  *
- * @param {PeoplePageProps} props Props
  * @return {JSX.Element}
  */
-function PeoplePage({ sentencesFromStorage }: PeoplePageProps): JSX.Element {
+function PeoplePage(): JSX.Element {
+  const { data: sentencesFromStorage } = useContext(SentenceIndexedDBContext);
+
   const [page, setPage] = useState<number>(1);
   const [peopleList, setPeopleList] = useState<CollectionResponse<People> | undefined>(undefined);
 

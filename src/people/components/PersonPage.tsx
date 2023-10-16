@@ -1,12 +1,12 @@
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import type { FormikHelpers } from 'formik';
 import { Form, Formik } from 'formik';
 
 import useOnlineStatus from '@hooks/useOnlineStatus';
 import { useGetPeopleOptionsQuery, useGetPersonQuery } from '@people/slice';
-import type { PersonPageProps } from '@people/types';
 import { addSentenceSchema } from '@sentences/constants';
+import { SentenceIndexedDBContext } from '@sentences/context';
 import { useAddSentenceMutation } from '@sentences/slice';
 import type { AddSentence, AddSentenceStorage } from '@sentences/types';
 import ErrorPage from '@shared/ErrorPage/ErrorPage';
@@ -21,12 +21,14 @@ import Skeleton from '@shared/Skeleton/Skeleton';
 /**
  * Person page.
  *
- * @param {PersonPageProps} props Props
  * @return {JSX.Element}
  */
-function PersonPage({ saveSentenceToStorage, sentencesFromStorage }: PersonPageProps): JSX.Element {
+function PersonPage(): JSX.Element {
   const { id: stringId } = useParams();
   const id = parseInt(String(stringId), 10);
+
+  const { data: sentencesFromStorage, saveData: saveSentenceToStorage } =
+    useContext(SentenceIndexedDBContext);
 
   const isOnline = useOnlineStatus();
 
