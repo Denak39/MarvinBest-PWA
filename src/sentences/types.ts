@@ -1,5 +1,6 @@
 import type { BaseEntity } from '@app/types';
 import type { Person } from '@people/types';
+import type { ModalProps } from '@shared/Modal/Modal.types';
 
 export interface Sentence extends BaseEntity {
   createdAt: string;
@@ -17,3 +18,6 @@ export type AddSentence = {
 };
 
 export type AddSentenceStorage = AddSentence & BaseEntity;
+
+// Modal
+export type ModalAddSentenceErrorProps = Pick<ModalProps, 'isVisible' | 'onClose'>;
