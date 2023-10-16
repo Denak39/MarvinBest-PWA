@@ -103,16 +103,16 @@ export default defineConfig({
   resolve: {
     alias: [
       {
-        find: '@assets',
-        replacement: path.resolve(__dirname, 'src/assets'),
-      },
-      {
         find: '@api',
         replacement: path.resolve(__dirname, 'src/api'),
       },
       {
         find: '@app',
         replacement: path.resolve(__dirname, 'src/app'),
+      },
+      {
+        find: '@assets',
+        replacement: path.resolve(__dirname, 'src/assets'),
       },
       {
         find: '@constants',
@@ -123,17 +123,12 @@ export default defineConfig({
         replacement: path.resolve(__dirname, 'src/helpers'),
       },
       {
-        find: '@hooks',
-        replacement: path.resolve(__dirname, 'src/hooks'),
-      },
-      {
         find: '@home',
         replacement: path.resolve(__dirname, 'src/home'),
       },
-      
       {
-        find: '@mocks',
-        replacement: path.resolve(__dirname, 'src/mocks'),
+        find: '@hooks',
+        replacement: path.resolve(__dirname, 'src/hooks'),
       },
       {
         find: '@people',
