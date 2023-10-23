@@ -25,6 +25,7 @@ $-icon-size: to-rem(20);
     @include fixed-size($-icon-size);
 
     color: $color-pink;
+    pointer-events: none;
     position: absolute;
     right: to-rem(14);
     top: 50%;

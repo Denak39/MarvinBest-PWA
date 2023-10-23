@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import type { BaseEntity } from '@app/types';
+import { DB_NAME } from '@constants/index';
 import type { UseIndexedDBProps, UseIndexedDBReturn } from '@hooks/types';
 
 /**
@@ -20,7 +21,7 @@ function useIndexedDB<TData>({ name }: UseIndexedDBProps): UseIndexedDBReturn<TD
    */
   const openDb = async (): Promise<IDBDatabase> =>
     new Promise((resolve, reject) => {
-      const req = indexedDB.open('marvin-best');
+      const req = indexedDB.open(DB_NAME);
 
       req.onsuccess = () => resolve(req.result);
       req.onerror = (event: Event) => reject(event);

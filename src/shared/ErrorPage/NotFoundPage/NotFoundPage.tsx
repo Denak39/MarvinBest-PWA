@@ -7,7 +7,7 @@ import BaseErrorPage from '@shared/ErrorPage/BaseErrorPage/BaseErrorPage';
  */
 function NotFoundPage(): JSX.Element {
   return (
-    <BaseErrorPage title="Erreur 404">
+    <BaseErrorPage title="Erreur 404" data-testid="NotFoundPage">
       La page que vous souhaitez
       <br /> afficher n’existe pas ou plus...
     </BaseErrorPage>

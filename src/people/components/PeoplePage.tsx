@@ -45,7 +45,7 @@ function PeoplePage(): JSX.Element {
 
     return Array.from({ length: isLoading ? 10 : 3 }, (_v, i) => i).map((_item, index) => (
       <Skeleton
-        aria-label="Chargement des personnes"
+        aria-label="Chargement d'une personne"
         className="Skeleton--card"
         delay={`${index * 0.2}s`}
         key={`skeleton-${index}`}
@@ -69,7 +69,7 @@ function PeoplePage(): JSX.Element {
   }, [people, peopleList]);
 
   return (
-    <div className="PeoplePage">
+    <div className="PeoplePage" data-testid="PeoplePage">
       <Header>Personnes</Header>
 
       <ul className="PeoplePage__list">

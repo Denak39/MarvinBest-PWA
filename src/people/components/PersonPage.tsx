@@ -10,7 +10,7 @@ import { addSentenceSchema } from '@sentences/constants';
 import { SentenceIndexedDBContext } from '@sentences/context';
 import { useAddSentenceMutation } from '@sentences/slice';
 import type { AddSentence, AddSentenceStorage } from '@sentences/types';
-import ErrorPage from '@shared/ErrorPage/ErrorPage';
+import ErrorPage from '@shared/ErrorPage/ErrorPage/ErrorPage';
 import TextField from '@shared/Form/TextField/TextField';
 import Header from '@shared/Header/Header';
 import IconButton from '@shared/IconButton/IconButton';
@@ -67,17 +67,13 @@ function PersonPage(): JSX.Element {
     if (!isOnline) {
       await saveSentenceToStorage({ ...values, id: Date.now() } as AddSentenceStorage)
         .then(() => resetForm())
-        .catch(() => {
-          setShowModalError(true);
-        })
+        .catch(() => setShowModalError(true))
         .finally(() => setSubmitting(false));
     } else {
       await addSentence(values as AddSentence)
         .unwrap()
         .then(() => resetForm())
-        .catch(() => {
-          setShowModalError(true);
-        })
+        .catch(() => setShowModalError(true))
         .finally(() => setSubmitting(false));
     }
   };
@@ -91,7 +87,7 @@ function PersonPage(): JSX.Element {
   const name = person?.name ?? personInfo?.name ?? '';
 
   return (
-    <div className="PersonPage">
+    <div className="PersonPage" data-testid="PersonPage">
       <Header goBack>
         {showSkeleton ? (
           <Skeleton aria-label="Chargement du nom de la personne" className="Skeleton--name" />
@@ -101,20 +97,14 @@ function PersonPage(): JSX.Element {
       </Header>
 
       <ul className="PersonPage__list">
-        {isError && !isOnline && (
-          <li
-            aria-label="Connectez-vous à Internet pour afficher les anciens messages"
-            className="PersonPage__list-error"
-          >
-            Impossible de récupérer les anciens messages.
-            <br /> Connectez-vous à Internet pour les afficher.
-          </li>
+        {isError && (
+          <li className="PersonPage__list-error">Impossible de récupérer les anciens messages</li>
         )}
 
         {isLoading && (
-          <li aria-label="Chargement des messages" className="PersonPage__list-loading">
+          <li className="PersonPage__list-loading">
             <IconSpinner />
-            Chargement des messages
+            Chargement des messages...
           </li>
         )}
 
@@ -139,19 +129,19 @@ function PersonPage(): JSX.Element {
       </ul>
 
       <Formik
+        enableReinitialize
         initialValues={initialValues}
         onSubmit={handleSubmit}
-        validateOnMount
         validationSchema={addSentenceSchema}
       >
-        {({ dirty, isValid, isSubmitting, values, handleChange }) => (
+        {({ dirty, isValid, isSubmitting, values, handleChange, touched, errors }) => (
           <Form className="PersonPage__form">
             {showSkeleton ? (
               <Skeleton aria-label="Chargement du formulaire" className="Skeleton--field" />
             ) : (
               <div className="PersonPage__field-wrapper">
                 <TextField
-                  aria-label={`Écrire une phrase de ${name}`}
+                  aria-invalid={!!(!!touched.sentence && !!errors.sentence)}
                   name="sentence"
                   onChange={handleChange}
                   placeholder={`Écrire une phrase de ${name}...`}
@@ -160,7 +150,7 @@ function PersonPage(): JSX.Element {
                 />
 
                 <IconButton
-                  aria-label="Envoyer la phrase"
+                  aria-label="Ajouter la phrase"
                   className="PersonPage__form-button"
                   disabled={isSubmitting || !isValid || !dirty}
                   type="submit"

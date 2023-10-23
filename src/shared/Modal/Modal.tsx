@@ -31,7 +31,12 @@ function Modal({
   }, [handleClose, handleShow, isVisible]);
 
   return (
-    <dialog className={clsx('Modal', className)} data-testid="Modal" ref={ref} {...props}>
+    <dialog
+      className={clsx('Modal', { 'Modal--is-visible': isVisible }, className)}
+      data-testid="Modal"
+      ref={ref}
+      {...props}
+    >
       <IconButton
         aria-label="Fermer la fenêtre"
         className="Modal__button"

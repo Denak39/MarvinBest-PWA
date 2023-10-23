@@ -1,15 +1,13 @@
 import type { BaseEntity } from '@app/types';
-import type { Person } from '@people/types';
+import type { ShortPerson } from '@people/types';
 import type { ModalProps } from '@shared/Modal/Modal.types';
 
 export interface Sentence extends BaseEntity {
   createdAt: string;
   message: string;
+  person: ShortPerson;
 }
-
-export interface SentenceWithSpeaker extends Sentence {
-  speaker: Pick<Person, 'name'>;
-}
+export interface ShortSentence extends Omit<Sentence, 'person'> {}
 
 // Form
 export type AddSentence = {

@@ -1,3 +1,3 @@
-import type { ErrorMessageProps } from 'formik';
+import type { HTMLAttributes } from 'react';
 
-export type FormErrorMessageProps = ErrorMessageProps;
+export type FormErrorMessageProps = HTMLAttributes<HTMLParagraphElement>;

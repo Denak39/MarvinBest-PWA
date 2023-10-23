@@ -12,7 +12,7 @@ const HomePage = lazy(() => import('@home/components/HomePage'));
 const PeoplePage = lazy(() => import('@people/components/PeoplePage'));
 const PersonPage = lazy(() => import('@people/components/PersonPage'));
 const SentenceFormPage = lazy(() => import('@sentences/components/SentenceFormPage'));
-const NotFoundPage = lazy(() => import('@shared/ErrorPage/NotFoundPage'));
+const NotFoundPage = lazy(() => import('@shared/ErrorPage/NotFoundPage/NotFoundPage'));
 
 function App() {
   const [addSentence] = useAddSentenceMutation();

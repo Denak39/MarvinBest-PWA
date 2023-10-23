@@ -18,6 +18,7 @@ import Textarea from '@shared/Form/Textarea/Textarea';
 import Header from '@shared/Header/Header';
 import IconAdd from '@shared/Icons/IconAdd';
 import IconCheck from '@shared/Icons/IconCheck';
+import IconSpinner from '@shared/Icons/IconSpinner';
 import Modal from '@shared/Modal/Modal';
 import Skeleton from '@shared/Skeleton/Skeleton';
 
@@ -63,25 +64,22 @@ function SentenceFormPage(): JSX.Element {
           setShowModalSuccess(true);
           resetForm({ values: initialValuesReset });
         })
-        .catch(() => {
-          setShowModalError(true);
-        })
+        .catch(() => setShowModalError(true))
         .finally(() => setSubmitting(false));
     } else {
       await addSentence(values as AddSentence)
+        .unwrap()
         .then(() => {
           setShowModalSuccess(true);
           resetForm({ values: initialValuesReset });
         })
-        .catch(() => {
-          setShowModalError(true);
-        })
+        .catch(() => setShowModalError(true))
         .finally(() => setSubmitting(false));
     }
   };
 
   return (
-    <div className="SentenceFormPage">
+    <div className="SentenceFormPage" data-testid="SentenceFormPage">
       <Header goBack>Ajouter une phrase</Header>
 
       <Formik
@@ -89,7 +87,7 @@ function SentenceFormPage(): JSX.Element {
         validationSchema={addSentenceSchema}
         onSubmit={handleSubmit}
       >
-        {({ values, handleChange, isValid, dirty, isSubmitting }) => (
+        {({ values, handleChange, isValid, dirty, isSubmitting, touched, errors }) => (
           <Form className="SentenceFormPage__form">
             <div>
               <FormControl>
@@ -98,6 +96,10 @@ function SentenceFormPage(): JSX.Element {
                   <Skeleton aria-label="Chargement du champ de formulaire pour la sélection d'une personne" />
                 ) : (
                   <Select
+                    aria-errormessage={
+                      !!touched.personId && !!errors.personId ? 'error-personId' : undefined
+                    }
+                    aria-invalid={!!(!!touched.personId && !!errors.personId)}
                     id="personId"
                     name="personId"
                     onChange={handleChange}
@@ -112,13 +114,18 @@ function SentenceFormPage(): JSX.Element {
                     ))}
                   </Select>
                 )}
-                <FormErrorMessage name="personId" />
+                <FormErrorMessage id="error-personId">
+                  {!!touched.personId && !!errors.personId ? errors.personId : ''}
+                </FormErrorMessage>
               </FormControl>
 
               <FormControl>
                 <FormLabel htmlFor="sentence">Phrase</FormLabel>
                 <Textarea
-                  autoFocus
+                  aria-errormessage={
+                    !!touched.sentence && !!errors.sentence ? 'error-sentence' : undefined
+                  }
+                  aria-invalid={!!(!!touched.sentence && !!errors.sentence)}
                   id="sentence"
                   name="sentence"
                   onChange={handleChange}
@@ -126,23 +133,26 @@ function SentenceFormPage(): JSX.Element {
                   required
                   value={values.sentence}
                 />
-                <FormErrorMessage name="sentence" />
+                <FormErrorMessage id="error-sentence">
+                  {!!touched.sentence && !!errors.sentence ? errors.sentence : ''}
+                </FormErrorMessage>
               </FormControl>
             </div>
 
             <Button
-              aria-label="Envoyer la phrase"
+              aria-label="Ajouter la phrase"
               disabled={isSubmitting || !isValid || !dirty}
-              icon={IconAdd}
+              icon={!isSubmitting ? IconAdd : undefined}
               type="submit"
             >
-              Ajouter
+              {isSubmitting ? <IconSpinner /> : 'Ajouter'}
             </Button>
           </Form>
         )}
       </Formik>
 
       <Modal
+        data-testid="ModalAddSentenceSuccess"
         icon={IconCheck}
         isVisible={showModalSuccess}
         onClose={() => setShowModalSuccess(false)}

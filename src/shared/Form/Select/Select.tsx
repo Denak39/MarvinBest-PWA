@@ -12,7 +12,7 @@ import IconSmallArrowDown from '@shared/Icons/IconSmallArrowDown';
 function Select({ children, className, placeholder, ...props }: SelectProps): JSX.Element {
   return (
     <div className={clsx('Select', className)} data-testid="Select">
-      <select {...props}>
+      <select data-testid="FieldSelect" {...props}>
         {!!placeholder && (
           <option value="" disabled hidden>
             {placeholder}

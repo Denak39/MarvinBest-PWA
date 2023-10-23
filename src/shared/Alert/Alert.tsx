@@ -14,6 +14,7 @@ function Alert({ children, className, isVisible, ...props }: AlertProps): JSX.El
     <div
       className={clsx('Alert', { 'Alert--is-visible': isVisible }, className)}
       data-testid="Alert"
+      hidden={!isVisible}
       {...props}
     >
       {children}

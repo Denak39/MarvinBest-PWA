@@ -1,13 +1,29 @@
+/* eslint-disable import/no-cycle */
+
 import { findPage } from '@api/helpers';
-import { parseIdResponse } from '@api/parsers';
 import type {
+  ApiData,
   ApiPeopleOptionsResponse,
   ApiPeopleResponse,
   ApiPersonResponse,
+  ApiShortPersonData,
   CollectionResponse,
 } from '@api/types';
-import type { People, PeopleOptions, Person } from '@people/types';
-import { parseSentenceResponse } from '@sentences/parsers';
+import type { People, PeopleOptions, Person, ShortPerson } from '@people/types';
+import { parseShortSentenceData } from '@sentences/parsers';
+
+/**
+ * Parse short person data.
+ *
+ * @param {ApiData<ApiShortPersonData>} data Data
+ * @return {ShortPerson}
+ */
+export function parseShortPersonData(data: ApiData<ApiShortPersonData>): ShortPerson {
+  return {
+    id: data.id,
+    name: data.name,
+  };
+}
 
 /**
  * Parse person response.
@@ -19,10 +35,9 @@ export function parsePersonResponse(
   data: ApiPersonResponse | Omit<ApiPersonResponse, '@context'>
 ): Person {
   return {
+    ...parseShortPersonData(data),
     countSentences: data.countOfBestOfs,
-    id: parseIdResponse(data['@id']),
-    name: data.name,
-    sentences: data.bestOfs.map((item) => parseSentenceResponse(item)),
+    sentences: data.bestOfs.map((item) => parseShortSentenceData(item)),
   };
 }
 
@@ -34,7 +49,7 @@ export function parsePersonResponse(
  */
 export function parsePeopleResponse(data: ApiPeopleResponse): CollectionResponse<People> {
   return {
-    totalPages: findPage(data['hydra:view']['hydra:last']),
+    totalPages: findPage(data['hydra:view']?.['hydra:last'] ?? ''),
     data: data['hydra:member'].map((item) => parsePersonResponse(item)),
   };
 }
@@ -46,8 +61,5 @@ export function parsePeopleResponse(data: ApiPeopleResponse): CollectionResponse
  * @return {PeopleOptions}
  */
 export function parsePeopleOptionsResponse(data: ApiPeopleOptionsResponse): PeopleOptions {
-  return data['hydra:member'].map((item) => ({
-    id: parseIdResponse(item['@id']),
-    name: item.name,
-  }));
+  return data['hydra:member'].map(parseShortPersonData);
 }

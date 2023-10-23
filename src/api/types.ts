@@ -1,4 +1,4 @@
-import type { Person } from '@people/types';
+import type { BaseEntity } from '@app/types';
 
 // Response
 export type ApiData<T> = T & {
@@ -14,11 +14,11 @@ export type ApiCollectionResponse<T> = {
   'hydra:totalItems': number;
   'hydra:view': {
     '@id': string;
-    'hydra:first': string;
-    'hydra:last': string;
-    'hydra:next': string;
-    'hydra:previous': string;
-    type: string;
+    '@type': string;
+    'hydra:first'?: string;
+    'hydra:last'?: string;
+    'hydra:next'?: string;
+    'hydra:previous'?: string;
   };
   'hydra:search': {
     '@type': string;
@@ -56,31 +56,25 @@ export type ApiQueryArg<T> = Partial<
 >;
 
 // People
-export type ApiPersonData = {
-  bestOfs: ApiData<{ createdAt: string; sentence: string }>[];
+export interface ApiPersonData extends BaseEntity {
+  bestOfs: ApiData<ApiShortSentenceData>[];
   countOfBestOfs: number;
   name: string;
-};
+}
+export interface ApiShortPersonData extends Pick<ApiPersonData, 'name' | 'id'> {}
 
 export type ApiPersonResponse = ApiEntityResponse<ApiPersonData>;
 export type ApiPeopleResponse = ApiCollectionResponse<ApiPersonData>;
 
 // People options
-export interface ApiPersonOptionData {
-  name: string;
-}
-
-export type ApiPeopleOptionsResponse = ApiCollectionResponse<ApiPersonOptionData>;
+export type ApiPeopleOptionsResponse = ApiCollectionResponse<ApiShortPersonData>;
 
 // Sentences
 export type ApiSentenceData = {
   createdAt: string;
   sentence: string;
+  speaker: ApiData<ApiShortPersonData>;
 };
-
-export interface ApiLastSentenceData extends ApiSentenceData {
-  speaker: ApiEntityResponse<Pick<Person, 'name'>>;
-}
+export interface ApiShortSentenceData extends Pick<ApiSentenceData, 'createdAt' | 'sentence'> {}
 
 export type ApiSentenceResponse = ApiEntityResponse<ApiSentenceData>;
-export type ApiLastSentenceResponse = ApiEntityResponse<ApiLastSentenceData>;

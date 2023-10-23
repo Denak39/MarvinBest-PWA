@@ -2,11 +2,11 @@ import { screen } from '@testing-library/react';
 
 import { PATHS } from '@constants/index';
 import NavBar from '@shared/NavBar/NavBar';
-import renderWithRouter from '@tests/index';
+import { render } from '@src/tests';
 
 describe('shared/components/NavBar', () => {
   it('should renders the expected component', () => {
-    renderWithRouter(<NavBar />);
+    render(<NavBar />);
 
     const navBar = screen.getByTestId('NavBar');
     const homeLink = navBar.querySelector(`a[href="${PATHS.HOME}"]`);

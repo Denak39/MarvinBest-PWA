@@ -1,26 +1,25 @@
 import { Route, Routes } from 'react-router-dom';
 import { fireEvent, screen } from '@testing-library/react';
 
+import { PATHS } from '@constants/index';
 import BaseErrorPage from '@shared/ErrorPage/BaseErrorPage/BaseErrorPage';
 import type { BaseErrorPageProps } from '@shared/ErrorPage/BaseErrorPage/BaseErrorPage.types';
-import renderWithRouter from '@tests/index';
-
-const PATHS = ['/', '/error'];
+import { render } from '@tests/index';
 
 const props: BaseErrorPageProps = {
   children: 'An error has occurred',
   className: 'custom-class',
-  title: 'Ooooops...',
+  title: 'Oops...',
 };
 
 describe('shared/components/BaseErrorPage', () => {
   it('should renders the expected component', () => {
-    renderWithRouter(
+    render(
       <Routes>
-        <Route path={PATHS[0]} element={<p>Home</p>} />
-        <Route path={PATHS[1]} element={<BaseErrorPage {...props} />} />
+        <Route path={PATHS.HOME} element={<p>Home</p>} />
+        <Route path="*" element={<BaseErrorPage {...props} />} />
       </Routes>,
-      { initialEntries: PATHS }
+      { initialEntries: ['/route-not-found'] }
     );
 
     const baseErrorPage = screen.getByTestId('BaseErrorPage');
@@ -29,6 +28,7 @@ describe('shared/components/BaseErrorPage', () => {
     const text = baseErrorPage.querySelector('.BaseErrorPage__text');
     const link = baseErrorPage.querySelector('.BaseErrorPage__link') as Element;
 
+    expect(header).toHaveTextContent(props.title as string);
     expect(baseErrorPage).toHaveClass(`BaseErrorPage ${props.className}`);
     expect(baseErrorPage).toContainElement(header);
     expect(baseErrorPage).toContainElement(image);

@@ -1,8 +1,9 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 
 import Button from '@shared/Button/Button';
 import type { ButtonProps } from '@shared/Button/Button.types';
 import IconHome from '@shared/Icons/IconHome';
+import { defaultRender } from '@tests/index';
 
 const props: ButtonProps = {
   children: 'Button',
@@ -12,7 +13,7 @@ const props: ButtonProps = {
 
 describe('shared/components/Button', () => {
   it('should render the expected component', () => {
-    render(<Button {...props} />);
+    defaultRender(<Button {...props} />);
 
     const button = screen.getByTestId('Button');
 
@@ -27,11 +28,8 @@ describe('shared/components/Button', () => {
       icon: IconHome,
     };
 
-    render(<Button {...localProps} />);
+    const { container } = defaultRender(<Button {...localProps} />);
 
-    const button = screen.getByTestId('Button');
-    const icon = button.querySelector('.Icon');
-
-    expect(icon).toBeInTheDocument();
+    expect(container.querySelector('.Icon--home')).toBeInTheDocument();
   });
 });
