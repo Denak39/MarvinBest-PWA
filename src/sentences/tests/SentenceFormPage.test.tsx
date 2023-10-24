@@ -1,5 +1,5 @@
 import { fireEvent, screen, waitFor } from '@testing-library/react';
-import { rest } from 'msw';
+import { http, HttpResponse } from 'msw';
 
 import apiPeopleOptionsMock from '@people/mocks/apiPeopleOptionsMock';
 import SentenceFormPage from '@sentences/components/SentenceFormPage';
@@ -7,7 +7,7 @@ import type { AddSentence } from '@sentences/types';
 import { navigatorOnLineMock } from '@src/tests/helpers';
 import { API_PATHS } from '@tests/constants';
 import { render } from '@tests/index';
-import { server } from '@tests/server';
+import server from '@tests/server';
 
 const data: AddSentence = {
   personId: String(apiPeopleOptionsMock['hydra:member'][0].id),
@@ -142,7 +142,7 @@ describe('sentences/components/SentenceFormPage', () => {
   });
 
   it('should receive a failed response after submitting the form', async () => {
-    server.use(rest.post(API_PATHS.SENTENCES, (_req, res, ctx) => res(ctx.status(400))));
+    server.use(http.post(API_PATHS.SENTENCES, () => new HttpResponse(null, { status: 400 })));
 
     render(<SentenceFormPage />);
 

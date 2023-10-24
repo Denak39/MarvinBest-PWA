@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import type { RenderResult } from '@testing-library/react';
 import { fireEvent, screen, waitFor } from '@testing-library/react';
-import { rest } from 'msw';
+import { http, HttpResponse } from 'msw';
 
 import { PATHS } from '@constants/index';
 import PersonPage from '@people/components/PersonPage';
@@ -9,7 +9,7 @@ import apiPersonMock from '@people/mocks/apiPersonMock';
 import { navigatorOnLineMock } from '@src/tests/helpers';
 import { API_PATHS } from '@tests/constants';
 import { render } from '@tests/index';
-import { server } from '@tests/server';
+import server from '@tests/server';
 
 const renderUi = (): RenderResult => {
   return render(
@@ -118,7 +118,7 @@ describe('people/components/PersonPage', () => {
   });
 
   it('should receive a failed response after submitting the form', async () => {
-    server.use(rest.post(API_PATHS.SENTENCES, (_req, res, ctx) => res(ctx.status(400))));
+    server.use(http.post(API_PATHS.SENTENCES, () => new HttpResponse(null, { status: 400 })));
 
     renderUi();
 
@@ -179,7 +179,7 @@ describe('people/components/PersonPage', () => {
   });
 
   it('should renders the component with an error because the getPerson request failed', async () => {
-    server.use(rest.get(API_PATHS.PERSON, (_req, res, ctx) => res(ctx.status(400))));
+    server.use(http.get(API_PATHS.PERSON, () => new HttpResponse(null, { status: 400 })));
 
     renderUi();
 
@@ -189,7 +189,7 @@ describe('people/components/PersonPage', () => {
   });
 
   it('should renders the component with ErrorPage component because the requests failed', async () => {
-    server.use(rest.get(/.*/, (_req, res, ctx) => res(ctx.status(400))));
+    server.use(http.get(/.*/, () => new HttpResponse(null, { status: 400 })));
 
     renderUi();
 
