@@ -5,7 +5,7 @@ import { afterEach, expect } from 'vitest';
 
 import { api } from '@api/index';
 import store from '@app/store';
-import { server } from '@tests/server';
+import server from '@tests/server';
 
 import 'whatwg-fetch';
 
