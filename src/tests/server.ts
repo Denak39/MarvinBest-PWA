@@ -1,4 +1,4 @@
-import { http, HttpResponse } from 'msw';
+import { http } from 'msw';
 import { setupServer } from 'msw/node';
 
 import apiPeopleFirstPageMock from '@people/mocks/apiPeopleFirstPageMock';
@@ -16,12 +16,10 @@ const server = setupServer(
     const page = new URL(request.url).searchParams.get('page');
 
     switch (page) {
-      case '1':
-        return new Response(JSON.stringify(apiPeopleFirstPageMock));
       case '2':
         return new Response(JSON.stringify(apiPeopleSecondPageMock));
       default:
-        return new HttpResponse(null, { status: 404 });
+        return new Response(JSON.stringify(apiPeopleFirstPageMock));
     }
   }),
   http.get(API_PATHS.LAST_SENTENCE, () => new Response(JSON.stringify(apiSentenceMock))),
