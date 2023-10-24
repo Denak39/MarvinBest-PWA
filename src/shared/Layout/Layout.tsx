@@ -4,7 +4,7 @@ import { PATHS } from '@constants/index';
 import ReloadModal from '@home/components/ReloadModal';
 import useOnlineStatus from '@hooks/useOnlineStatus';
 import Alert from '@shared/Alert/Alert';
-import IconOffline from '@shared/Icons/IconOffline';
+import IconOffline from '@shared/Icons/components/IconOffline';
 import NavBar from '@shared/NavBar/NavBar';
 
 /**

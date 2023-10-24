@@ -1,7 +1,7 @@
 import { useRegisterSW } from 'virtual:pwa-register/react';
 
 import Button from '@shared/Button/Button';
-import IconReload from '@shared/Icons/IconReload';
+import IconReload from '@shared/Icons/components/IconReload';
 import Modal from '@shared/Modal/Modal';
 
 /**

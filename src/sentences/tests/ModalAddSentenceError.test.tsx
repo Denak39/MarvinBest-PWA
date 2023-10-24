@@ -14,10 +14,10 @@ describe('sentences/components/ModalAddSentenceError', () => {
     defaultRender(<ModalAddSentenceError {...props} />);
 
     const modal = screen.getByTestId('ModalAddSentenceError');
-    const icon = modal.querySelector('.Icon--cross');
+    const iconCross = modal.querySelector('.Icon--cross');
     const title = modal.querySelector('.Modal__title');
 
-    expect(icon).toBeInTheDocument();
+    expect(iconCross).toBeInTheDocument();
     expect(title).toHaveTextContent('Oups...');
     expect(modal).toHaveTextContent("Une erreur est survenue ! La phrase n'a pas pu être ajoutée.");
   });

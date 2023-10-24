@@ -70,10 +70,10 @@ describe('shared/components/Layout', () => {
     );
 
     const alert = screen.getByTestId('Alert');
-    const icon = alert.querySelector('.Icon--offline');
+    const iconOffline = screen.getByTestId('IconOffline');
 
     expect(alert).toBeVisible();
     expect(alert).toHaveTextContent('Vous n’êtes plus connecté à Internet.');
-    expect(icon).toBeInTheDocument();
+    expect(alert).toContainElement(iconOffline);
   });
 });

@@ -2,7 +2,7 @@ import { fireEvent, screen } from '@testing-library/react';
 
 import IconButton from '@shared/IconButton/IconButton';
 import type { IconButtonProps } from '@shared/IconButton/IconButton.types';
-import IconHome from '@shared/Icons/IconHome';
+import IconHome from '@shared/Icons/components/IconHome';
 import { defaultRender } from '@tests/index';
 
 const props: IconButtonProps = {
@@ -16,12 +16,12 @@ describe('shared/components/IconButton', () => {
     defaultRender(<IconButton {...props} />);
 
     const iconButton = screen.getByTestId('IconButton');
-    const children = iconButton.querySelector('.Icon--home');
+    const iconHome = screen.getByTestId('IconHome');
 
     expect(iconButton).toHaveClass(
       `IconButton IconButton--size-medium IconButton--variant-primary ${props.className}`
     );
-    expect(children).toBeInTheDocument();
+    expect(iconButton).toContainElement(iconHome);
 
     fireEvent.click(iconButton);
     expect(props.onClick).toBeCalledTimes(1);

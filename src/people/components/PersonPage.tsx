@@ -14,8 +14,8 @@ import ErrorPage from '@shared/ErrorPage/ErrorPage/ErrorPage';
 import TextField from '@shared/Form/TextField/TextField';
 import Header from '@shared/Header/Header';
 import IconButton from '@shared/IconButton/IconButton';
-import IconSend from '@shared/Icons/IconSend';
-import IconSpinner from '@shared/Icons/IconSpinner';
+import IconSend from '@shared/Icons/components/IconSend';
+import IconSpinner from '@shared/Icons/components/IconSpinner';
 import Message from '@shared/Message/Message';
 import Skeleton from '@shared/Skeleton/Skeleton';
 

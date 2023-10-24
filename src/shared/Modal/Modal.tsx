@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef } from 'react';
 import clsx from 'clsx';
 
 import IconButton from '@shared/IconButton/IconButton';
-import IconCross from '@shared/Icons/IconCross';
+import IconCross from '@shared/Icons/components/IconCross';
 import type { ModalProps } from '@shared/Modal/Modal.types';
 
 /**

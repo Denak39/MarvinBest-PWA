@@ -2,7 +2,7 @@ import { screen } from '@testing-library/react';
 
 import Button from '@shared/Button/Button';
 import type { ButtonProps } from '@shared/Button/Button.types';
-import IconHome from '@shared/Icons/IconHome';
+import IconHome from '@shared/Icons/components/IconHome';
 import { defaultRender } from '@tests/index';
 
 const props: ButtonProps = {
@@ -28,8 +28,11 @@ describe('shared/components/Button', () => {
       icon: IconHome,
     };
 
-    const { container } = defaultRender(<Button {...localProps} />);
+    defaultRender(<Button {...localProps} />);
 
-    expect(container.querySelector('.Icon--home')).toBeInTheDocument();
+    const button = screen.getByTestId('Button');
+    const iconHome = screen.getByTestId('IconHome');
+
+    expect(button).toContainElement(iconHome);
   });
 });

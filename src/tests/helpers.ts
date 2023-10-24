@@ -20,12 +20,15 @@ export function clearDatabase(): Promise<boolean> {
     const req = indexedDB.open(DB_NAME);
 
     req.onsuccess = () => {
-      req.result
+      const res = req.result
         .transaction(IndexedDBStores.SENTENCES, 'readwrite')
         .objectStore(IndexedDBStores.SENTENCES)
         .clear();
-
-      resolve(true);
+      res.onsuccess = () => resolve(true);
+    };
+    req.onupgradeneeded = () => {
+      if (req.result.objectStoreNames.contains(IndexedDBStores.SENTENCES)) return;
+      req.result.createObjectStore(IndexedDBStores.SENTENCES, { keyPath: 'id' });
     };
     req.onerror = () => reject();
   });

@@ -16,11 +16,11 @@ describe('shared/components/NavBar', () => {
     expect(navBar).toHaveClass('NavBar');
 
     expect(homeLink).toHaveClass('active');
-    expect(homeLink).toContainElement(navBar.querySelector('.Icon--home'));
+    expect(homeLink).toContainElement(screen.getByTestId('IconHome'));
     expect(homeLink).toHaveAttribute('aria-label', "Aller à la page d'accueil");
 
     expect(addSentenceLink).not.toHaveClass('active');
-    expect(addSentenceLink).toContainElement(navBar.querySelector('.Icon--add'));
+    expect(addSentenceLink).toContainElement(screen.getByTestId('IconAdd'));
     expect(addSentenceLink).toHaveClass(
       'IconButton IconButton--variant-primary IconButton--size-large'
     );
@@ -30,7 +30,7 @@ describe('shared/components/NavBar', () => {
     );
 
     expect(peopleLink).not.toHaveClass('active');
-    expect(peopleLink).toContainElement(navBar.querySelector('.Icon--users'));
+    expect(peopleLink).toContainElement(screen.getByTestId('IconUsers'));
     expect(peopleLink).toHaveAttribute('aria-label', 'Aller à la page des personnes');
   });
 });

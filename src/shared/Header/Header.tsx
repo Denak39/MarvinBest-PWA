@@ -3,7 +3,7 @@ import clsx from 'clsx';
 
 import type { HeaderProps } from '@shared/Header/Header.types';
 import IconButton from '@shared/IconButton/IconButton';
-import IconArrowBack from '@shared/Icons/IconArrowBack';
+import IconArrowBack from '@shared/Icons/components/IconArrowBack';
 
 /**
  * Header component.
