@@ -14,7 +14,12 @@ const PersonPage = lazy(() => import('@people/components/PersonPage'));
 const SentenceFormPage = lazy(() => import('@sentences/components/SentenceFormPage'));
 const NotFoundPage = lazy(() => import('@shared/ErrorPage/NotFoundPage/NotFoundPage'));
 
-function App() {
+/**
+ * App.
+ *
+ * @return {JSX.Element}
+ */
+function App(): JSX.Element {
   const [addSentence] = useAddSentenceMutation();
 
   const { data, removeData, clearData } = useContext(SentenceIndexedDBContext);

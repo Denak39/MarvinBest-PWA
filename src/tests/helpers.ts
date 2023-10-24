@@ -26,10 +26,6 @@ export function clearDatabase(): Promise<boolean> {
         .clear();
       res.onsuccess = () => resolve(true);
     };
-    req.onupgradeneeded = () => {
-      if (req.result.objectStoreNames.contains(IndexedDBStores.SENTENCES)) return;
-      req.result.createObjectStore(IndexedDBStores.SENTENCES, { keyPath: 'id' });
-    };
     req.onerror = () => reject();
   });
 }

@@ -5,11 +5,10 @@ import { afterEach, expect } from 'vitest';
 
 import { api } from '@api/index';
 import store from '@app/store';
+import { clearDatabase } from '@tests/helpers';
 import server from '@tests/server';
 
 import 'whatwg-fetch';
-
-import { clearDatabase } from './helpers';
 
 // Extends Vitest's expect method with methods from react-testing-library
 expect.extend(matchers);
