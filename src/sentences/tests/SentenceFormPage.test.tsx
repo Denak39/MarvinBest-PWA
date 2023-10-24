@@ -57,12 +57,12 @@ describe('sentences/components/SentenceFormPage', () => {
 
     // Button
     const button = screen.getByLabelText('Ajouter la phrase');
-    const icon = button.querySelector('.Icon--add');
+    const iconAdd = screen.getByTestId('IconAdd');
 
     expect(button).toHaveAttribute('type', 'submit');
     expect(button).toBeDisabled();
     expect(button).toHaveTextContent('Ajouter');
-    expect(icon).toBeInTheDocument();
+    expect(button).toContainElement(iconAdd);
 
     // Modal
     const modalSuccess = screen.getByTestId('ModalAddSentenceSuccess');
@@ -118,20 +118,20 @@ describe('sentences/components/SentenceFormPage', () => {
 
     await waitFor(() => {
       expect(button).toBeDisabled();
-      expect(button.querySelector('.Icon--spinner')).toBeInTheDocument();
+      expect(screen.getByTestId('IconSpinner')).toBeInTheDocument();
     });
 
     await waitFor(() => {
       const modal = screen.getByTestId('ModalAddSentenceSuccess');
       const modalCloseButton = modal.querySelector('.Modal__button') as Element;
-      const icon = modal.querySelector('.Icon--cross');
+      const iconCross = modal.querySelector('.Icon--cross');
       const title = modal.querySelector('.Modal__title');
 
       expect(select).toHaveValue(data.personId);
       expect(textarea).toHaveValue('');
 
       expect(modal).toHaveClass('Modal--is-visible');
-      expect(icon).toBeInTheDocument();
+      expect(iconCross).toBeInTheDocument();
       expect(title).toHaveTextContent('Phrase ajoutée');
       expect(modal).toHaveTextContent('La phrase a bien été ajoutée !');
 
@@ -160,7 +160,7 @@ describe('sentences/components/SentenceFormPage', () => {
 
     await waitFor(() => {
       expect(button).toBeDisabled();
-      expect(button.querySelector('.Icon--spinner')).toBeInTheDocument();
+      expect(button).toContainElement(screen.getByTestId('IconSpinner'));
     });
 
     await waitFor(() => {
@@ -226,7 +226,7 @@ describe('sentences/components/SentenceFormPage', () => {
 
     await waitFor(() => {
       expect(button).toBeDisabled();
-      expect(button.querySelector('.Icon--spinner')).toBeInTheDocument();
+      expect(button).toContainElement(screen.getByTestId('IconSpinner'));
     });
 
     await waitFor(() => {

@@ -20,7 +20,7 @@ describe('shared/components/BaseIcon', () => {
 
     expect(baseIcon).toHaveClass(`Icon ${props.className}`);
     expect(baseIcon).toHaveAccessibleDescription(props.title);
-    expect(svg).toHaveAttribute('aria-hidden');
+    expect(baseIcon).toHaveAttribute('aria-hidden');
     expect(svg).toHaveAttribute('viewBox', '0 0 30 30');
     expect(svg).toHaveAttribute('fill', 'currentColor');
     expect(svg).toContainElement(path);

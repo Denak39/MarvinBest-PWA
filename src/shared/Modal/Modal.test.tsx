@@ -20,12 +20,12 @@ describe('shared/components/Modal', () => {
 
     const modal = screen.getByTestId('Modal');
     const button = screen.getByTestId('IconButton');
-    const icon = modal.querySelector('.Icon--add');
+    const iconAdd = screen.getByTestId('IconAdd');
     const title = modal.querySelector('.Modal__title');
 
     expect(modal).toHaveClass(`Modal Modal--is-visible ${props.className}`);
     expect(modal).toHaveTextContent(props.children as string);
-    expect(icon).toBeInTheDocument();
+    expect(modal).toContainElement(iconAdd);
     expect(title).toHaveTextContent(props.title);
     expect(button).toHaveAccessibleName('Fermer la fenêtre');
     expect(button).toHaveClass('Modal__button IconButton--variant-secondary');

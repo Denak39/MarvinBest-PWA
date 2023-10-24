@@ -43,12 +43,12 @@ describe('people/components/PersonPage', () => {
 
     // Messages
     const messageLoading = screen.getByText('Chargement des messages...');
-    const iconSpinner = messageLoading.querySelector('.Icon--spinner');
+    const iconSpinner = screen.getByTestId('IconSpinner');
     const messageError = screen.queryByText('Impossible de récupérer les anciens messages');
 
     expect(messageLoading).toHaveTextContent('Chargement des messages...');
     expect(messageError).not.toBeInTheDocument();
-    expect(iconSpinner).toBeInTheDocument();
+    expect(messageLoading).toContainElement(iconSpinner);
     expect(screen.queryAllByTestId('Message')).toHaveLength(0);
 
     // Form
@@ -78,7 +78,7 @@ describe('people/components/PersonPage', () => {
       // Form
       const textField = screen.getByTestId('TextField');
       const button = screen.getByLabelText('Ajouter la phrase');
-      const iconSend = button.querySelector('.Icon--send');
+      const iconSend = screen.getByTestId('IconSend');
 
       expect(textField).toBeRequired();
       expect(textField).toHaveValue('');
@@ -90,7 +90,7 @@ describe('people/components/PersonPage', () => {
       expect(button).toHaveClass('PersonPage__form-button');
       expect(button).toBeDisabled();
       expect(button).toHaveAttribute('type', 'submit');
-      expect(iconSend).toBeInTheDocument();
+      expect(button).toContainElement(iconSend);
     });
   });
 
@@ -109,7 +109,7 @@ describe('people/components/PersonPage', () => {
 
     await waitFor(() => {
       expect(button).toBeDisabled();
-      expect(button.querySelector('.Icon--spinner')).toBeInTheDocument();
+      expect(button).toContainElement(screen.getByTestId('IconSpinner'));
     });
 
     await waitFor(() => {
@@ -134,7 +134,7 @@ describe('people/components/PersonPage', () => {
 
     await waitFor(() => {
       expect(button).toBeDisabled();
-      expect(button.querySelector('.Icon--spinner')).toBeInTheDocument();
+      expect(button).toContainElement(screen.getByTestId('IconSpinner'));
     });
 
     await waitFor(() => {
@@ -211,7 +211,7 @@ describe('people/components/PersonPage', () => {
 
     await waitFor(() => {
       expect(button).toBeDisabled();
-      expect(button.querySelector('.Icon--spinner')).toBeInTheDocument();
+      expect(button).toContainElement(screen.getByTestId('IconSpinner'));
     });
 
     await waitFor(() => {

@@ -28,8 +28,11 @@ describe('shared/components/Button', () => {
       icon: IconHome,
     };
 
-    const { container } = defaultRender(<Button {...localProps} />);
+    defaultRender(<Button {...localProps} />);
 
-    expect(container.querySelector('.Icon--home')).toBeInTheDocument();
+    const button = screen.getByTestId('Button');
+    const iconHome = screen.getByTestId('IconHome');
+
+    expect(button).toContainElement(iconHome);
   });
 });
