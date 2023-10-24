@@ -16,9 +16,9 @@ import FormLabel from '@shared/Form/FormLabel/FormLabel';
 import Select from '@shared/Form/Select/Select';
 import Textarea from '@shared/Form/Textarea/Textarea';
 import Header from '@shared/Header/Header';
-import IconAdd from '@shared/Icons/IconAdd';
-import IconCheck from '@shared/Icons/IconCheck';
-import IconSpinner from '@shared/Icons/IconSpinner';
+import IconAdd from '@shared/Icons/components/IconAdd';
+import IconCheck from '@shared/Icons/components/IconCheck';
+import IconSpinner from '@shared/Icons/components/IconSpinner';
 import Modal from '@shared/Modal/Modal';
 import Skeleton from '@shared/Skeleton/Skeleton';
 

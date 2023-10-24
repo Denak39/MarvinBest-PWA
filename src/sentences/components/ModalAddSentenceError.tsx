@@ -1,5 +1,5 @@
 import type { ModalAddSentenceErrorProps } from '@sentences/types';
-import IconCross from '@shared/Icons/IconCross';
+import IconCross from '@shared/Icons/components/IconCross';
 import Modal from '@shared/Modal/Modal';
 
 /**

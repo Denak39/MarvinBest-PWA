@@ -2,9 +2,9 @@ import { memo } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { PATHS } from '@constants/index';
-import IconAdd from '@shared/Icons/IconAdd';
-import IconHome from '@shared/Icons/IconHome';
-import IconUsers from '@shared/Icons/IconUsers';
+import IconAdd from '@shared/Icons/components/IconAdd';
+import IconHome from '@shared/Icons/components/IconHome';
+import IconUsers from '@shared/Icons/components/IconUsers';
 
 /**
  * NavBar component.

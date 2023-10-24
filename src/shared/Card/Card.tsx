@@ -4,7 +4,7 @@ import clsx from 'clsx';
 
 import Avatar from '@shared/Avatar/Avatar';
 import type { CardProps } from '@shared/Card/Card.types';
-import IconArrowForward from '@shared/Icons/IconArrowForward';
+import IconArrowForward from '@shared/Icons/components/IconArrowForward';
 
 /**
  * Card component.

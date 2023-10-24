@@ -2,7 +2,7 @@ import { fireEvent, screen } from '@testing-library/react';
 
 import IconButton from '@shared/IconButton/IconButton';
 import type { IconButtonProps } from '@shared/IconButton/IconButton.types';
-import IconHome from '@shared/Icons/IconHome';
+import IconHome from '@shared/Icons/components/IconHome';
 import { defaultRender } from '@tests/index';
 
 const props: IconButtonProps = {

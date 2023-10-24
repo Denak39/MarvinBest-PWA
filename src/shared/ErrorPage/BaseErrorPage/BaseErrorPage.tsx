@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { PATHS } from '@constants/index';
 import type { BaseErrorPageProps } from '@shared/ErrorPage/BaseErrorPage/BaseErrorPage.types';
 import Header from '@shared/Header/Header';
-import IconHome from '@shared/Icons/IconHome';
+import IconHome from '@shared/Icons/components/IconHome';
 
 import mascotMarvinBestSad from '@assets/mascot-marvin.png';
 

@@ -3,7 +3,7 @@ import clsx from 'clsx';
 
 import DateHelpers from '@helpers/DateHelpers';
 import Avatar from '@shared/Avatar/Avatar';
-import IconSpinner from '@shared/Icons/IconSpinner';
+import IconSpinner from '@shared/Icons/components/IconSpinner';
 import type { MessageProps } from '@shared/Message/Message.types';
 
 /**

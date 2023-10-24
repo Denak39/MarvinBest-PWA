@@ -2,7 +2,7 @@ import { screen } from '@testing-library/react';
 
 import Button from '@shared/Button/Button';
 import type { ButtonProps } from '@shared/Button/Button.types';
-import IconHome from '@shared/Icons/IconHome';
+import IconHome from '@shared/Icons/components/IconHome';
 import { defaultRender } from '@tests/index';
 
 const props: ButtonProps = {

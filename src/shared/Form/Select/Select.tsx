@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 
 import type { SelectProps } from '@shared/Form/Select/Select.types';
-import IconSmallArrowDown from '@shared/Icons/IconSmallArrowDown';
+import IconSmallArrowDown from '@shared/Icons/components/IconSmallArrowDown';
 
 /**
  * Select component.

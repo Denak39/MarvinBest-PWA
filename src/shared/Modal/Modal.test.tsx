@@ -1,6 +1,6 @@
 import { fireEvent, screen } from '@testing-library/react';
 
-import IconAdd from '@shared/Icons/IconAdd';
+import IconAdd from '@shared/Icons/components/IconAdd';
 import Modal from '@shared/Modal/Modal';
 import type { ModalProps } from '@shared/Modal/Modal.types';
 import { defaultRender } from '@tests/index';
