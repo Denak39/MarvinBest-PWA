@@ -1,17 +1,6 @@
 @use "@styles/fonts" as *;
 @use "@styles/global" as *;
 
-// Sentences
-@use "@sentences/styles/SentenceFormPage" as *;
-
-// People
-@use "@people/styles/PeoplePage" as *;
-@use "@people/styles/PersonPage" as *;
-
-// Home
-@use "@home/styles/HomePage" as *;
-@use "@home/styles/ReloadModal" as *;
-
 // Shared styles
 @use "@shared/Alert/Alert" as *;
 @use "@shared/Avatar/Avatar" as *;
@@ -33,3 +22,14 @@
 @use "@shared/Modal/Modal" as *;
 @use "@shared/NavBar/NavBar" as *;
 @use "@shared/Skeleton/Skeleton" as *;
+
+// Sentences
+@use "@sentences/styles/SentenceFormPage" as *;
+
+// People
+@use "@people/styles/PeoplePage" as *;
+@use "@people/styles/PersonPage" as *;
+
+// Home
+@use "@home/styles/HomePage" as *;
+@use "@home/styles/ReloadModal" as *;

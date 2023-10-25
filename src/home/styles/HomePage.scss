@@ -1,6 +1,7 @@
 @use "@styles/functions" as *;
 @use "@styles/mixins" as *;
 @use "@styles/variables" as *;
+@use "@shared/Layout/Layout" as layout;
 @use "@shared/NavBar/NavBar" as navbar;
 
 .HomePage {
@@ -11,6 +12,41 @@
   flex-direction: column;
   flex: 1;
   justify-content: center;
+
+  &__button {
+    @include font-text-small;
+
+    border-radius: to-rem(20);
+    column-gap: 0;
+    font-weight: $font-weight-regular;
+    justify-content: flex-start;
+    left: layout.$padding;
+    padding: to-rem(5) to-rem(10);
+    position: fixed;
+    top: layout.$padding;
+    transition: column-gap 0.2s ease-out;
+    width: fit-content;
+
+    @media (display-mode: standalone) {
+      display: none;
+    }
+
+    .Button__text {
+      display: none;
+    }
+
+    @include bp-desktop {
+      column-gap: to-rem(4);
+
+      .Button__text {
+        display: inherit;
+      }
+    }
+
+    .Icon {
+      @include fixed-size(to-rem(20));
+    }
+  }
 
   &__logo {
     height: auto;
