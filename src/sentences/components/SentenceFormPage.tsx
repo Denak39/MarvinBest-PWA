@@ -142,7 +142,7 @@ function SentenceFormPage(): JSX.Element {
             <Button
               aria-label="Ajouter la phrase"
               disabled={isSubmitting || !isValid || !dirty}
-              icon={!isSubmitting ? IconAdd : undefined}
+              iconRight={!isSubmitting ? IconAdd : undefined}
               type="submit"
             >
               {isSubmitting ? <IconSpinner /> : 'Ajouter'}

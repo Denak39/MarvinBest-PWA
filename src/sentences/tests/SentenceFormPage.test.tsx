@@ -106,7 +106,7 @@ describe('sentences/components/SentenceFormPage', () => {
 
     const select = screen.getByTestId('FieldSelect');
     const textarea = screen.getByPlaceholderText('Saisis la phrase...');
-    const button = screen.getByText('Ajouter');
+    const button = screen.getByLabelText('Ajouter la phrase');
 
     expect(button).toBeDisabled();
 
@@ -150,7 +150,7 @@ describe('sentences/components/SentenceFormPage', () => {
 
     const select = screen.getByTestId('FieldSelect');
     const textarea = screen.getByTestId('Textarea');
-    const button = screen.getByText('Ajouter');
+    const button = screen.getByLabelText('Ajouter la phrase');
 
     fireEvent.change(select, { target: { value: data.personId } });
     fireEvent.change(textarea, { target: { value: data.sentence } });
@@ -218,7 +218,7 @@ describe('sentences/components/SentenceFormPage', () => {
 
     const select = screen.getByTestId('FieldSelect');
     const textarea = screen.getByTestId('Textarea');
-    const button = screen.getByText('Ajouter');
+    const button = screen.getByLabelText('Ajouter la phrase');
 
     fireEvent.change(select, { target: { value: data.personId } });
     fireEvent.change(textarea, { target: { value: data.sentence } });

@@ -4,9 +4,8 @@
 
 .Button {
   align-items: center;
-  background-color: $color-pink;
   border-radius: $border-radius;
-  box-shadow: $shadow;
+  column-gap: to-rem(14);
   display: flex;
   font-size: to-rem(18);
   font-weight: $font-weight-semibold;
@@ -24,9 +23,16 @@
     @include outline;
   }
 
+  &--variant-primary {
+    background-color: $color-pink;
+    box-shadow: $shadow;
+  }
+
+  &--variant-secondary {
+    background-color: $color-black;
+  }
+
   .Icon {
     @include fixed-size(to-rem(22));
-
-    margin-left: to-rem(14);
   }
 }

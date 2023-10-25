@@ -22,10 +22,10 @@ describe('shared/components/Button', () => {
     expect(button).toHaveAccessibleDescription(props.title);
   });
 
-  it('should render the expected component with icon', () => {
+  it('should render the component with a right icon', () => {
     const localProps: ButtonProps = {
       ...props,
-      icon: IconHome,
+      iconRight: IconHome,
     };
 
     defaultRender(<Button {...localProps} />);
@@ -34,5 +34,21 @@ describe('shared/components/Button', () => {
     const iconHome = screen.getByTestId('IconHome');
 
     expect(button).toContainElement(iconHome);
+    expect(iconHome).toHaveClass('Button__icon--right');
+  });
+
+  it('should render the component with a left icon', () => {
+    const localProps: ButtonProps = {
+      ...props,
+      iconLeft: IconHome,
+    };
+
+    defaultRender(<Button {...localProps} />);
+
+    const button = screen.getByTestId('Button');
+    const iconHome = screen.getByTestId('IconHome');
+
+    expect(button).toContainElement(iconHome);
+    expect(iconHome).toHaveClass('Button__icon--left');
   });
 });
