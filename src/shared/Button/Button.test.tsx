@@ -40,7 +40,7 @@ describe('shared/components/Button', () => {
   it('should render the component with a left icon', () => {
     const localProps: ButtonProps = {
       ...props,
-      iconRight: IconHome,
+      iconLeft: IconHome,
     };
 
     defaultRender(<Button {...localProps} />);
