@@ -5,7 +5,7 @@ import Button from '@shared/Button/Button';
 import IconDownload from '@shared/Icons/components/IconDownload';
 import Message from '@shared/Message/Message';
 
-import logo from '@assets/logo.svg';
+import logoSrc from '@assets/logo.png';
 
 let promptInstall: BeforeInstallPromptEvent;
 
@@ -49,7 +49,7 @@ function HomePage(): JSX.Element {
       )}
 
       <h1 className="HomePage__logo">
-        <img alt="Logo marvin.best" src={logo} draggable={false} />
+        <img alt="Logo Quiproquotes" src={logoSrc} draggable={false} />
       </h1>
 
       {!!lastSentence && (

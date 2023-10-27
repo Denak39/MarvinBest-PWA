@@ -30,7 +30,7 @@ export default defineConfig({
       manifest: {
         background_color: '#190B17',
         categories: ['entertainment', 'games', 'social'],
-        description: 'marvin.best, des histoires sorties de son contexte...',
+        description: 'Quiproquotes, des histoires sorties de son contexte...',
         dir: 'ltr',
         display: 'standalone',
         icons: [
@@ -61,9 +61,9 @@ export default defineConfig({
             type: 'image/png',
           },
         ],
-        id: 'marvin.best',
+        id: 'quiproquotes',
         lang: 'fr-FR',
-        name: 'marvin.best',
+        name: 'Quiproquotes',
         orientation: 'portrait',
         screenshots: [
           {
@@ -72,7 +72,7 @@ export default defineConfig({
             type: 'image/png',
           },
         ],
-        short_name: 'marvin.best',
+        short_name: 'Quiproquotes',
         start_url: '/',
         theme_color: '#E83668',
       },
