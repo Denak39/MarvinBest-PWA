@@ -24,7 +24,7 @@ describe('shared/components/BaseErrorPage', () => {
 
     const baseErrorPage = screen.getByTestId('BaseErrorPage');
     const header = screen.getByTestId('Header');
-    const image = screen.getByAltText('Mascotte marvin.best');
+    const image = screen.getByAltText('Mascotte Quiproquotes');
     const text = baseErrorPage.querySelector('.BaseErrorPage__text');
     const link = baseErrorPage.querySelector('.BaseErrorPage__link') as Element;
 

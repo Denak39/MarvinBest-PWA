@@ -6,7 +6,7 @@ import type { BaseErrorPageProps } from '@shared/ErrorPage/BaseErrorPage/BaseErr
 import Header from '@shared/Header/Header';
 import IconHome from '@shared/Icons/components/IconHome';
 
-import mascotMarvinBestSad from '@assets/mascot-marvin.png';
+import mascotSrc from '@assets/mascot.png';
 
 /**
  * BaseErrorPage component.
@@ -21,10 +21,10 @@ function BaseErrorPage({ children, className, title, ...props }: BaseErrorPagePr
 
       <div className="BaseErrorPage__image-wrapper">
         <img
-          alt="Mascotte marvin.best"
+          alt="Mascotte Quiproquotes"
           className="BaseErrorPage__image"
           draggable={false}
-          src={mascotMarvinBestSad}
+          src={mascotSrc}
         />
 
         <p className="BaseErrorPage__text">{children}</p>

@@ -49,12 +49,13 @@
   }
 
   &__logo {
-    height: auto;
-    margin: to-rem(40) 0 to-rem(140);
-    width: clamp(to-rem(100), 70%, to-rem(400));
+    margin: to-rem(40) 0 to-rem(160);
+    width: clamp(to-rem(100), 80%, to-rem(600));
 
     img {
       filter: drop-shadow(0 0 to-rem(60) rgba($color-pink, 0.4));
+      height: auto;
+      width: 100%;
     }
   }
 

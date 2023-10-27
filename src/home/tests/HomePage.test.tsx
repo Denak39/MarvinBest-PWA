@@ -11,7 +11,7 @@ describe('home/components/HomePage', () => {
 
     const page = screen.getByTestId('HomePage');
     const title = page.querySelector('.HomePage__logo');
-    const image = screen.getByAltText('Logo marvin.best');
+    const image = screen.getByAltText('Logo Quiproquotes');
 
     expect(page).toHaveClass('HomePage');
     expect(title).toContainElement(image);
